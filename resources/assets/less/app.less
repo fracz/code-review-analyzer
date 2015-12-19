@@ -1,0 +1,82 @@
+@import "../../../bower_components/bootstrap/less/bootstrap";
+
+@btn-font-weight: 300;
+@font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
+
+body, label, .checkbox label {
+	font-weight: 300;
+}
+
+form {
+  .input-group-btn {
+    vertical-align: top;
+  }
+}
+
+.list-group-item h4 > .btn {
+  margin-top: -@padding-large-horizontal/2;
+}
+
+.modal-dialog {
+  z-index: @zindex-modal;
+}
+.modal-content {
+  .modal-header {
+    .btn {
+      margin-right: @padding-base-horizontal;
+    }
+
+    h4.modal-title {
+      display: inline-block;
+    }
+  }
+  .list-group {
+    margin-bottom: 0;
+
+    .list-group .list-group-item {
+      padding-bottom: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+span.list-group-item-value {
+  display: inline-block;
+  padding: @padding-base-vertical 0;
+}
+
+img.avatar {
+  margin-right: @padding-base-vertical;
+  margin-top: -4px;
+}
+
+.modal-backdrop {
+  position: fixed;
+}
+
+.btn.hide-code {
+  display: none;
+}
+
+.contains-buttons {
+  margin-bottom: @padding-base-vertical;
+}
+.code-buttons {
+  position: absolute;
+  right: @padding-base-horizontal;
+  z-index: 100;
+}
+.input-group-addon-button {
+  padding: 0 !important;
+}
+.modal {
+  label {
+    font-weight: bold;
+  }
+}
+.template {
+  display: none;
+}
+.result-project h3 {
+  margin: @padding-base-vertical 0 0;
+}

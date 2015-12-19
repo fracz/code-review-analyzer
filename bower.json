@@ -1,0 +1,25 @@
+{
+  "name": "ReviewAnalyzer",
+  "version": "0.0.0",
+  "authors": [
+    "Amadeusz Starzykiewicz <megawebmaster@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "~4.7.14",
+    "bootstrap": "~3.3.5",
+    "bootstrap-select": "~1.6.5",
+    "prism": "~1.0.0",
+    "bootstrap-vertical-tabs": "~1.2.1",
+    "cytoscape": "~2.4.2",
+    "c3": "~0.4.10"
+  }
+}

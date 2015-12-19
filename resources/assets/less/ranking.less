@@ -1,0 +1,25 @@
+@import "../../../bower_components/bootstrap/less/variables";
+@import (reference) "../../../bower_components/bootstrap/less/glyphicons";
+@import (reference) "../../../bower_components/bootstrap/less/mixins";
+@import (reference) "../../../bower_components/bootstrap/less/utilities";
+
+ul.ranking.result-list {
+  li {
+    .clearfix();
+    background: @list-group-bg;
+
+    span.ranking-result {
+      &:extend(.pull-right);
+    }
+  }
+}
+p.alert.ranking-info {
+  margin: 0 0 @padding-small-vertical 0;
+
+  &.overall-ranking {
+    display: none;
+  }
+}
+button.btn.btn-sm.overall-rank {
+  margin-top: -@padding-base-vertical;
+}

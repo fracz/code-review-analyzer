@@ -1,0 +1,317 @@
+    1  sudo apt-get install apache2
+    2  ifconfig eth0 | grep inet | awk '{ print $2 }'
+    3  sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql
+    4  sudo mysql_install_db
+    5  sudo /usr/bin/mysql_secure_installation
+    6  sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+    7  sudo nano /etc/apache2/mods-enabled/dir.conf
+    8  apt-cache search php5-
+    9  sudo apt-get install php5-mysql
+   10  sudo nano /var/www/info.php
+   11  sudo service apache2 restart
+   12  ls
+   13  pwd
+   14  ls
+   15  cd ..
+   16  ls
+   17  cd var/
+   18  ls
+   19  cd www
+   20  ls
+   21  ls html
+   22  mv info.php html/
+   23  ls
+   24  wget http://ftp.drupal.org/files/projects/drupal-7.x.tar.gz
+   25  wget http://ftp.drupal.org/files/projects/drupal-7.0.tar.gz
+   26  curl -O http://ftp.drupal.org/files/projects/drupal-7.0.tar.gz
+   27  ls
+   28  tar -xzvf drupal-7.0.tar.gz
+   29  rm drupal-7.0.tar.gz.
+   30  ls
+   31  rm drupal-7.0.tar.gz 
+   32  cd drupal-7.0/
+   33  ls
+   34  cd ..
+   35  mv drupal-7.0/* html/
+   36  ls
+   37  cd drupal-7.0/
+   38  ls
+   39  cd ..
+   40  rm -r drupal-7.0/
+   41  cd html/
+   42  ls
+   43  rm index.html
+   44  php -i
+   45  php -v
+   46  sudo apt-get install php5-gd
+   47  sudo service apache2 restart
+   48  mkdir sites
+   49  ls
+   50  cd sites/
+   51  ls
+   52  cd default/
+   53  ls
+   54  mkdir files
+   55  chmod 777 files
+   56  cp default.settings.php ../settings.php
+   57  cd ..
+   58  ls
+   59  mv settings.php default/
+   60  ls
+   61  cd deq
+   62  cd default/
+   63  chmod 777 settings.php 
+   64  sudo apt-get update
+   65  sudo apt-get install phpmyadmin
+   66  sudo php5enmod mcrypt
+   67  sudo service apache2 restart
+   68  cd ..
+   69  cd var/www/html/
+   70  ls
+   71  cd includes/
+   72  ls
+   73  apt-get install php5=5.3.3-7
+   74  wget http://in1.php.net/distributions/php-5.3.29.tar.bz2
+   75  tar -xvf php-5.3.29.tar.bz2
+   76  cd php-5.3.29
+   77  ./configure
+   78  make
+   79  make install
+   80  apt-get install make
+   81  make
+   82  make install
+   83  sudo service apache2 restart
+   84  apt-get update
+   85  apt-get install vagrant
+   86  apt-get install docker-engine
+   87  apt-get install docker
+   88  uname -u
+   89  uname --help
+   90  uname -m
+   91  apt-get install docker-engine
+   92  apt-get -y install docker.io
+   93  ln -sf /usr/bin/docker.io /usr/local/bin/docker
+   94  sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+   95  docker
+   96  git clone https://bitbucket.org/megawebmaster/review-analyzer.git /home/user/analyzer
+   97  vim
+   98  vim /etc/hosts
+   99  cd /home/user/analyzer/
+  100  vagrant up
+  101  sudo apt-get install docker.io
+  102  sudo gpasswd -a root docker
+  103  vagrant up
+  104  ls
+  105  ls -al
+  106  rm .vagrant/
+  107  rm -d .vagrant/
+  108  vagrant up
+  109  ls -al
+  110  rm -d .vagrant
+  111  ls -al
+  112  vagrant up
+  113  sudo su
+  114  pwd
+  115  ls -l
+  116  cd /var/www/html/
+  117  ls -l
+  118  cd ..
+  119  ls -l
+  120  ls -l /home
+  121  ls -l /home/user/
+  122  cd /home/user/analyzer/
+  123  ls -l
+  124  git status
+  125  composer
+  126  curl -sS https://getcomposer.org/installer | php
+  127  php composer.phar install
+  128  ls -l
+  129  vim config/database.php 
+  130  cp .env.example .env
+  131  vim .env
+  132  apt-get install mysql
+  133  apt-get install mysql5
+  134  apt-get install mysql-server php5-mysql
+  135  apt-get install nginx
+  136  service stop apache2
+  137  service apache2 stop
+  138  service mysqld start
+  139  service mysql start
+  140  ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+  141  service nginx start
+  142  service nginx restart
+  143  vim /etc/nginx/sites-enabled/analyzer.conf
+  144  apt-get install php5-fpm
+  145  apt-get install php5-json
+  146  vim /etc/php5/fpm/conf.d/20-json.ini 
+  147  vim /etc/php5/fpm/php.ini 
+  148  service php5-fpm start
+  149  service php5-fpm restart
+  150  npm
+  151  apt-get install npm
+  152  npm install
+  153  bower
+  154  npm install -g bower
+  155  npm install -g gulp
+  156  bower install
+  157  node
+  158  apt-get isntall node
+  159  apt-get install node
+  160  node
+  161  bower install
+  162  ls -l
+  163  gulp
+  164  npm install
+  165  bower install
+  166  ls -l
+  167  rm -rf node_modules/
+  168  bower
+  169  bower --version
+  170  npm install -g bower
+  171  bower
+  172  npm install bower
+  173  bower
+  174  bower install
+  175  npm install -g bower@1.5.6
+  176  bower --version
+  177  composer.phar
+  178  chmod +x composer.phar 
+  179  ./composer.phar 
+  180  npm
+  181  node
+  182  node --version
+  183  apt-get remove node
+  184  node
+  185  apt-get install nodejs
+  186  apt-get install node
+  187  nodejs
+  188  nodejs --version
+  189  apt-get remove node
+  190  ln -s /usr/bin/nodejs /usr/local/bin/node
+  191  node
+  192  ln -s /usr/bin/nodejs /usr/local/node
+  193  node
+  194  rm -rf /usr/bin/node
+  195  apt-get install node
+  196  echo $PATH
+  197  ln -s /usr/bin/nodejs /usr/local/bin/node
+  198  ln -sf /usr/bin/nodejs /usr/local/bin/node
+  199  ls -l /usr/local/bin/node
+  200  node
+  201  node --version
+  202  nodejs
+  203  ln -sf /usr/bin/nodejs /usr/local/sbin/node
+  204  node --version
+  205  nodejs --version
+  206  ls -l /usr/local/sbin/node
+  207  whereis node
+  208  apt-get remove --purge node
+  209  node
+  210  /usr/local/bin/node
+  211  chmod +x /usr/local/bin/node
+  212  node
+  213  ln -s /usr/bin/nodejs /user/sbin/node
+  214  ln -s /usr/bin/nodejs /usr/sbin/node
+  215  node
+  216  npm install
+  217  bower
+  218  bower install --allow-root
+  219  gulp
+  220  gulp coffee
+  221  vim gulpfile.js 
+  222  gulp less
+  223  vim /etc/nginx/sites-enabled/analyzer.conf 
+  224  service nginx restart
+  225  less /var/log/nginx/error.log 
+  226  php artisan 
+  227  php artisan cache:clear
+  228  less /var/log/nginx/error.log 
+  229  ls -l
+  230  rm vendor/compiled.php 
+  231  php composer.phar dump-autoload
+  232  ls -l vendor/
+  233  less /var/log/nginx/error.log 
+  234  chmod +x storage/logs/
+  235  less /var/log/nginx/error.log 
+  236  ls -l storage/
+  237  chmod a+x storage/logs/
+  238  chmod a+w storage/logs/
+  239  chmod go-x storage/logs/
+  240  ls -l storage/
+  241  less /var/log/nginx/error.log 
+  242  echo '' > /var/log/nginx/error.log 
+  243  less /var/log/nginx/error.log 
+  244  chmod +x storage/logs/
+  245  chmod +wx storage/framework/
+  246  chmod +wx storage/app
+  247  ls -l storage/
+  248  chmod a+wx storage/app
+  249  chmod a+wx storage/framework/
+  250  chmod a+wx storage/framework/*
+  251  ls -l storage/framework/
+  252  vim .env
+  253  mysql -u root
+  254  mysql -u root -p
+  255  dpkg-reconfigure mysql-server
+  256  dpkg-reconfigure mysql-server-5.5
+  257  mysql -u root -p
+  258  vim .env
+  259  php artisan migrate
+  260  php artisan migrate --seed
+  261  bower install
+  262  bower install --allow-root
+  263  gulp clean && gulp
+  264  php artisan key:generate
+  265  ls -l bower_components/
+  266  gulp copy
+  267  gulp coffee
+  268  npm install laravel-elixir
+  269  vim gulpfile.js 
+  270  gulp cofee
+  271  gulp coffee
+  272  npm install
+  273  npm install laravel-elixir
+  274  gulp
+  275  sudo apt-get update
+  276  ls
+  277  cd /var/www/
+  278  ls
+  279  cd html/
+  280  ls
+  281  rm -r *
+  282  ls
+  283  history > history.txt
+  284  ls
+  285  cat history.txt 
+  286  history 
+  287  logout 
+  288  history
+  289  history  > history.txt
+  290  history | more
+  291  vim /etc/hosts
+  292  pwd
+  293  cd ..
+  294  cd var/
+  295  cd www/html/
+  296  grep "class Application"
+  297  grep ""
+  298  grep "class Application"
+  299  grep "Logowanie"
+  300  cd /home/user/analyzer/
+  301  grep "Eloquent"
+  302  grep -rv "Eloquent"
+  303  grep -r "Eloquent"
+  304  grep -r "artisan.php"
+  305  grep -r "artisan"
+  306  sudo apt-get install php5-curl
+  307  php --version
+  308  sudo apt-get install software-properties-common
+  309  sudo apt-get-repository ppa:ondrej/php5-5.6
+  310  sudo apt-get repository ppa:ondrej/php5-5.6
+  311  sudo add-get-repository ppa:ondrej/php5-5.6
+  312  sudo add-apt-repository ppa:ondrej/php5-5.6
+  313  sudo apt-get update
+  314  sudo apt-get upgrade
+  315  sudo apt-get install php5
+  316  php --version
+  317  history>history.txt

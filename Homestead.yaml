@@ -1,0 +1,26 @@
+---
+#type: "virtualbox"
+type: "docker"
+ip: "192.168.10.10"
+memory: 2048
+cpus: 2
+
+folders:
+  - map: .
+    to: /vagrant/
+  - map: .
+    to: /var/www
+
+sites:
+  - map: review-analyzer.local
+    to: /var/www/public
+
+databases:
+  - name: analyzer
+    user: review
+    password: analyzer
+    type: mysql
+
+variables:
+  - key: APP_ENV
+    value: local
