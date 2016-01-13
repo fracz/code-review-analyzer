@@ -21,6 +21,8 @@ class AverageCommentLength extends AbstractAnalyzer
 
 	public function analyze(Project $project, $from, $to)
 	{
+		$this->collectDataForReview($project, $from, $to);
+
 		$uri = '/a/changes/?q=project:'.$project->getAttribute('name');
 		$uri .= ' -is:draft ((status:merged)OR(status:open))';
 		$uri .= ' after:'.$from.' before:'.$to;
@@ -35,6 +37,7 @@ class AverageCommentLength extends AbstractAnalyzer
 				$comments = (array)$this->fetch($project, $uri);
 
 				foreach ($comments as $comment) {
+					//print_r($uri);exit;
 					foreach ($comment as $message) {
 						if (!isset($results[$message->author->_account_id])) {
 							$results[$message->author->_account_id] = [
