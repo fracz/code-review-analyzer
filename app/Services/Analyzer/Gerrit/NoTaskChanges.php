@@ -7,67 +7,112 @@ use App\Services\Analyzer\StringTitle;
 
 class NoTaskChanges extends AbstractAnalyzer
 {
-	use StringTitle;
+    use StringTitle;
 
-	public function __toString()
-	{
-		return 'Liczba zmian NT';
-	}
+    public function __toString()
+    {
+        return 'Liczba zmian NT';
+    }
 
-	protected function decode($result)
-	{
-		return json_decode(substr($result, 4));
-	}
+    protected function decode($result)
+    {
+        return json_decode(substr($result, 4));
+    }
 
-	public function analyze(Project $project, $from, $to)
-	{
-            $this->collectDataForReview($project, $from, $to);
-            
-		$uri = '/a/changes/?q=project:'.$project->getAttribute('name');
-		$uri .= ' -is:draft ((status:merged)OR(status:open))';
-		$uri .= ' after:'.$from.' before:'.$to;
-		$uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=LABELS';
+    public function analyze(Project $project, $from, $to)
+    {
+        $this->collectDataForReview($project, $from, $to);
 
-		$result = $this->fetch($project, $uri);
-		$results = [];
+        $result = \App\Commit::where('project', $project->getAttribute('name'))
+                                ->where('updated', '>=', $from)
+                                ->where('updated', '<=', $to)->get();
 
-		foreach ($result as $commit) {
-			if (!isset($results[$commit->owner->_account_id])) {
-				$results[$commit->owner->_account_id] = [
-					'username' => $commit->owner->username,
-					'name' => $commit->owner->name,
-					'avatar' => current($commit->owner->avatars),
-					'changes' => [],
-				];
-			}
+        $results = [];
 
-			if (strpos($commit->subject, '[NT]') !== false) {
-				$results[$commit->owner->_account_id]['changes'][$commit->_number] = $commit->subject;
-			}
-		}
 
-		$results = array_filter($results, function($item){
-			return count($item['changes']) > 0;
-		});
+        foreach ($result as $commit) {
+            if (!isset($results[$commit->owner->_account_id])) {
+                $results[$commit->owner->_account_id] = [
+                        'username' => $commit->owner->username,
+                        'name' => $commit->owner->name,
+                        'avatar' => (object) ['url' => $commit->owner->avatars->first()->url, 
+                                                      'height' => $commit->owner->avatars->first()->height],
+                        'changes' => [],
+                ];
+            }
 
-		foreach ($results as &$result) {
-			$result['count'] = count($result['changes']);
-		}
+            if (strpos($commit->subject, '[NT]') !== false) {
+                $results[$commit->owner->_account_id]['changes'][$commit->_number] = $commit->subject;
+            }
+        }
 
-		usort($results, function($a, $b){
-			return $b['count'] - $a['count'];
-		});
+        $results = array_filter($results, function($item){
+            return count($item['changes']) > 0;
+        });
 
-		return $results;
-	}
+        foreach ($results as &$result) {
+            $result['count'] = count($result['changes']);
+        }
 
-	public function getResults($results, Project $project)
-	{
-		return view('review._list', ['results' => $results, 'analyzer' => $this, 'project' => $project]);
-	}
+        usort($results, function($a, $b){
+            return $b['count'] - $a['count'];
+        });
 
-	public function getContent($result, Project $project)
-	{
-		return view('review.gerrit.changes._nt_changes', ['result' => $result, 'project' => $project]);
-	}
+        //print_r($results);exit;
+        return $results;
+    }
+
+    public function analyze_old(Project $project, $from, $to)
+    {
+        echo "echo from NoTaskChanges";exit;
+        $this->collectDataForReview($project, $from, $to);
+
+        $uri = '/a/changes/?q=project:'.$project->getAttribute('name');
+        $uri .= ' -is:draft ((status:merged)OR(status:open))';
+        $uri .= ' after:'.$from.' before:'.$to;
+        $uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=LABELS';
+
+        $result = $this->fetch($project, $uri);
+        $results = [];
+
+        foreach ($result as $commit) {
+            if (!isset($results[$commit->owner->_account_id])) {
+                $results[$commit->owner->_account_id] = [
+                    'username' => $commit->owner->username,
+                    'name' => $commit->owner->name,
+                    'avatar' => current($commit->owner->avatars),
+                    'changes' => [],
+                ];
+            }
+
+            if (strpos($commit->subject, '[NT]') !== false) {
+                $results[$commit->owner->_account_id]['changes'][$commit->_number] = $commit->subject;
+            }
+        }
+
+        $results = array_filter($results, function($item){
+            return count($item['changes']) > 0;
+        });
+
+        foreach ($results as &$result) {
+            $result['count'] = count($result['changes']);
+        }
+
+        usort($results, function($a, $b){
+            return $b['count'] - $a['count'];
+        });
+
+        print_r($results);exit;
+        return $results;
+    }
+
+    public function getResults($results, Project $project)
+    {
+            return view('review._list', ['results' => $results, 'analyzer' => $this, 'project' => $project]);
+    }
+
+    public function getContent($result, Project $project)
+    {
+        return view('review.gerrit.changes._nt_changes', ['result' => $result, 'project' => $project]);
+    }
 }

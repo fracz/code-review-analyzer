@@ -12,27 +12,7 @@ class UpdateCommitsTable extends Migration {
 	 */
 	public function up()
 	{
-            Schema::table('commits', function(Blueprint $table)
-            {
-                $table->dropColumn(['created']);
-                $table->dropColumn(['updated']);
-            });
-            
-            Schema::table('comments', function(Blueprint $table)
-            {
-                $table->dropColumn(['updated']);
-            });
-            
-            Schema::table('commits', function(Blueprint $table)
-            {
-                $table->dateTime('created');
-                $table->dateTime('updated');
-            });
-            
-            Schema::table('comments', function(Blueprint $table)
-            {
-                $table->dateTime('updated');
-            });
+		
 	}
 
 	/**
@@ -42,27 +22,7 @@ class UpdateCommitsTable extends Migration {
 	 */
 	public function down()
 	{
-            Schema::table('commits', function(Blueprint $table)
-            {
-                $table->dropColumn(['created']);
-                $table->dropColumn(['updated']);
-            });
-            
-            Schema::table('comments', function(Blueprint $table)
-            {
-                $table->dropColumn(['updated']);
-            });
-            
-            Schema::table('commits', function(Blueprint $table)
-            {
-                $table->date('created');
-                $table->date('updated');
-            });
-            
-            Schema::table('comments', function(Blueprint $table)
-            {
-                $table->date('updated');
-            });
+		
 	}
 
 }

@@ -8,6 +8,6 @@ class Person extends Model {
     
     public function avatars()
     {
-        return Avatar::where('person_id', $this->id);
+        return $this->hasMany('App\Avatar', 'person_id');
     }
 }

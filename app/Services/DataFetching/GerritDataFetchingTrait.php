@@ -7,6 +7,8 @@ use App\Commit;
 use App\Person;
 use App\Avatar;
 use App\Comment;
+use App\Revision;
+use App\CodeReview;
 
 trait GerritDataFetchingTrait
 {
@@ -48,42 +50,43 @@ trait GerritDataFetchingTrait
 
 	protected function collectDataForReview(Project $project, $from, $to)
 	{
-		$result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
-		$results = [];
-                
-                //temporary
-                /*$commit = \App\Comment::all();
-                print_r(count($commit));
+            //temporary
+            /*$commit = \App\Comment::all();
+            print_r(count($commit));
 
-                foreach($commit as $val){
-                    $val->delete();
-                }
-                $commit = \App\Commit::all();
-                foreach($commit as $val){
-                    $val->delete();
-                }
-                print_r(count($commit));*/
-                //end temporary
-                
-               
-                //print_r(count($result));exit;
-		foreach ($result as $commit_item) {
-			$commitId = $this->createOrUpdateCommit($commit_item);
+            foreach($commit as $val){
+                $val->delete();
+            }
+            $commit = \App\Commit::all();
+            foreach($commit as $val){
+                $val->delete();
+            }
+            print_r(count($commit));*/
+            //end temporary
+
+            $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
+            $results = [];
+
+            //print_r(count($result));exit;
+            foreach ($result as $commit_item) {
+                    $commitId = $this->createOrUpdateCommit($commit_item);
+
+                    foreach ($commit_item->revisions as $revision => $data) {
+                        $revisionId = $this->createOrUpdateRevision($data, $revision, $commitId);
                         
-                        foreach ($commit_item->revisions as $revision => $data) {
-                            $uri = '/a/changes/'.$commit_item->id.'/revisions/'.$revision.'/comments/';
-                            $comments = (array)$this->fetch($project, $uri);
+                        $uri = '/a/changes/'.$commit_item->id.'/revisions/'.$revision.'/comments/';
+                        $comments = (array)$this->fetch($project, $uri);
 
-                            foreach ($comments as $comment_item) {
-                                foreach ($comment_item as $message) {
-                                    $this->createOrUpdateComment($message, $commitId);
-                                }
+                        foreach ($comments as $filename => $comment_item) {
+                            foreach ($comment_item as $message) {
+                                $this->createOrUpdateComment($message, $revisionId, $filename);
                             }
                         }
-		}
-                
-                echo "AA";exit;
+                    }
+            }
+            //echo "A";exit;
 	}
+        
         
         protected function buildUriElement(Project $project, $from, $to){
             $dateUriElement = "";
@@ -134,9 +137,9 @@ trait GerritDataFetchingTrait
             
             if (!$commit) {
                 $commit = new Commit;
-                echo "COMMIT DOESNT EXIST <br/>";
+                //echo "COMMIT DOESNT EXIST <br/>";
             } else {
-                echo "COMMIT EXISTS WITH ID: ". $commit->id . "<br/>";
+                //echo "COMMIT EXISTS WITH ID: ". $commit->id . "<br/>";
             }
             
             $commit->commit_id = $commit_item->id;
@@ -154,13 +157,40 @@ trait GerritDataFetchingTrait
 
             $commit->owner_id = $this->createPersonIfNotExists($commit_item->owner->_account_id, $commit_item->owner->name,
                     $commit_item->owner->email, $commit_item->owner->username, $commit_item->owner->avatars);
+            
 
+            //print_r($commit);echo "<br/><br/><br/>";
+            
             $commit->save();
+            
+            if(isset($commit_item->labels) && isset($commit_item->labels->{'Code-Review'}))
+            {
+                $codeReview = $commit_item->labels->{'Code-Review'};
+                foreach ($codeReview as $reviewer) {
+                    if ($reviewer instanceof \stdClass) {
+                        $commit->approved_by_id = $this->createCodeReviewIfNotExists($reviewer, $commit->id);
+                    }
+                }                   
+            }
             
             return $commit->id;
         }
         
-        protected function createOrUpdateComment($message, $commitId){
+        protected function createCodeReviewIfNotExists($reviewer, $commitId){
+            $reviewerId = $this->createPersonIfNotExists($reviewer->_account_id, $reviewer->name,
+                    $reviewer->email, $reviewer->username, $reviewer->avatars);
+            
+            $codeReview = \App\CodeReview::where('commit_id', $commitId)->where('reviewer_id', $reviewerId)->first();
+            if(!$codeReview){
+                $codeReview = new CodeReview;
+                $codeReview->commit_id = $commitId;
+                $codeReview->reviewer_id = $reviewerId;
+                
+                $codeReview->save();
+            }
+        }
+        
+        protected function createOrUpdateComment($message, $revisionId, $filename){
             $comment = \App\Comment::where('comment_id', $message->id)->first();
             
             if(!$comment){
@@ -179,14 +209,42 @@ trait GerritDataFetchingTrait
                 $comment->end_character = $message->range->end_character;  
             }
 
+            if(isset($message->in_reply_to)){
+                $comment->in_reply_to =  $message->in_reply_to;
+            }
+            
+            $comment->filename = $filename;
             $comment->updated =  $message->updated;
             $comment->message = $message->message;
-            $comment->commit_id = $commitId;
+            $comment->revision_id = $revisionId;
 
             $comment->author_id = $this->createPersonIfNotExists($message->author->_account_id, $message->author->name,
                 $message->author->email, $message->author->username, $message->author->avatars);
 
-            $comment->save();          
+            //print_r($comment);echo "<Br/><Br/>";
+            $comment->save();         
+        }
+        
+        protected function createOrUpdateRevision($revisionData, $revisionId, $commit_id){
+            $revision = \App\Revision::where('revision_id', $revisionId)->first();
+            
+            if(!$revision){
+                $revision = new Revision;
+            }
+            
+            $revision->revision_id = $revisionId; 
+            $revision->commit_id = $commit_id;
+
+            $revision->created =  $revisionData->created;
+            $revision->_number = $revisionData->_number;
+            $revision->ref = $revisionData->ref;
+
+            $revision->uploader_id = $this->createPersonIfNotExists($revisionData->uploader->_account_id, $revisionData->uploader->name,
+                $revisionData->uploader->email, $revisionData->uploader->username, $revisionData->uploader->avatars);
+
+            $revision->save();   
+            
+            return $revision->id;
         }
 
 	/**

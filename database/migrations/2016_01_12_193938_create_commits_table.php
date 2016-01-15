@@ -21,8 +21,8 @@ class CreateCommitsTable extends Migration {
 			$table->string('change_id');
 			$table->string('subject');
 			$table->string('status');
-			$table->date('created');
-			$table->date('updated');
+			$table->dateTime('created');
+			$table->dateTime('updated');
 			$table->string('submittable');
 			$table->string('insertions');
 			$table->string('deletions');

@@ -9,10 +9,14 @@ class Commit extends Model {
 
     public function owner()
     {
-        return $this->hasOne('Person', 'owner_id');
+        return $this->belongsTo('App\Person', 'owner_id');
+    }
+
+    public function revisions() {
+        return $this->hasMany('App\Revision', 'commit_id');
     }
     
-    public function comments() {
-        return Comment::where('commit_id', $this->id);
+    public function codeReviews(){
+        return $this->hasMany('App\CodeReview', 'commit_id');
     }
 }

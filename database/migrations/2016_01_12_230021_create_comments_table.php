@@ -21,11 +21,11 @@ class CreateCommentsTable extends Migration {
                         $table->integer('start_character');
                         $table->integer('end_line');
                         $table->integer('end_character');
-                        $table->date('updated');
+                        $table->dateTime('updated');
                         $table->string('message');
+                        $table->string('in_reply_to');
+                        $table->string('filename');
                         
-                        $table->integer('commit_id')->unsigned()->default(0);
-                        $table->foreign('commit_id')->references('id')->on('commits')->onDelete('cascade');
                         $table->integer('author_id')->unsigned()->default(0);
                         $table->foreign('author_id')->references('id')->on('persons')->onDelete('cascade');
 			$table->timestamps();
