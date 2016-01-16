@@ -12,7 +12,10 @@ Route::get('/projects/{id}/delete', ['as' => 'projects.delete', 'uses' => 'Proje
 Route::get('/review', ['as' => 'review.index', 'uses' => 'ReviewController@index']);
 Route::get('/review/{id}/results', ['as' => 'review.results', 'uses' => 'ReviewController@results'])->where('id', '[0-9]+');
 Route::post('/review/{id?}', ['as' => 'review.generate', 'uses' => 'ReviewController@generate'])->where('id', '[0-9]+');
+Route::get('/review/api/{name}/{from}/{to}', ['as' => 'review.generateapi', 'uses' => 'ReviewController@generateApi']);
 Route::get('/review/{id}', ['as' => 'review.analyze', 'uses' => 'ReviewController@analyze'])->where('id', '[0-9]+');
+
+Route::get('/api/{name}/{from}/{to}', ['as' => 'api.data', 'uses' => 'ApiController@getData']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -47,6 +47,15 @@ class ReviewController extends Controller
 
 		return redirect()->route('review.results', $project->getAttribute('id'));
 	}
+        
+        public function generateApi($name, $from, $to)
+	{
+            $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
+            
+            $results = $this->analyzerService->analyze($project, $from, $to);
+            
+            return  $results;
+        }
 
 	public function analyze($id)
 	{
