@@ -22,7 +22,7 @@ class HotTopics extends AbstractAnalyzer
     public function analyze(Project $project, $from, $to)
     {
         //echo "echo from HotTopics";exit;
-        $this->collectDataForReview($project, $from, $to);
+        //$this->collectDataForReview($project, $from, $to);
         
         $result = \App\Commit::where('project', $project->getAttribute('name'))
                                 ->where('updated', '>=', $from)

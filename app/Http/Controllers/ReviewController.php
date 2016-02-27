@@ -50,6 +50,7 @@ class ReviewController extends Controller
         
         public function generateApi($name, $from, $to)
 	{
+            //echo str_replace('&2F;', '/', $name);exit;
             $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
             
             $results = $this->analyzerService->analyze($project, $from, $to);
