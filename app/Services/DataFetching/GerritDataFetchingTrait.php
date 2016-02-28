@@ -30,21 +30,24 @@ trait GerritDataFetchingTrait
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_FOLLOWLOCATION => true,
 		]);
-			
+                
 		$result = curl_exec($ch);
+                
 
 		if ($result === false) {
-			return [];
+                    return [];
 		}
 
 		$result = $this->decode($result);
 
 		if ($result === null) {
-			return [];
+                    return [];
 		}
 
 		self::$cache[$project->getAttribute('name')][$uri] = $result;
 
+                 //print_r($result);
+                
 		return $result;
 	}
 
@@ -66,6 +69,7 @@ trait GerritDataFetchingTrait
 
             $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
             $results = [];
+            
 
             //print_r(count($result));exit;
             foreach ($result as $commit_item) {
@@ -84,7 +88,6 @@ trait GerritDataFetchingTrait
                         }
                     }
             }
-            //echo "A";exit;
 	}
         
         
