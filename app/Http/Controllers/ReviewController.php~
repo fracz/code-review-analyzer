@@ -11,7 +11,7 @@ class ReviewController extends Controller
 	function __construct(AnalyzerInterface $analyzerService)
 	{
 		$this->analyzerService = $analyzerService;
-		//$this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	public function index()
