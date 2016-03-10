@@ -5,6 +5,7 @@ Simple tool for analysing how team members cooperate during defined time periods
 ## Authors
 
 Maciej Kocik <maciex36@gmail.com>
+
 Piotr Proc <piotr.proc@gmail.com>
 
 ## Project originally created by
