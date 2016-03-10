@@ -4,5 +4,9 @@ Simple tool for analysing how team members cooperate during defined time periods
 
 ## Authors
 
-Amadeusz Starzykiewicz <megawebmaster@gmail.com>
+Maciej Kocik <maciex36@gmail.com>
+Piotr Proc <piotr.proc@gmail.com>
 
+## Project originally created by
+
+Amadeusz Starzykiewicz <megawebmaster@gmail.com>
