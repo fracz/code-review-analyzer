@@ -53,6 +53,7 @@ class ReviewController extends Controller
             //echo str_replace('&2F;', '/', $name);exit;
             $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
             
+            $this->analyzerService->reBuildAnalyzerForApi();
             $results = $this->analyzerService->analyze($project, $from, $to);
             
             return  $results;

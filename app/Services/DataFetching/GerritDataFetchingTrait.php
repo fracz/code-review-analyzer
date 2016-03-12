@@ -107,7 +107,7 @@ trait GerritDataFetchingTrait
             $uri .= ' -is:draft ((status:merged)OR(status:open))';
             $uri .= $dateUriElement;
             $uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=LABELS';
-            
+
             return $uri;
         }
         
