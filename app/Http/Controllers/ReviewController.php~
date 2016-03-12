@@ -11,7 +11,7 @@ class ReviewController extends Controller
 	function __construct(AnalyzerInterface $analyzerService)
 	{
 		$this->analyzerService = $analyzerService;
-		//$this->middleware('auth');
+		$this->middleware('auth');
 	}
 
 	public function index()
@@ -53,7 +53,6 @@ class ReviewController extends Controller
             //echo str_replace('&2F;', '/', $name);exit;
             $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
             
-            $this->analyzerService->reBuildAnalyzerForApi();
             $results = $this->analyzerService->analyze($project, $from, $to);
             
             return  $results;
