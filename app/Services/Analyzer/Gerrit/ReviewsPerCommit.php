@@ -46,8 +46,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     ];
                 }
                 
-                //print_r($commit);exit;
-                $results[$commit->commit_id] = [
+                $results[$commit->_number] = [
                     'id' => $commit->commit_id,
                     'owner_id' => $commit->owner_id,
                     'create_date' => $commit->created,
