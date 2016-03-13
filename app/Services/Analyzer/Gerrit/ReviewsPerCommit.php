@@ -3,6 +3,7 @@
 namespace App\Services\Analyzer\Gerrit;
 
 use App\Project;
+use App\Person;
 use App\Services\Analyzer\CommitCountTitle;
 
 class ReviewsPerCommit extends AbstractAnalyzer
@@ -38,10 +39,13 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 
                 $revisions = [];
                 
+                
+                
                 foreach ($commit->revisions as $revision) {
                     $revisions[$revision->revision_id] = [
                         'id' => $revision->revision_id,
                         'owner_id' => $revision->uploader_id,
+                        'owner_email' => $revision->uploader->email,
                         'create_date' => $revision->created
                     ];
                 }

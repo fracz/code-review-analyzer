@@ -8,7 +8,7 @@ class Revision extends Model {
     
     public function uploader()
     {
-        return $this->hasOne('Person', 'uploader_id');
+        return $this->belongsTo('App\Person', 'uploader_id');
     }
     
     public function comments() {
