@@ -78,6 +78,7 @@ class OverallRanking implements RankerInterface
 						$result[$user['username']] = [
 							'value' => 0.0,
 							'name' => $user['name'],
+                                                        'email' => $user['email'],
 							'avatar' => $user['avatar'],
 						];
 					}
