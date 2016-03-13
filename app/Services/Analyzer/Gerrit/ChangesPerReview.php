@@ -32,9 +32,11 @@ class ChangesPerReview extends AbstractAnalyzer
 
         foreach ($result as $commit) {
             if (!isset($results[$commit->owner->_account_id])) {
+                
                 $results[$commit->owner->_account_id] = [
                     'username' => $commit->owner->username,
                     'name' => $commit->owner->name,
+                    'email' => $commit->owner->email,
                     'avatar' => (object) ['url' => $commit->owner->avatars->first()->url, 
                                             'height' => $commit->owner->avatars->first()->height],
                     'messages' => 0,

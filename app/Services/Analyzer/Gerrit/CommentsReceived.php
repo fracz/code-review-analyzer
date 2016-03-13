@@ -41,6 +41,7 @@ class CommentsReceived extends AbstractAnalyzer
                 $results[$commit->owner->_account_id] = [
                     'username' => $commit->owner->username,
                     'name' => $commit->owner->name,
+                    'email' => $commit->owner->email,
                     'avatar' => (object) ['url' => $commit->owner->avatars->first()->url, 
                                             'height' => $commit->owner->avatars->first()->height],
                     'count' => 0,
@@ -62,6 +63,7 @@ class CommentsReceived extends AbstractAnalyzer
                         'from' => [
                             'name' => $message->author->name,
                             'username' => $message->author->username,
+                            'email' => $message->author->email,
                         ],
                         'revision' => $revision->_number,
                         'date' => \DateTime::createFromFormat('Y-m-d H:i:s+', $message->updated),

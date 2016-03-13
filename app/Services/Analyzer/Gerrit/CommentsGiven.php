@@ -47,6 +47,7 @@ class CommentsGiven extends AbstractAnalyzer
                         $results[$comment->author->_account_id] = [
                             'username' => $comment->author->username,
                             'name' => $comment->author->name,
+                            'email' => $comment->author->email,
                             'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
                                             'height' => $comment->author->avatars->first()->height],
                             'count' => 1,
@@ -62,11 +63,12 @@ class CommentsGiven extends AbstractAnalyzer
                             'comments' => [],
                         ];
                     }
-
+                    
                     $results[$comment->author->_account_id]['commits'][$commit->_number]['comments'][] = [
                         'to' => [
                             'name' => $commit->owner->name,
                             'username' => $commit->owner->username,
+                            'username' => $commit->owner->email,
                         ],
                         'revision' => $revision->_number,
                         'date' => \DateTime::createFromFormat('Y-m-d H:i:s+', $comment->updated),

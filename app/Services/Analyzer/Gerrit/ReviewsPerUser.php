@@ -47,6 +47,7 @@ class ReviewsPerUser extends AbstractAnalyzer
                                 $results[$reviewer->_account_id] = [
                                     'username' => $reviewer->username,
                                     'name' => $reviewer->name,
+                                    'email' => $reviewer->email,
                                     'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
                                                       'height' => $comment->author->avatars->first()->height],
                                     'commits' => [],
@@ -62,6 +63,7 @@ class ReviewsPerUser extends AbstractAnalyzer
                                 $results[$comment->author->_account_id] = [
                                         'username' => $comment->author->username,
                                         'name' => $comment->author->name,
+                                        'email' => $comment->author->email,
                                         'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
                                                       'height' => $comment->author->avatars->first()->height],
                                         'commits' => [],

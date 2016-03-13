@@ -37,6 +37,7 @@ class HotTopics extends AbstractAnalyzer
                             'subject' => $commit->subject,
                             'username' => $commit->owner->username,
                             'name' => $commit->owner->name,
+                            'email' => $commit->owner->email,
                             'avatar' => (object) ['url' => $commit->owner->avatars->first()->url, 
                                             'height' => $commit->owner->avatars->first()->height],
                             'messages' => [],
@@ -60,6 +61,7 @@ class HotTopics extends AbstractAnalyzer
                         'from' => [
                             'name' => $message->author->name,
                             'username' => $message->author->username,
+                            'email' => $message->author->email,
                         ],
                         'file' => $message->filename,
                         'revision' => $revision->revision_id,  

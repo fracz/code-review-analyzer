@@ -36,9 +36,11 @@ class AverageCommentLength extends AbstractAnalyzer
 
                 foreach ($comments as $message) {
                     if (!isset($results[$message->author->_account_id])) {
+                        
                         $results[$message->author->_account_id] = [
                             'username' => $message->author->username,
                             'name' => $message->author->name,
+                            'email' => $message->author->email,
                             'avatar' => (object) ['url' => $message->author->avatars->first()->url, 
                                             'height' => $message->author->avatars->first()->height],
                             'average' => 0,
