@@ -50,6 +50,7 @@ class ReviewController extends Controller
         
         public function generateApi($name, $from, $to)
 	{
+            //proper format 2015-01-16
             //echo str_replace('&2F;', '/', $name);exit;
             $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
             
@@ -57,6 +58,26 @@ class ReviewController extends Controller
             $results = $this->analyzerService->analyze($project, $from, $to);
             
             return  $results;
+        }
+        
+        public function getBadges($projectName, $userEmail)
+	{
+            $from = date('Y-m-d', strtotime("-1 week"));;
+            $to = date("Y-m-d", time() + 86400);
+            $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
+            
+            $results_classess = [
+                'first_position_in_rank' => new \App\Services\Analyzer\Gerrit\Badges\FirstPositionInRank(),
+                'inna_odznaka' => new \App\Services\Analyzer\Gerrit\Badges\FirstPositionInRank()
+            ];
+            
+            $results = [];
+            
+            foreach ($results_classess as $type => $badge) {
+                $results[$type] = $badge->getBadge($dataFromLastWeek, $userEmail);	
+            }
+            
+            return $results;
         }
 
 	public function analyze($id)
