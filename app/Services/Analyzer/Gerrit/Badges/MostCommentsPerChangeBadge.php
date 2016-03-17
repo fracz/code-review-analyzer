@@ -8,17 +8,12 @@
 
 namespace App\Services\Analyzer\Gerrit\Badges;
 
-
-class MostCommentsPerChangeBadge extends AbstractBadge
+class MostCommentsPerChangeBadge extends AbstractOnePropertyBadge
 {
-
     public function __construct()
     {
-        parent::__construct("♬", "You're getting biggest number of comments per change in team");
+        parent::__construct("♬", "You're getting biggest number of comments per change in team",
+            "changes_per_review", "average");
     }
 
-    public function getBadge($data, $email)
-    {
-        // TODO: Implement getBadge() method.
-    }
 }

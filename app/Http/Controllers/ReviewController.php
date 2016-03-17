@@ -84,7 +84,7 @@ class ReviewController extends Controller
         foreach ($badges as $index => $badge) {
             /** @var AbstractBadge $badge */
             if ($badge->getBadge($dataFromLastWeek, $userEmail)) {
-                $rewardedBadges[$index] = $badge;
+                $rewardedBadges[] = $badge;
             }
         }
 

@@ -9,16 +9,13 @@
 namespace App\Services\Analyzer\Gerrit\Badges;
 
 
-class MostChangesBadge extends AbstractBadge
+class MostChangesBadge extends AbstractOnePropertyBadge
 {
 
     public function __construct()
     {
-        parent::__construct("☆", "You've made most of the changes in project this week");
+        parent::__construct("☆", "You've made most of the changes in project this week",
+            "commits_per_user", "count");
     }
 
-    public function getBadge($data, $email)
-    {
-        // TODO: Implement getBadge() method.
-    }
 }

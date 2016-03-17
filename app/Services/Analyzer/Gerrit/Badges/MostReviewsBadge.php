@@ -9,15 +9,12 @@
 namespace App\Services\Analyzer\Gerrit\Badges;
 
 
-class MostReviewsBadge extends AbstractBadge
+class MostReviewsBadge extends AbstractOnePropertyBadge
 {
     public function __construct()
     {
-        parent::__construct("☻", "You've made most of the reviews in project this week");
+        parent::__construct("☻", "You've made most of the reviews in project this week",
+            "reviews_per_user", "count");
     }
 
-    public function getBadge($data, $email)
-    {
-        // TODO: Implement getBadge() method.
-    }
 }
