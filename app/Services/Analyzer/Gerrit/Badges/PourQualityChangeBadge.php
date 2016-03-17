@@ -9,15 +9,15 @@
 namespace App\Services\Analyzer\Gerrit\Badges;
 
 
-class PourQualityChangeBadge extends AbstractBadge
+class PourQualityChangeBadge extends QualityBadge
 {
     public function __construct()
     {
         parent::__construct("☂", "One of your changes required 3 fixes");
     }
 
-    public function getBadge($data, $email)
+    public function noOfFixesIsEnough($noOfFixes)
     {
-        // TODO: Implement getBadge() method.
+        return $noOfFixes >= 4;
     }
 }
