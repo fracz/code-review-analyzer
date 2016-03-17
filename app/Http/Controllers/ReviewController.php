@@ -53,7 +53,7 @@ class ReviewController extends Controller
             //proper format 2015-01-16
             //echo str_replace('&2F;', '/', $name);exit;
             $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
-            
+
             $this->analyzerService->reBuildAnalyzerForApi();
             $results = $this->analyzerService->analyze($project, $from, $to);
             
@@ -65,10 +65,10 @@ class ReviewController extends Controller
             $from = date('Y-m-d', strtotime("-1 week"));;
             $to = date("Y-m-d", time() + 86400);
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
-            
+
             $results_classess = [
-                'first_position_in_rank' => new \App\Services\Analyzer\Gerrit\Badges\FirstPositionInRank(),
-                'inna_odznaka' => new \App\Services\Analyzer\Gerrit\Badges\FirstPositionInRank()
+                'first_position_in_rank' => new \App\Services\Analyzer\Gerrit\Badges\BiggestProgessInRankingBadge(),
+                'inna_odznaka' => new \App\Services\Analyzer\Gerrit\Badges\BiggestProgessInRankingBadge()
             ];
             
             $results = [];

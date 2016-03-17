@@ -16,11 +16,10 @@ trait GerritDataFetchingTrait
 
 	protected function fetch(Project $project, $uri)
 	{
-		if (isset(self::$cache[$project->getAttribute('name')][$uri])) {
-			return self::$cache[$project->getAttribute('name')][$uri];
-		}
-                
-		//print_r(str_replace(' ', '%20', $project->getAttribute('url').$uri));exit;
+        if (isset(self::$cache[$project->getAttribute('name')][$uri])) {
+            return self::$cache[$project->getAttribute('name')][$uri];
+        }
+
 		$ch = curl_init();
 		curl_setopt_array($ch, [
 			CURLOPT_URL => str_replace(' ', '%20', $project->getAttribute('url').$uri),
@@ -54,17 +53,17 @@ trait GerritDataFetchingTrait
 	protected function collectDataForReview(Project $project, $from, $to)
 	{
             //temporary
-            /*$commit = \App\Comment::all();
-            print_r(count($commit));
-
-            foreach($commit as $val){
-                $val->delete();
-            }
-            $commit = \App\Commit::all();
-            foreach($commit as $val){
-                $val->delete();
-            }
-            print_r(count($commit));*/
+//            $commit = \App\Comment::all();
+//            print_r(count($commit));
+//
+//            foreach($commit as $val){
+//                $val->delete();
+//            }
+//            $commit = \App\Commit::all();
+//            foreach($commit as $val){
+//                $val->delete();
+//            }
+//            print_r(count($commit));
             //end temporary
 
             $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
@@ -107,6 +106,8 @@ trait GerritDataFetchingTrait
             $uri .= ' -is:draft ((status:merged)OR(status:open))';
             $uri .= $dateUriElement;
             $uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=LABELS';
+
+//            print_r($uri);exit;
 
             return $uri;
         }

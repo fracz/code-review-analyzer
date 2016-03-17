@@ -22,12 +22,13 @@ class AverageCommentLength extends AbstractAnalyzer
     public function analyze(Project $project, $from, $to)
     {
         //echo "echo from AverageCommentLength";exit;
-        //$this->collectDataForReview($project, $from, $to);
+//        $this->collectDataForReview($project, $from, $to);
         
         $result = \App\Commit::where('project', $project->getAttribute('name'))
                                 ->where('updated', '>=', $from)
                                 ->where('updated', '<=', $to)->get();
 
+        //print_r($result);
         $results = [];
 
         foreach ($result as $commit) {
@@ -55,7 +56,6 @@ class AverageCommentLength extends AbstractAnalyzer
                 }
             }
         }
-
         $results = array_filter($results, function($item){
             return $item['count'] > 0;
         });
@@ -71,7 +71,8 @@ class AverageCommentLength extends AbstractAnalyzer
             return $isMore ? 1 : ($isEqual ? 0 : -1);
         });
 
-        //print_r($results);exit;
+
+
         return $results;
     }
 
