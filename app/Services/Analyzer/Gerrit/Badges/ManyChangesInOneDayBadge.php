@@ -33,7 +33,7 @@ class ManyChangesInOneDayBadge extends AbstractBadge
                     $date = $commit["create_date"];
 
                     if (strlen($date) >= 10)
-                        $date = $date . substr(0, strlen($date) - 10);
+                        $date = substr($date, 0, 10);
 
                     if (array_key_exists($date, $map)) {
                         $map[$date] = $map[$date] + 1;
@@ -43,10 +43,12 @@ class ManyChangesInOneDayBadge extends AbstractBadge
                         $map[$date] = 1;
                 }
 
+
                 return false;
             }
 
         }
+
 
         return false;
     }
