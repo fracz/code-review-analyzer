@@ -16,22 +16,15 @@ class RankingScreen
     {
         $commitsPerUser = $data["ranking_overall"];
 
-        $winner = null;
-        $maxRanking = 0.0;
-
         foreach ($commitsPerUser as $key => $commit) {
             $ranking = $commit["value"];
 
-            if ($ranking > $maxRanking) {
-                $winner = $commit;
-                $maxRanking = $ranking;
+            if($commit["email"] === $email){
+                return $ranking;
             }
+
         }
 
-        if (is_null($winner) == false)
-            return $maxRanking;
-        else
-            return 0.0;
-
+        return null;
     }
 }
