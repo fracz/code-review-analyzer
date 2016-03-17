@@ -2,215 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96180e4c-15a3-47a6-b521-50aa262eaee8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Handlers/Commands/.gitkeep" afterPath="/home/user/analyzer/app/Handlers/Commands/.gitkeep" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Handlers/Events/.gitkeep" afterPath="/home/user/analyzer/app/Handlers/Events/.gitkeep" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/composer.phar" afterPath="/home/user/analyzer/composer.phar" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/migrations/.gitkeep" afterPath="/home/user/analyzer/database/migrations/.gitkeep" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/seeds/.gitkeep" afterPath="/home/user/analyzer/database/seeds/.gitkeep" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/favicon.ico" afterPath="/home/user/analyzer/public/favicon.ico" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.eot" afterPath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.eot" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.ttf" afterPath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.woff" afterPath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.woff" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.woff2" afterPath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/vendor/.gitkeep" afterPath="/home/user/analyzer/resources/views/vendor/.gitkeep" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/.env.example" afterPath="/home/user/analyzer/.env.example" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/.gitattributes" afterPath="/home/user/analyzer/.gitattributes" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/.gitignore" afterPath="/home/user/analyzer/.gitignore" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/Homestead.yaml" afterPath="/home/user/analyzer/Homestead.yaml" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/README.md" afterPath="/home/user/analyzer/README.md" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/Vagrantfile" afterPath="/home/user/analyzer/Vagrantfile" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Commands/Command.php" afterPath="/home/user/analyzer/app/Commands/Command.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Console/Commands/Inspire.php" afterPath="/home/user/analyzer/app/Console/Commands/Inspire.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Console/Kernel.php" afterPath="/home/user/analyzer/app/Console/Kernel.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Events/Event.php" afterPath="/home/user/analyzer/app/Events/Event.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Exceptions/Handler.php" afterPath="/home/user/analyzer/app/Exceptions/Handler.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Controllers/Auth/AuthController.php" afterPath="/home/user/analyzer/app/Http/Controllers/Auth/AuthController.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Controllers/Auth/PasswordController.php" afterPath="/home/user/analyzer/app/Http/Controllers/Auth/PasswordController.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Controllers/Controller.php" afterPath="/home/user/analyzer/app/Http/Controllers/Controller.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Controllers/ProjectsController.php" afterPath="/home/user/analyzer/app/Http/Controllers/ProjectsController.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Controllers/ReviewController.php" afterPath="/home/user/analyzer/app/Http/Controllers/ReviewController.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Kernel.php" afterPath="/home/user/analyzer/app/Http/Kernel.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Middleware/Authenticate.php" afterPath="/home/user/analyzer/app/Http/Middleware/Authenticate.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Middleware/RedirectIfAuthenticated.php" afterPath="/home/user/analyzer/app/Http/Middleware/RedirectIfAuthenticated.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Middleware/VerifyCsrfToken.php" afterPath="/home/user/analyzer/app/Http/Middleware/VerifyCsrfToken.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Requests/AnalyzeRequest.php" afterPath="/home/user/analyzer/app/Http/Requests/AnalyzeRequest.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Requests/FetchCodeRequest.php" afterPath="/home/user/analyzer/app/Http/Requests/FetchCodeRequest.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Requests/ProjectRequest.php" afterPath="/home/user/analyzer/app/Http/Requests/ProjectRequest.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/Requests/Request.php" afterPath="/home/user/analyzer/app/Http/Requests/Request.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Http/routes.php" afterPath="/home/user/analyzer/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Model.php" afterPath="/home/user/analyzer/app/Model.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Project.php" afterPath="/home/user/analyzer/app/Project.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Providers/AppServiceProvider.php" afterPath="/home/user/analyzer/app/Providers/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Providers/BusServiceProvider.php" afterPath="/home/user/analyzer/app/Providers/BusServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Providers/ConfigServiceProvider.php" afterPath="/home/user/analyzer/app/Providers/ConfigServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Providers/EventServiceProvider.php" afterPath="/home/user/analyzer/app/Providers/EventServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Providers/RouteServiceProvider.php" afterPath="/home/user/analyzer/app/Providers/RouteServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer.php" afterPath="/home/user/analyzer/app/Services/Analyzer.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/AnalyzerInterface.php" afterPath="/home/user/analyzer/app/Services/Analyzer/AnalyzerInterface.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/AbstractAnalyzer.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/AbstractAnalyzer.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/AverageCommentLength.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/AverageCommentLength.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/AverageCommentLengthChart.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/AverageCommentLengthChart.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ChangesPerReview.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ChangesPerReview.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ChangesPerReviewChart.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ChangesPerReviewChart.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/CommentsGiven.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/CommentsGiven.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/CommentsReceived.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/CommentsReceived.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/CommitsPerUser.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/CommitsPerUser.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/Discussions.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/Discussions.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/HotTopics.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/HotTopics.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/NoTaskChanges.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/NoTaskChanges.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ReviewPairs.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ReviewPairs.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ReviewPairsGraph.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ReviewPairsGraph.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ReviewsPerUser.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Gerrit/ReviewsPerUser.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/AbstractAnalyzer.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/AbstractAnalyzer.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/AverageCommentLength.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/AverageCommentLength.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/AverageCommentLengthChart.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/AverageCommentLengthChart.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/ChangesPerReview.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/ChangesPerReview.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/ChangesPerReviewChart.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/ChangesPerReviewChart.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/CommentsGiven.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/CommentsGiven.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/CommentsReceived.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/CommentsReceived.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/CommitsPerUser.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/CommitsPerUser.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/Discussions.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/Discussions.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/HotTopics.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/HotTopics.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/NoTaskChanges.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/NoTaskChanges.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/ReviewPairs.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/ReviewPairs.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/ReviewPairsGraph.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/ReviewPairsGraph.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/Stash/ReviewsPerUser.php" afterPath="/home/user/analyzer/app/Services/Analyzer/Stash/ReviewsPerUser.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Analyzer/StringTitle.php" afterPath="/home/user/analyzer/app/Services/Analyzer/StringTitle.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/AnalyzerInterface.php" afterPath="/home/user/analyzer/app/Services/AnalyzerInterface.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/CodeFetcher/Gerrit.php" afterPath="/home/user/analyzer/app/Services/CodeFetcher/Gerrit.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/CodeFetcherInterface.php" afterPath="/home/user/analyzer/app/Services/CodeFetcherInterface.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/DataFetching/GerritDataFetchingTrait.php" afterPath="/home/user/analyzer/app/Services/DataFetching/GerritDataFetchingTrait.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/DataFetching/StashDataFetchingTrait.php" afterPath="/home/user/analyzer/app/Services/DataFetching/StashDataFetchingTrait.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Ranking/Gerrit/OverallRanking.php" afterPath="/home/user/analyzer/app/Services/Ranking/Gerrit/OverallRanking.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Ranking/Gerrit/OverallRankingChart.php" afterPath="/home/user/analyzer/app/Services/Ranking/Gerrit/OverallRankingChart.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Ranking/RankerInterface.php" afterPath="/home/user/analyzer/app/Services/Ranking/RankerInterface.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Ranking/Stash/OverallRanking.php" afterPath="/home/user/analyzer/app/Services/Ranking/Stash/OverallRanking.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Ranking/Stash/OverallRankingChart.php" afterPath="/home/user/analyzer/app/Services/Ranking/Stash/OverallRankingChart.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/Services/Registrar.php" afterPath="/home/user/analyzer/app/Services/Registrar.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/app/User.php" afterPath="/home/user/analyzer/app/User.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/artisan" afterPath="/home/user/analyzer/artisan" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/bootstrap/app.php" afterPath="/home/user/analyzer/bootstrap/app.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/bootstrap/autoload.php" afterPath="/home/user/analyzer/bootstrap/autoload.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/bower.json" afterPath="/home/user/analyzer/bower.json" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/composer.json" afterPath="/home/user/analyzer/composer.json" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/composer.lock" afterPath="/home/user/analyzer/composer.lock" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/app.php" afterPath="/home/user/analyzer/config/app.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/auth.php" afterPath="/home/user/analyzer/config/auth.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/cache.php" afterPath="/home/user/analyzer/config/cache.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/compile.php" afterPath="/home/user/analyzer/config/compile.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/database.php" afterPath="/home/user/analyzer/config/database.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/filesystems.php" afterPath="/home/user/analyzer/config/filesystems.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/mail.php" afterPath="/home/user/analyzer/config/mail.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/queue.php" afterPath="/home/user/analyzer/config/queue.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/services.php" afterPath="/home/user/analyzer/config/services.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/session.php" afterPath="/home/user/analyzer/config/session.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/config/view.php" afterPath="/home/user/analyzer/config/view.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/contributors.txt" afterPath="/home/user/analyzer/contributors.txt" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/.gitignore" afterPath="/home/user/analyzer/database/.gitignore" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="/home/user/analyzer/database/migrations/2014_10_12_000000_create_users_table.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterPath="/home/user/analyzer/database/migrations/2014_10_12_100000_create_password_resets_table.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/migrations/2015_05_01_152228_create_projects.php" afterPath="/home/user/analyzer/database/migrations/2015_05_01_152228_create_projects.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/migrations/2015_07_08_201842_add_repository.php" afterPath="/home/user/analyzer/database/migrations/2015_07_08_201842_add_repository.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/seeds/DatabaseSeeder.php" afterPath="/home/user/analyzer/database/seeds/DatabaseSeeder.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/database/seeds/UserSeeder.php" afterPath="/home/user/analyzer/database/seeds/UserSeeder.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/gulpfile.js" afterPath="/home/user/analyzer/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/history.txt" afterPath="/home/user/analyzer/history.txt" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/package.json" afterPath="/home/user/analyzer/package.json" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/phpspec.yml" afterPath="/home/user/analyzer/phpspec.yml" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/phpunit.xml" afterPath="/home/user/analyzer/phpunit.xml" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/.htaccess" afterPath="/home/user/analyzer/public/.htaccess" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.svg" afterPath="/home/user/analyzer/public/fonts/glyphicons-halflings-regular.svg" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/index.php" afterPath="/home/user/analyzer/public/index.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/public/robots.txt" afterPath="/home/user/analyzer/public/robots.txt" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/readme.md" afterPath="/home/user/analyzer/readme.md" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/coffee/analyze.coffee" afterPath="/home/user/analyzer/resources/assets/coffee/analyze.coffee" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/coffee/app.coffee" afterPath="/home/user/analyzer/resources/assets/coffee/app.coffee" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/coffee/chart.coffee" afterPath="/home/user/analyzer/resources/assets/coffee/chart.coffee" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/coffee/configure.coffee" afterPath="/home/user/analyzer/resources/assets/coffee/configure.coffee" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/coffee/graph.coffee" afterPath="/home/user/analyzer/resources/assets/coffee/graph.coffee" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/coffee/project/form.coffee" afterPath="/home/user/analyzer/resources/assets/coffee/project/form.coffee" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/less/app.less" afterPath="/home/user/analyzer/resources/assets/less/app.less" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/less/chart.less" afterPath="/home/user/analyzer/resources/assets/less/chart.less" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/less/graph.less" afterPath="/home/user/analyzer/resources/assets/less/graph.less" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/less/project/form.less" afterPath="/home/user/analyzer/resources/assets/less/project/form.less" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/assets/less/ranking.less" afterPath="/home/user/analyzer/resources/assets/less/ranking.less" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/lang/en/pagination.php" afterPath="/home/user/analyzer/resources/lang/en/pagination.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/lang/en/passwords.php" afterPath="/home/user/analyzer/resources/lang/en/passwords.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/lang/en/validation.php" afterPath="/home/user/analyzer/resources/lang/en/validation.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/lang/pl/pagination.php" afterPath="/home/user/analyzer/resources/lang/pl/pagination.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/lang/pl/passwords.php" afterPath="/home/user/analyzer/resources/lang/pl/passwords.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/lang/pl/validation.php" afterPath="/home/user/analyzer/resources/lang/pl/validation.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/app.blade.php" afterPath="/home/user/analyzer/resources/views/app.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/auth/login.blade.php" afterPath="/home/user/analyzer/resources/views/auth/login.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/auth/password.blade.php" afterPath="/home/user/analyzer/resources/views/auth/password.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/auth/register.blade.php" afterPath="/home/user/analyzer/resources/views/auth/register.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/auth/reset.blade.php" afterPath="/home/user/analyzer/resources/views/auth/reset.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/emails/password.blade.php" afterPath="/home/user/analyzer/resources/views/emails/password.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/errors/503.blade.php" afterPath="/home/user/analyzer/resources/views/errors/503.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/projects/_form.blade.php" afterPath="/home/user/analyzer/resources/views/projects/_form.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/projects/create.blade.php" afterPath="/home/user/analyzer/resources/views/projects/create.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/projects/edit.blade.php" afterPath="/home/user/analyzer/resources/views/projects/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/projects/list.blade.php" afterPath="/home/user/analyzer/resources/views/projects/list.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/projects/show.blade.php" afterPath="/home/user/analyzer/resources/views/projects/show.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/_list.blade.php" afterPath="/home/user/analyzer/resources/views/review/_list.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/analyze.blade.php" afterPath="/home/user/analyzer/resources/views/review/analyze.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/changes/_commits_per_user.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/changes/_commits_per_user.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/changes/_nt_changes.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/changes/_nt_changes.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/changes/_reviews_per_user.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/changes/_reviews_per_user.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/comments/_given.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/comments/_given.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/comments/_received.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/comments/_received.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/discussions/_replies.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/discussions/_replies.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/discussions/_results.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/discussions/_results.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/hot_topics/_replies.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/hot_topics/_replies.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/hot_topics/_results.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/hot_topics/_results.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/ranking/_overall.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/ranking/_overall.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/ranking/_overall_chart.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/ranking/_overall_chart.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/review_pairs/_graph.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/review_pairs/_graph.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/review_pairs/_results.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/review_pairs/_results.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/statistics/_average_comment_length.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/statistics/_average_comment_length.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/statistics/_average_comment_length_chart.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/statistics/_average_comment_length_chart.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/statistics/_changes_per_review.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/statistics/_changes_per_review.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/gerrit/statistics/_changes_per_review_chart.blade.php" afterPath="/home/user/analyzer/resources/views/review/gerrit/statistics/_changes_per_review_chart.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/index.blade.php" afterPath="/home/user/analyzer/resources/views/review/index.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/results.blade.php" afterPath="/home/user/analyzer/resources/views/review/results.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/changes/_commits_per_user.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/changes/_commits_per_user.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/changes/_nt_changes.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/changes/_nt_changes.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/changes/_reviews_per_user.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/changes/_reviews_per_user.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/comments/_given.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/comments/_given.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/comments/_received.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/comments/_received.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/discussions/_replies.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/discussions/_replies.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/discussions/_results.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/discussions/_results.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/hot_topics/_replies.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/hot_topics/_replies.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/hot_topics/_results.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/hot_topics/_results.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/ranking/_overall.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/ranking/_overall.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/ranking/_overall_chart.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/ranking/_overall_chart.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/review_pairs/_graph.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/review_pairs/_graph.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/review_pairs/_results.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/review_pairs/_results.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/statistics/_average_comment_length.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/statistics/_average_comment_length.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/statistics/_average_comment_length_chart.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/statistics/_average_comment_length_chart.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/statistics/_changes_per_review.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/statistics/_changes_per_review.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/resources/views/review/stash/statistics/_changes_per_review_chart.blade.php" afterPath="/home/user/analyzer/resources/views/review/stash/statistics/_changes_per_review_chart.blade.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/docker/.gitattributes" afterPath="/home/user/analyzer/scripts/docker/.gitattributes" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/docker/Dockerfile" afterPath="/home/user/analyzer/scripts/docker/Dockerfile" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/docker/files/20-phalcon.ini" afterPath="/home/user/analyzer/scripts/docker/files/20-phalcon.ini" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/docker/files/id_rsa" afterPath="/home/user/analyzer/scripts/docker/files/id_rsa" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/docker/files/insecure_key" afterPath="/home/user/analyzer/scripts/docker/files/insecure_key" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/docker/files/postgresql.sh" afterPath="/home/user/analyzer/scripts/docker/files/postgresql.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/docker/files/postgresql_stop.sh" afterPath="/home/user/analyzer/scripts/docker/files/postgresql_stop.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/homestead.rb" afterPath="/home/user/analyzer/scripts/homestead.rb" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/database/create-mysql.sh" afterPath="/home/user/analyzer/scripts/provision/database/create-mysql.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/database/create-postgresql.sh" afterPath="/home/user/analyzer/scripts/provision/database/create-postgresql.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/restart-docker.sh" afterPath="/home/user/analyzer/scripts/provision/restart-docker.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/restart.sh" afterPath="/home/user/analyzer/scripts/provision/restart.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/serve/hhvm-ssl.sh" afterPath="/home/user/analyzer/scripts/provision/serve/hhvm-ssl.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/serve/hhvm.sh" afterPath="/home/user/analyzer/scripts/provision/serve/hhvm.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/serve/html-ssl.sh" afterPath="/home/user/analyzer/scripts/provision/serve/html-ssl.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/serve/html.sh" afterPath="/home/user/analyzer/scripts/provision/serve/html.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/serve/ssl.sh" afterPath="/home/user/analyzer/scripts/provision/serve/ssl.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/scripts/provision/serve/standard.sh" afterPath="/home/user/analyzer/scripts/provision/serve/standard.sh" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/server.php" afterPath="/home/user/analyzer/server.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/tests/ExampleTest.php" afterPath="/home/user/analyzer/tests/ExampleTest.php" />
-      <change type="MODIFICATION" beforePath="/home/user/analyzer/tests/TestCase.php" afterPath="/home/user/analyzer/tests/TestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/analyzer.iml" afterPath="$PROJECT_DIR$/.idea/analyzer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/FirstPositionInRank.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/FirstPositionInRank.php" />
     </list>
     <ignored path="analyzer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -231,23 +25,55 @@
     <favorites_list name="analyzer" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="AbstractBadge.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/AbstractBadge.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.75">
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReviewController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReviewController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.25">
+              <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FirstPositionInRank.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/FirstPositionInRank.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.16826923">
+              <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="/home/user/analyzer" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/home/user/analyzer/resources/views/auth/login.blade.php" />
-        <option value="/home/user/analyzer/app/Comment.php" />
-        <option value="/home/user/analyzer/app/Services/Analyzer/Gerrit/AverageCommentLength.php" />
-        <option value="/home/user/analyzer/database/migrations/2016_01_12_172052_update_commi_table.php" />
-        <option value="/home/user/analyzer/app/Services/DataFetching/GerritDataFetchingTrait.php" />
-        <option value="/home/user/analyzer/app/Commit.php" />
-        <option value="/home/user/analyzer/app/Person.php" />
-        <option value="/home/user/analyzer/database/migrations/2016_01_12_000002_create_commi_table.php" />
-        <option value="/home/user/analyzer/database/migrations/2016_01_12_182057_create_persons_table.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/app/Comment.php" />
+        <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/AverageCommentLength.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_01_12_172052_update_commi_table.php" />
+        <option value="$PROJECT_DIR$/app/Services/DataFetching/GerritDataFetchingTrait.php" />
+        <option value="$PROJECT_DIR$/app/Commit.php" />
+        <option value="$PROJECT_DIR$/app/Person.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_01_12_000002_create_commi_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2016_01_12_182057_create_persons_table.php" />
+        <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/FirstPositionInRank.php" />
       </list>
     </option>
   </component>
@@ -261,10 +87,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="461" />
-    <option name="y" value="64" />
-    <option name="width" value="1400" />
-    <option name="height" value="894" />
+    <option name="x" value="63" />
+    <option name="y" value="-4" />
+    <option name="width" value="1303" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -291,13 +117,180 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files" />
       </pane>
-      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gerrit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gerrit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Badges" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -358,15 +351,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="461" y="64" width="1400" height="894" extended-state="0" />
-    <editor active="false" />
+    <frame x="63" y="-4" width="1303" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30428362" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30391404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998747" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998747" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25701624" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25633153" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998747" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -417,5 +410,31 @@
       <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/AbstractBadge.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.75">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReviewController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.25">
+          <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/FirstPositionInRank.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16826923">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
