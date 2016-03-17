@@ -13,14 +13,15 @@ Route::get('/review', ['as' => 'review.index', 'uses' => 'ReviewController@index
 Route::get('/review/{id}/results', ['as' => 'review.results', 'uses' => 'ReviewController@results'])->where('id', '[0-9]+');
 Route::post('/review/{id?}', ['as' => 'review.generate', 'uses' => 'ReviewController@generate'])->where('id', '[0-9]+');
 
-Route::get('/review/api/badges/{projectName}/{userEmail}', ['middleware' => 'cors', 'as' => 'review.badges', 'uses' => 'ReviewController@getBadges']);
-Route::get('/review/api/badges/', ['middleware' => 'cors', 'as' => 'review.allbadges', 'uses' => 'ReviewController@getAllBadges']);
+Route::get('/review/api/badges/{projectName}/{userEmail}', ['middleware' => 'cors', 'as' => 'review.badges', 'uses' => 'BadgeController@getBadges']);
+Route::get('/review/api/badges/{projectName}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.badgesForPeriodForAllUsers', 'uses' => 'BadgeController@getBadgesForPeriodForAllUsers']);
+Route::get('/review/api/badges/', ['middleware' => 'cors', 'as' => 'review.allbadges', 'uses' => 'BadgeController@getAllBadges']);
 Route::get('/review/api/{name}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.generateapi', 'uses' => 'ReviewController@generateApi']);
 
 Route::get('/review/{id}', ['as' => 'review.analyze', 'uses' => 'ReviewController@analyze'])->where('id', '[0-9]+');
 
 Route::get('/api/{name}/{from}/{to}', ['middleware' => 'cors', 'as' => 'api.data', 'uses' => 'ApiController@getData']);
-Route::get('/api/{projectName}/{userEmail}', ['middleware' => 'cors', 'as' => 'api.data', 'uses' => 'ApiController@getBadges']);
+Route::get('/api/{projectName}/{userEmail}', ['middleware' => 'cors', 'as' => 'api.data', 'uses' => 'BadgeController@getBadges']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

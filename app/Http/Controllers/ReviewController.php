@@ -61,49 +61,6 @@ class ReviewController extends Controller
         return $results;
     }
 
-    public function getBadges($projectName, $userEmail)
-    {
-        $from = date('Y-m-d', strtotime("-1 week"));;
-        $to = date("Y-m-d", time() + 86400);
-        $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
-
-        $badges = $this->getAllBadges();
-
-        $rewardedBadges = [];
-
-        foreach ($badges as $index => $badge) {
-            /** @var AbstractBadge $badge */
-            if ($badge->getBadge($dataFromLastWeek, $userEmail)) {
-                $rewardedBadges[] = $badge;
-            }
-        }
-
-        $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingScreen();
-
-        $api = [
-            "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),
-            "badges"  => $rewardedBadges
-        ];
-
-        return $api;
-    }
-
-    public function getAllBadges(){
-        $badges = array(
-            new \App\Services\Analyzer\Gerrit\Badges\BiggestProgessInRankingBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\HardWorkingBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\ManyChangesInOneDayBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\ManyReviewsInOneDayBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\MostChangesBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\MostCommentsPerChangeBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\MostReviewsBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\PerfectQualityChangeBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\PourQualityChangeBadge()
-        );
-
-        return $badges;
-    }
-
     public function analyze($id)
     {
         /** @var Project $project */
