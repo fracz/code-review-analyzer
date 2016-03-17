@@ -19,6 +19,46 @@ class ManyReviewsInOneDayBadge extends AbstractBadge
 
     public function getBadge($data, $email)
     {
-        // TODO: Implement getBadge() method.
+        $changesPerReview = $data["reviews_per_user"];
+        $map = [];
+
+        foreach ($changesPerReview as $key => $user) {
+
+            if ($user["email"] === $email) {
+                $commits = $user["commits"];
+
+                foreach ($commits as $index => $value) {
+                    $reviewsPerCommit = $data["reviews_per_commit"];
+                    $commit = $reviewsPerCommit[$index];
+                    $revisions = $commit["revisions"];
+
+                    foreach($revisions as $key2 => $revision){
+                        $reviewerEmail = $revision["owner_email"];
+                        $date = $commit["create_date"];
+
+                        if (strlen($date) >= 10)
+                            $date = $date . substr(0, strlen($date) - 10);
+
+                        if($reviewerEmail === $email){
+                            if (array_key_exists($date, $map)) {
+                                $map[$date] = $map[$date] + 1;
+                                if ($map[$date] > 3)
+                                    return true;
+
+                            } else
+                                $map[$date] = 1;
+
+                        }
+
+                    }
+
+                }
+
+                return false;
+            }
+
+        }
+
+        return false;
     }
 }

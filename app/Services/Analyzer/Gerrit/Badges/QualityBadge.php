@@ -25,7 +25,7 @@ abstract class QualityBadge extends AbstractBadge
                     $reviewsPerCommit = $data["reviews_per_commit"];
                     $commit = $reviewsPerCommit[$index];
 
-                    $noOfFixes = strlen($commit["revisions"]);
+                    $noOfFixes = count($commit["revisions"]);
                     return $this->noOfFixesIsEnough($noOfFixes);
                 }
 
