@@ -14,7 +14,6 @@ Route::get('/review/{id}/results', ['as' => 'review.results', 'uses' => 'ReviewC
 Route::post('/review/{id?}', ['as' => 'review.generate', 'uses' => 'ReviewController@generate'])->where('id', '[0-9]+');
 
 Route::get('/review/api/badges/{projectName}/{userEmail}', ['middleware' => 'cors', 'as' => 'review.badges', 'uses' => 'BadgeController@getBadges']);
-Route::get('/review/api/badges/{projectName}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.badgesForPeriodForAllUsers', 'uses' => 'BadgeController@getBadgesForPeriodForAllUsers']);
 Route::get('/review/api/badges/', ['middleware' => 'cors', 'as' => 'review.allbadges', 'uses' => 'BadgeController@getAllBadges']);
 Route::get('/review/api/{name}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.generateapi', 'uses' => 'ReviewController@generateApi']);
 

@@ -46,21 +46,6 @@ class BadgeController extends Controller
         return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to);
     }
 
-    public function getBadgesForPeriodForAllUsers($projectName, $from, $to)
-    {
-        $data = $this->generateApi($projectName, $from, $to);
-        $rankingOverall = $data["ranking_overall"];
-        $result = [];
-
-        foreach ($rankingOverall as $key => $user) {
-            $email = $user["email"];
-            $badges = $this->getBadgesForPeriod($projectName, $email, $from, $to);
-            $result[$email] = $badges;
-        }
-
-        return $result;
-    }
-
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
         $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
