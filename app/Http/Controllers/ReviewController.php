@@ -88,7 +88,14 @@ class ReviewController extends Controller
             }
         }
 
-        return $rewardedBadges;
+        $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingScreen();
+
+        $api = [
+            "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),
+            "badges"  => $rewardedBadges
+        ];
+
+        return $api;
     }
 
     public function analyze($id)

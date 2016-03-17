@@ -13,6 +13,6 @@ abstract class AbstractBadge
 		$this->description = $description;
 	}
 
-	public abstract function getBadge($results, $email);
+	public abstract function getBadge($data, $email);
 
 }

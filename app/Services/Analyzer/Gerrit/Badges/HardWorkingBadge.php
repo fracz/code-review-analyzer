@@ -16,7 +16,7 @@ class HardWorkingBadge extends AbstractBadge
         parent::__construct("◈", "You've been working every day on the project");
     }
 
-    public function getBadge($results, $email)
+    public function getBadge($data, $email)
     {
         // TODO: Implement getBadge() method.
     }

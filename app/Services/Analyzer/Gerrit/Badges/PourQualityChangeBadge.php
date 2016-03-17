@@ -16,7 +16,7 @@ class PourQualityChangeBadge extends AbstractBadge
         parent::__construct("☂", "One of your changes required 3 fixes");
     }
 
-    public function getBadge($results, $email)
+    public function getBadge($data, $email)
     {
         // TODO: Implement getBadge() method.
     }

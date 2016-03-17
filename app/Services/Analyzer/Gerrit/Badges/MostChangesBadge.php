@@ -17,7 +17,7 @@ class MostChangesBadge extends AbstractBadge
         parent::__construct("☆", "You've made most of the changes in project this week");
     }
 
-    public function getBadge($results, $email)
+    public function getBadge($data, $email)
     {
         // TODO: Implement getBadge() method.
     }

@@ -17,7 +17,7 @@ class MostCommentsPerChangeBadge extends AbstractBadge
         parent::__construct("♬", "You're getting biggest number of comments per change in team");
     }
 
-    public function getBadge($results, $email)
+    public function getBadge($data, $email)
     {
         // TODO: Implement getBadge() method.
     }

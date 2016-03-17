@@ -16,7 +16,7 @@ class PerfectQualityChangeBadge extends AbstractBadge
         parent::__construct("❤", "You've made a change that didn't required any fixes");
     }
 
-    public function getBadge($results, $email)
+    public function getBadge($data, $email)
     {
         // TODO: Implement getBadge() method.
     }
