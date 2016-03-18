@@ -10,4 +10,9 @@ class ApiController extends Controller
     {
         return redirect()->route('review.generateapi', array($name, $from, $to));
     }
+
+    public function getBadges($projectName, $userEmail)
+    {
+        return redirect()->route('review.getbadges', array($projectName, $userEmail));
+    }
 }
