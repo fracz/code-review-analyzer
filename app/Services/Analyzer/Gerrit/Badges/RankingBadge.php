@@ -9,7 +9,7 @@
 namespace App\Services\Analyzer\Gerrit\Badges;
 
 
-class RankingScreen
+class RankingBadge
 {
 
     public function getRank($data, $email)

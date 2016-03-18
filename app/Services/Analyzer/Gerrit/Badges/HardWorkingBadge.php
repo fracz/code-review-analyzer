@@ -18,7 +18,7 @@ class HardWorkingBadge extends AbstractBadge
         parent::__construct("◈", "You've been working every day on the project");
     }
 
-    public function getBadge($data, $email)
+    public function checkBadge($data, $email)
     {
         $changesPerReview = $data["commits_per_user"];
         $map = [];
@@ -50,7 +50,7 @@ class HardWorkingBadge extends AbstractBadge
                         $map[$dateString] = 1;
                 }
 
-                return $this->checkArray($changeMadeIndexDayAgo);
+                $this->times = $this->checkArray($changeMadeIndexDayAgo);
             }
 
         }

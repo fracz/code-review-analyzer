@@ -56,12 +56,14 @@ class BadgeController extends Controller
 
         foreach ($badges as $index => $badge) {
             /** @var AbstractBadge $badge */
-            if ($badge->getBadge($dataFromLastWeek, $userEmail)) {
+            $badge->checkBadge($dataFromLastWeek, $userEmail);
+
+            if ($badge->times > 0) {
                 $rewardedBadges[] = $badge;
             }
         }
 
-        $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingScreen();
+        $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingBadge();
 
         $api = [
             "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),

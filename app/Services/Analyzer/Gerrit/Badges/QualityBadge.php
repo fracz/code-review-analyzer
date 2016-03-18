@@ -13,7 +13,7 @@ abstract class QualityBadge extends AbstractBadge
 {
     abstract public function noOfFixesIsEnough($noOfFixes);
 
-    public function getBadge($data, $email)
+    public function checkBadge($data, $email)
     {
         $commitsPerUser = $data["commits_per_user"];
 
@@ -26,13 +26,14 @@ abstract class QualityBadge extends AbstractBadge
                     $commit = $reviewsPerCommit[$index];
 
                     $noOfFixes = count($commit["revisions"]);
-                    return $this->noOfFixesIsEnough($noOfFixes);
+                    if($this->noOfFixesIsEnough($noOfFixes)){
+                        $this->times += 1;
+                    }
                 }
 
-                return false;
+                return;
             }
 
         }
-        return false;
     }
 }

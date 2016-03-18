@@ -17,7 +17,7 @@ class ManyReviewsInOneDayBadge extends AbstractBadge
         parent::__construct("⊱", "You've made 3 reviews in one day");
     }
 
-    public function getBadge($data, $email)
+    public function checkBadge($data, $email)
     {
         $changesPerReview = $data["reviews_per_user"];
         $map = [];
@@ -42,8 +42,9 @@ class ManyReviewsInOneDayBadge extends AbstractBadge
                         if($reviewerEmail === $email){
                             if (array_key_exists($date, $map)) {
                                 $map[$date] = $map[$date] + 1;
-                                if ($map[$date] > 3){
-                                    return true;
+                                if ($map[$date] >= 4){
+                                    $map[$date] -= 4;
+                                    $this->times += 1;
                                 }
 
                             } else
@@ -55,11 +56,10 @@ class ManyReviewsInOneDayBadge extends AbstractBadge
 
                 }
 
-                return false;
+                return;
             }
 
         }
 
-        return false;
     }
 }

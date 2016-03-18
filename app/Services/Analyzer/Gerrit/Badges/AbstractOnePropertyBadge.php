@@ -21,7 +21,7 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
         $this->property = $property;
     }
 
-    public function getBadge($data, $email)
+    public function checkBadge($data, $email)
     {
         $commitsPerUser = $data[$this->category];
 
@@ -35,11 +35,11 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
                 $winner = $commit;
                 $maxRanking = $ranking;
             }
+
         }
 
-        if (is_null($winner) == false)
-            return $winner["email"] === $email;
-        else
-            return false;
+        if(is_null($winner) === false and $winner["email"] === $email)
+            $this->times = 1;
+
     }
 }
