@@ -42,8 +42,8 @@ class ManyReviewsInOneDayBadge extends AbstractBadge
                         if($reviewerEmail === $email){
                             if (array_key_exists($date, $map)) {
                                 $map[$date] = $map[$date] + 1;
-                                if ($map[$date] >= 4){
-                                    $map[$date] -= 4;
+                                if ($map[$date] >= 3){
+                                    $map[$date] -= 3;
                                     $this->times += 1;
                                 }
 
