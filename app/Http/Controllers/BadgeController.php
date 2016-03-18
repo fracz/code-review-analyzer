@@ -63,6 +63,7 @@ class BadgeController extends Controller
             }
         }
 
+        usort($rewardedBadges, array($this, "compareBadges"));
         $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingBadge();
 
         $api = [
@@ -71,6 +72,11 @@ class BadgeController extends Controller
         ];
 
         return $api;
+    }
+
+    public function compareBadges($badgeA, $badgeB)
+    {
+        return $badgeA->times < $badgeB->times;
     }
 
     public function generateApi($name, $from, $to)
