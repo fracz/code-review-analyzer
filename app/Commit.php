@@ -19,4 +19,8 @@ class Commit extends Model {
     public function codeReviews(){
         return $this->hasMany('App\CodeReview', 'commit_id');
     }
+    
+    public function verified(){
+        return $this->hasMany('App\Verified', 'commit_id');
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCodeReviewTable extends Migration {
+class CreateVerifiedTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,16 @@ class CreateCodeReviewTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('codereviews', function(Blueprint $table)
+		Schema::create('verified', function(Blueprint $table)
 		{
 			$table->increments('id');
-                        $table->integer('review_value');
+                        $table->integer('verified_value');
+                        $table->string('verified_date');
 			$table->integer('commit_id')->unsigned()->default(0);
                         $table->foreign('commit_id')->references('id')->on('commits')->onDelete('cascade');
                         
-			$table->integer('reviewer_id')->unsigned()->default(0);
-                        $table->foreign('reviewer_id')->references('id')->on('persons')->onDelete('cascade');
+			$table->integer('verifier_id')->unsigned()->default(0);
+                        $table->foreign('verifier_id')->references('id')->on('persons')->onDelete('cascade');
 
 			$table->timestamps();
 		});
@@ -33,7 +34,7 @@ class CreateCodeReviewTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('codereviews');
+		Schema::drop('verified');
 	}
 
 }

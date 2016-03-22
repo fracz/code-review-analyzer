@@ -75,6 +75,7 @@ class OverallRanking implements RankerInterface
 			foreach ($weights as $type => $weight) {
 				foreach ($results[$type] as $user) {
 					if (!isset($result[$user['username']])) {
+                                                //print_r($user);exit;
 						$result[$user['username']] = [
 							'value' => 0.0,
 							'name' => $user['name'],

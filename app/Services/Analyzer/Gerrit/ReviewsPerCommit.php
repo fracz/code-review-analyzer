@@ -50,11 +50,24 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     ];
                 }
                 
+                $allVerificationPassed = true;
+                foreach ($commit->verified as $ver) {
+                    if($ver->verified_value == -1)
+                    {
+                        $allVerificationPassed = false;
+                        break;
+                    }
+                }
+                
+                //print_r($commit->verified);exit;
+                
                 $results[$commit->_number] = [
                     'id' => $commit->commit_id,
                     'owner_id' => $commit->owner_id,
                     'create_date' => $commit->created,
                     'update_date' => $commit->updated,
+                    'status' => $commit->status,
+                    'first_verification_passed' => $allVerificationPassed,
                     'revisions' => $revisions,
                 ];
                      

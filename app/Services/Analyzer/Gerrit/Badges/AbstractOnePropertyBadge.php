@@ -24,7 +24,10 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
     public function checkBadge($data, $email)
     {
         $commitsPerUser = $data[$this->category];
-
+        
+        //if($this->category == "commits_per_user"){
+        //print_r($commitsPerUser);exit;}
+        
         $winner = null;
         $maxRanking = 0.0;
 

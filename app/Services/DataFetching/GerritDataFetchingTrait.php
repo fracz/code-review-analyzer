@@ -105,7 +105,7 @@ trait GerritDataFetchingTrait
             $uri = '/a/changes/?q=project:'.$project->getAttribute('name');
             $uri .= ' -is:draft ((status:merged)OR(status:open))';
             $uri .= $dateUriElement;
-            $uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=LABELS';
+            $uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=DETAILED_LABELS';
 
 //            print_r($uri);exit;
 
@@ -169,18 +169,56 @@ trait GerritDataFetchingTrait
             
             if(isset($commit_item->labels) && isset($commit_item->labels->{'Code-Review'}))
             {
-                $codeReview = $commit_item->labels->{'Code-Review'};
-                foreach ($codeReview as $reviewer) {
-                    if ($reviewer instanceof \stdClass) {
-                        $commit->approved_by_id = $this->createCodeReviewIfNotExists($reviewer, $commit->id);
-                    }
-                }                   
+                if(isset($commit_item->labels->{'Code-Review'}->{'all'}))
+                {
+                    $codeReview = $commit_item->labels->{'Code-Review'}->{'all'};
+                    foreach ($codeReview as $reviewer) {
+                        if ($reviewer instanceof \stdClass) {
+                            $commit->approved_by_id = $this->createCodeReviewIfNotExists($reviewer, $commit->id);
+                        }
+                    } 
+                } 
+                
+                if(isset($commit_item->labels->{'Verified'}->{'all'}))
+                {
+                    $verified = $commit_item->labels->{'Verified'}->{'all'};
+                        foreach ($verified as $ver) {
+                            if ($ver instanceof \stdClass) {
+                                $this->createVerifiedIfNotExists($ver, $commit->id);
+                        }
+                    } 
+                }
             }
             
             return $commit->id;
         }
         
+        
+        protected function createVerifiedIfNotExists($ver, $commitId){
+            //print_r($ver->value);exit;
+            
+            if(isset($ver->value) && isset($ver->date))
+            {
+                $val = $ver->value;
+                $date = $ver->date;
+                $verifierId = $this->createPersonIfNotExists($ver->_account_id, $ver->name,
+                        $ver->email, $ver->username, $ver->avatars);
+
+                $verified = \App\Verified::where('commit_id', $commitId)->where('verifier_id', $verifierId)->first();
+                if(!$verified){
+                    $verified = new \App\Verified;
+                    $verified->commit_id = $commitId;
+                    $verified->verifier_id = $verifierId;
+                    $verified->verified_value = $val;
+                    $verified->verified_date = $date;
+
+                    $verified->save();
+                }
+            }
+        }
+        
         protected function createCodeReviewIfNotExists($reviewer, $commitId){
+            //print_r($reviewer->date);exit;
             $reviewerId = $this->createPersonIfNotExists($reviewer->_account_id, $reviewer->name,
                     $reviewer->email, $reviewer->username, $reviewer->avatars);
             
@@ -189,6 +227,7 @@ trait GerritDataFetchingTrait
                 $codeReview = new CodeReview;
                 $codeReview->commit_id = $commitId;
                 $codeReview->reviewer_id = $reviewerId;
+                $codeReview->review_value = $reviewer->value;
                 
                 $codeReview->save();
             }
