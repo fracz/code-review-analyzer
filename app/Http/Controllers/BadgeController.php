@@ -49,9 +49,9 @@ class BadgeController extends Controller
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
-        if (Cache::has('cachedBadges')) {
-            echo "XX<br/>";
-            return Cache::get('cachedBadges');
+        if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
+ 
+            return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
         
         } else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
@@ -76,8 +76,8 @@ class BadgeController extends Controller
                 "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),
                 "badges" => $rewardedBadges
             ];
-            echo "AA<br/>";
-            Cache::put('cachedBadges', $api, 10);
+
+            Cache::put('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to, $api, 10);
 
             return $api;
         }
