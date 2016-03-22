@@ -14,7 +14,7 @@ class ManyChangesInOneDayBadge extends AbstractBadge
 
     public function __construct()
     {
-        parent::__construct("⊰", "You've made 3 changes in one day");
+        parent::__construct("⊰", "You've made 3 commits in one day");
     }
 
     public function checkBadge($data, $email)

@@ -12,6 +12,7 @@ use App\Http\Requests;
 use App\Project;
 use App\Services\Analyzer\Gerrit\Badges\AbstractBadge;
 use App\Services\AnalyzerInterface;
+use Cache;
 
 class BadgeController extends Controller
 {
@@ -48,30 +49,38 @@ class BadgeController extends Controller
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
-        $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
+        if (Cache::has('cachedBadges')) {
+            echo "XX<br/>";
+            return Cache::get('cachedBadges');
+        
+        } else {
+            $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 
-        $badges = $this->getAllBadges();
+            $badges = $this->getAllBadges();
 
-        $rewardedBadges = [];
+            $rewardedBadges = [];
 
-        foreach ($badges as $index => $badge) {
-            /** @var AbstractBadge $badge */
-            $badge->checkBadge($dataFromLastWeek, $userEmail);
+            foreach ($badges as $index => $badge) {
+                /** @var AbstractBadge $badge */
+                $badge->checkBadge($dataFromLastWeek, $userEmail);
 
-            if ($badge->times > 0) {
-                $rewardedBadges[] = $badge;
+                if ($badge->times > 0) {
+                    $rewardedBadges[] = $badge;
+                }
             }
+
+            usort($rewardedBadges, array($this, "compareBadges"));
+            $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingBadge();
+
+            $api = [
+                "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),
+                "badges" => $rewardedBadges
+            ];
+            echo "AA<br/>";
+            Cache::put('cachedBadges', $api, 10);
+
+            return $api;
         }
-
-        usort($rewardedBadges, array($this, "compareBadges"));
-        $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingBadge();
-
-        $api = [
-            "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),
-            "badges" => $rewardedBadges
-        ];
-
-        return $api;
     }
 
     public function compareBadges($badgeA, $badgeB)
