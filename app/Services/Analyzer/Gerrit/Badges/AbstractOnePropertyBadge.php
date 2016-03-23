@@ -33,7 +33,7 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
 
         foreach ($commitsPerUser as $key => $commit) {
             $ranking = $commit[$this->property];
-
+                
             if ($ranking > $maxRanking) {
                 $winner = $commit;
                 $maxRanking = $ranking;
