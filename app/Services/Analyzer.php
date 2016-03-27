@@ -19,6 +19,8 @@ class Analyzer implements AnalyzerInterface
 					'commits_per_user' => new Analyzer\Gerrit\CommitsPerUser(),
 					'reviews_per_user' => new Analyzer\Gerrit\ReviewsPerUser(),
                                         //'reviews_per_commit' => new Analyzer\Gerrit\ReviewsPerCommit(),
+                                        'patchsets_per_user' => new Analyzer\Gerrit\PatchsetsPerUser(),
+                                        'commit_without_corrections' => new Analyzer\Gerrit\CommitsWithoutCorrections(),
 					'nt_changes' => new Analyzer\Gerrit\NoTaskChanges(),
 				],
 				'comments' => [
@@ -85,7 +87,9 @@ class Analyzer implements AnalyzerInterface
 				'changes' => [
 					'commits_per_user' => new Analyzer\Gerrit\CommitsPerUser(),
 					'reviews_per_user' => new Analyzer\Gerrit\ReviewsPerUser(),
+                                        'patchsets_per_user' => new Analyzer\Gerrit\PatchsetsPerUser(),
                                         'reviews_per_commit' => new Analyzer\Gerrit\ReviewsPerCommit(),
+                                        'commit_without_corrections' => new Analyzer\Gerrit\CommitsWithoutCorrections(),
 					'nt_changes' => new Analyzer\Gerrit\NoTaskChanges(),
 				],
 				'comments' => [

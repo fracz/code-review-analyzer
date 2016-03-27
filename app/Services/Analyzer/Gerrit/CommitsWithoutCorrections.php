@@ -6,7 +6,7 @@ use App\Project;
 use App\Person;
 use App\Services\Analyzer\CommitCountTitle;
 
-class ReviewsPerCommit extends AbstractAnalyzer
+class CommitsWithoutCorrections extends AbstractAnalyzer
 {
 	public function getLabel($results)
 	{
@@ -19,7 +19,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
 
 	public function __toString()
 	{
-		return 'Liczba zmian per commit';
+		return 'Liczba commitow, ktore nie musialy byc poprawiane';
 	}
 
 	protected function decode($result)
@@ -37,19 +37,6 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 
             foreach ($result as $commit) {
                 
-                $revisions = [];
-                
-                
-                
-                foreach ($commit->revisions as $revision) {
-                    $revisions[$revision->revision_id] = [
-                        'id' => $revision->revision_id,
-                        'owner_id' => $revision->uploader_id,
-                        'owner_email' => $revision->uploader->email,
-                        'create_date' => $revision->created
-                    ];
-                }
-                
                 $allVerificationPassed = true;
                 foreach ($commit->verified as $ver) {
                     if($ver->verified_value == -1)
@@ -59,21 +46,23 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     }
                 }
                 
-                //print_r($commit->verified);exit;
+                //print_r($commit);exit;
+                $passedWithoutCorrections = false;
+                if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
+                    $passedWithoutCorrections = true;
                 
-                $results[$commit->_number] = [
-                    'id' => $commit->commit_id,
-                    'owner_id' => $commit->owner_id,
-                    'create_date' => $commit->created,
-                    'update_date' => $commit->updated,
-                    'status' => $commit->status,
-                    'first_verification_passed' => ($allVerificationPassed) ? 'true' : 'false',
-                    'revisions' => $revisions,
-                ];
+                if(!isset($results[$commit->owner->_account_id])){
+                    $results[$commit->owner->_account_id] = [
+                        'username' => $commit->owner->username,
+                        'commit_without_corrections' => 0,
+                    ];
+                }
                 
-                     
+                if($passedWithoutCorrections)
+                    $results[$commit->owner->_account_id]['commit_without_corrections']++;
                 
-            }            
+                //print_r($results[$commit->_number]);exit; 
+            }
                 
             //print_r($results);exit;
             return $results;

@@ -17,6 +17,14 @@ class OverallRanking implements RankerInterface
 				'weight' => 2.0,
 				'field' => 'count',
 			],
+                        'patchsets_per_user' => [
+				'weight' => 1.0,
+				'field' => 'count_without_first_patchset',
+			],
+                        'commit_without_corrections' => [
+                                    'weight' => 1.0,
+                                    'field' => 'commit_without_corrections',
+                        ],
 			'nt_changes' =>  [
 				'weight' => -0.5,
 				'field' => 'count',
@@ -74,6 +82,7 @@ class OverallRanking implements RankerInterface
 		foreach ($this->weights as $weights) {
 			foreach ($weights as $type => $weight) {
 				foreach ($results[$type] as $user) {
+                                        //print_r($type);exit;
 					if (!isset($result[$user['username']])) {
                                                 //print_r($user);exit;
 						$result[$user['username']] = [
