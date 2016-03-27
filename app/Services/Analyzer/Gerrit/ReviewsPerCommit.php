@@ -59,6 +59,10 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     }
                 }
                 
+                $passedWithoutCorrections = false;
+                if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
+                    $passedWithoutCorrections = true;
+                
                 //print_r($commit->verified);exit;
                 
                 $results[$commit->_number] = [
@@ -68,6 +72,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     'update_date' => $commit->updated,
                     'status' => $commit->status,
                     'first_verification_passed' => ($allVerificationPassed) ? 'true' : 'false',
+                    'passed_without_corrections' => ($passedWithoutCorrections) ? 'true' : 'false',
                     'revisions' => $revisions,
                 ];
                 
