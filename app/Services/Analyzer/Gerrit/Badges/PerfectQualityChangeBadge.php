@@ -16,8 +16,8 @@ class PerfectQualityChangeBadge extends QualityBadge
         parent::__construct("❤", "You've made a change that didn't required any fixes");
     }
 
-    public function noOfFixesIsEnough($noOfFixes)
+    public function checkCommit($commit)
     {
-        return $noOfFixes == 0;
+        return $commit["first_verification_passed"];
     }
 }

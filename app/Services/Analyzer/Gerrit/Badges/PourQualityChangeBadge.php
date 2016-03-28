@@ -16,8 +16,9 @@ class PourQualityChangeBadge extends QualityBadge
         parent::__construct("☂", "One of your changes required 3 fixes");
     }
 
-    public function noOfFixesIsEnough($noOfFixes)
+    public function checkCommit($commit)
     {
+        $noOfFixes = count($commit["revisions"]);
         return $noOfFixes >= 4;
     }
 }

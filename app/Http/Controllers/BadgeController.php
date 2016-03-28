@@ -50,9 +50,9 @@ class BadgeController extends Controller
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
         if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
- 
+
             return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
-        
+
         } else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 

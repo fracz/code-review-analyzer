@@ -11,7 +11,7 @@ namespace App\Services\Analyzer\Gerrit\Badges;
 
 abstract class QualityBadge extends AbstractBadge
 {
-    abstract public function noOfFixesIsEnough($noOfFixes);
+    abstract public function checkCommit($noOfFixes);
 
     public function checkBadge($data, $email)
     {
@@ -25,8 +25,7 @@ abstract class QualityBadge extends AbstractBadge
                     $reviewsPerCommit = $data["reviews_per_commit"];
                     $commit = $reviewsPerCommit[$index];
 
-                    $noOfFixes = count($commit["revisions"]);
-                    if($this->noOfFixesIsEnough($noOfFixes)){
+                    if($this->checkCommit($commit)){
                         $this->times += 1;
                     }
                 }
