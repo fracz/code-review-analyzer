@@ -107,7 +107,7 @@ trait GerritDataFetchingTrait
             $uri .= $dateUriElement;
             $uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=DETAILED_LABELS';
 
-//            print_r($uri);exit;
+            //print_r($uri);exit;
 
             return $uri;
         }
