@@ -47,7 +47,6 @@ class AverageCommentLength extends AbstractAnalyzer
                             'average' => 0,
                             'count' => 0,
                             'value' => 0,
-                            'cool' => 0
                         ];
                     }
 
