@@ -47,12 +47,13 @@ class AverageCommentLength extends AbstractAnalyzer
                             'average' => 0,
                             'count' => 0,
                             'value' => 0,
+                            'cool' => 0
                         ];
                     }
 
                     $results[$message->author->_account_id]['count'] += 1;
                     $results[$message->author->_account_id]['value'] += strlen($message->message);
-                    
+                    $results[$message->author->_account_id]['cool'] += $this->codeInCommnet($message->message);
                 }
             }
         }
@@ -142,4 +143,23 @@ class AverageCommentLength extends AbstractAnalyzer
     {
         return view('review.gerrit.statistics._average_comment_length', ['result' => $result]);
     }
+
+    public function codeInCommnet($comment){
+
+        $value = 0.0;
+
+        foreach(preg_split("/((\r?\n)|(\r\n?))/", $comment) as $line){
+//            print_r($line."<br>");
+            if (substr($line, 0, 1) === ' ') {
+                $value += 1;
+            }elseif (substr($line, 0, 2) === '> ') {
+                $value += 10;
+            }elseif (substr($line, 0, 3) === ' > ') {
+                $value += 100;
+            }
+
+        }
+        return $value;
+    }
+
 }

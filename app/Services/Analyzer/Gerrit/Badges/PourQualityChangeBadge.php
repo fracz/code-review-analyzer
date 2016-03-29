@@ -13,12 +13,12 @@ class PourQualityChangeBadge extends QualityBadge
 {
     public function __construct()
     {
-        parent::__construct("☂", "One of your changes required 3 fixes");
+        parent::__construct("☂", "One of your changes is pour quality (many fixes and disapproves)");
     }
 
     public function checkCommit($commit)
     {
         $noOfFixes = count($commit["revisions"]);
-        return $noOfFixes >= 4;
+        return $noOfFixes >= 4 and $commit["bad_reviews_count"] > 0;
     }
 }
