@@ -40,7 +40,6 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 $revisions = [];
                 
                 
-                
                 foreach ($commit->revisions as $revision) {
                     $revisions[$revision->revision_id] = [
                         'id' => $revision->revision_id,
@@ -51,14 +50,16 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 }
                 
                 $allVerificationPassed = true;
+                $howManyBadVerificationsForThatCommit = 0;
                 foreach ($commit->verified as $ver) {
+                    
                     if($ver->verified_value == -1)
                     {
                         $allVerificationPassed = false;
-                        break;
+                        $howManyBadVerificationsForThatCommit++;
                     }
                 }
-                
+
                 $passedWithoutCorrections = false;
                 if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
                     $passedWithoutCorrections = true;
@@ -73,6 +74,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     'status' => $commit->status,
                     'first_verification_passed' => ($allVerificationPassed) ? 'true' : 'false',
                     'passed_without_corrections' => ($passedWithoutCorrections) ? 'true' : 'false',
+                    'bad_reviews_count' => $howManyBadVerificationsForThatCommit,
                     'revisions' => $revisions,
                 ];
                 
