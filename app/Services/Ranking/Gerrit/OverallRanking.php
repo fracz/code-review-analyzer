@@ -18,7 +18,7 @@ class OverallRanking implements RankerInterface
                 'field' => 'count',
             ],
             'patchsets_per_user' => [
-                'weight' => 1.0,
+                'weight' => 0.1,
                 'field' => 'count_without_first_patchset',
             ],
             'commit_without_corrections' => [
@@ -36,21 +36,21 @@ class OverallRanking implements RankerInterface
                 'field' => 'count',
             ],
             'comments_given' => [
-                'weight' => 0.05,
+                'weight' => 0.1,
                 'field' => 'count',
             ],
             'comments_given' => [
-                'weight' => 0.10,
+                'weight' => 0.00,
                 'field' => 'rank',
             ],
         ],
         'statistics' => [
             'average_comment_length' => [
-                'weight' => 0.05,
+                'weight' => 0.0,
                 'field' => 'rank',
             ],
             'changes_per_review' => [
-                'weight' => -0.15,
+                'weight' => 0.0,
                 'field' => 'average',
             ],
         ],
