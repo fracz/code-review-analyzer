@@ -12,7 +12,7 @@ class BiggestProgessInRankingBadge extends AbstractOnePropertyBadge
 {
     public function __construct()
     {
-        parent::__construct("✪", "You've made biggest progress in ranking",
+        parent::__construct("✪", "<i class=\"fa fa-diamond\"></i>", "You've made biggest progress in ranking",
             "ranking_overall", "value");
     }
 }

@@ -13,7 +13,7 @@ class PerfectQualityChangeBadge extends QualityBadge
 {
     public function __construct()
     {
-        parent::__construct("❤", "You've made a change that didn't required any fixes");
+        parent::__construct("❤", "<i class=\"fa fa-cogs\"></i>", "You've made a change that didn't required any fixes");
     }
 
     public function checkCommit($commit)
