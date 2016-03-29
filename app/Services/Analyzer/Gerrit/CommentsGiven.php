@@ -52,6 +52,7 @@ class CommentsGiven extends AbstractAnalyzer
                                             'height' => $comment->author->avatars->first()->height],
                             'count' => 1,
                             'commits' => [],
+                            'rank' => 0,
                         ];
                     } else {
                         $results[$comment->author->_account_id]['count'] += 1;
@@ -72,8 +73,10 @@ class CommentsGiven extends AbstractAnalyzer
                         ],
                         'revision' => $revision->_number,
                         'date' => \DateTime::createFromFormat('Y-m-d H:i:s+', $comment->updated),
-                        'text' => $comment->message,
+                        'text' => $comment->message
                     ];
+                    
+		    $results[$comment->author->_account_id]['rank'] += $this->codeInComment($comment->message);
                 }
             }
         }
@@ -179,4 +182,19 @@ class CommentsGiven extends AbstractAnalyzer
     {
         return view('review.gerrit.comments._given', ['result' => $result, 'project' => $project]);
     }
+
+    public function codeInComment($comment){
+
+        $value = 0.0;
+
+        foreach(preg_split("/((\r?\n)|(\r\n?))/", $comment) as $line){
+
+            if (substr($line, 0, 1) === ' ' or substr($line, 0, 2) === '> ') {
+                $value += 10;
+            }
+
+        }
+        return $value;
+    }
+
 }
