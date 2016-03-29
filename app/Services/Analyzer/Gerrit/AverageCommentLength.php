@@ -47,11 +47,14 @@ class AverageCommentLength extends AbstractAnalyzer
                             'average' => 0,
                             'count' => 0,
                             'value' => 0,
+                            'calculated_value' => 0,
+                            'rank' => 0,
                         ];
                     }
 
                     $results[$message->author->_account_id]['count'] += 1;
                     $results[$message->author->_account_id]['value'] += strlen($message->message);
+                    $results[$message->author->_account_id]['calculated_value'] += $this->getValueFromMessage($message);
                 }
             }
         }
@@ -61,6 +64,7 @@ class AverageCommentLength extends AbstractAnalyzer
 
         foreach ($results as &$result) {
             $result['average'] = $result['value']/$result['count'];
+            $result['rank'] += $result['calculated_value']/$result['count'];
             unset($result['value']);
         }
 
@@ -104,11 +108,13 @@ class AverageCommentLength extends AbstractAnalyzer
                                 'average' => 0,
                                 'count' => 0,
                                 'value' => 0,
+                                'rank' => 0,
                             ];
                         }
 
                         $results[$message->author->_account_id]['count'] += 1;
                         $results[$message->author->_account_id]['value'] += strlen($message->message);
+
                     }
                 }
             }
@@ -121,6 +127,7 @@ class AverageCommentLength extends AbstractAnalyzer
         foreach ($results as &$result) {
             $result['average'] = $result['value']/$result['count'];
             unset($result['value']);
+            $results[$message->author->_account_id]['rank'] += $this->getValueFromMessage($message->message)/$result['count'];
         }
 
         usort($results, function($a, $b){
@@ -140,6 +147,13 @@ class AverageCommentLength extends AbstractAnalyzer
     public function getContent($result, Project $project)
     {
         return view('review.gerrit.statistics._average_comment_length', ['result' => $result]);
+    }
+
+    public function getValueFromMessage($message){
+        if(strlen($message->message) > 50)
+            return 50;
+        else
+            return strlen($message->message);
     }
 
 }

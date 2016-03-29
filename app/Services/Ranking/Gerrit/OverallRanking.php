@@ -47,7 +47,7 @@ class OverallRanking implements RankerInterface
         'statistics' => [
             'average_comment_length' => [
                 'weight' => 0.05,
-                'field' => 'average',
+                'field' => 'rank',
             ],
             'changes_per_review' => [
                 'weight' => -0.15,
