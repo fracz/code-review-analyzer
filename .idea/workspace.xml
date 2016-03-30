@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96180e4c-15a3-47a6-b521-50aa262eaee8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostCommentsPerChangeBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostCommentsPerChangeBadge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/BiggestProgessInRankingBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/BiggestProgessInRankingBadge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php" />
     </list>
     <ignored path="analyzer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,13 +37,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BiggestProgessInRankingBadge.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BiggestProgessInRankingBadge.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/BiggestProgessInRankingBadge.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.21915585">
+              <caret line="14" column="84" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
               <folding>
-                <marker date="1459319069082" expanded="true" signature="313:323" placeholder="..." />
+                <marker date="1459320377442" expanded="true" signature="313:328" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -75,19 +76,19 @@
       <file leaf-file-name="MostChangesBadge.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.375">
-              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+            <state vertical-scroll-proportion="-6.875">
+              <caret line="16" column="79" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
               <folding>
-                <marker date="1459319137118" expanded="true" signature="302:314" placeholder="..." />
+                <marker date="1459320313722" expanded="true" signature="302:313" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MostCommentsPerChangeBadge.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MostCommentsPerChangeBadge.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostCommentsPerChangeBadge.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3409091">
+            <state vertical-scroll-proportion="-8.75">
               <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <marker date="1459320000822" expanded="true" signature="308:314" placeholder="..." />
@@ -137,15 +138,15 @@
         <option value="$PROJECT_DIR$/app/Services/Ranking/Gerrit/OverallRanking.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/AbstractBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/AbstractOnePropertyBadge.php" />
-        <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/BiggestProgessInRankingBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/HardWorkingBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/ManyChangesInOneDayBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/ManyReviewsInOneDayBadge.php" />
-        <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostReviewsBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/PourQualityChangeBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/PerfectQualityChangeBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostCommentsPerChangeBadge.php" />
+        <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php" />
+        <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/BiggestProgessInRankingBadge.php" />
       </list>
     </option>
   </component>
@@ -791,52 +792,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/ManyReviewsInOneDayBadge.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.5">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <marker date="1459319137114" expanded="true" signature="302:312" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/BiggestProgessInRankingBadge.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <marker date="1459319069082" expanded="true" signature="313:323" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/HardWorkingBadge.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.2083335">
           <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding>
             <marker date="1459319069086" expanded="true" signature="309:321" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-          <folding>
-            <marker date="1459319137118" expanded="true" signature="302:314" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostReviewsBadge.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="15" column="87" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
-          <folding>
-            <marker date="1459319137106" expanded="true" signature="304:320" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -851,13 +812,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/ManyReviewsInOneDayBadge.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.5">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <marker date="1459319137114" expanded="true" signature="302:312" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostCommentsPerChangeBadge.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3409091">
+        <state vertical-scroll-proportion="-8.75">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <marker date="1459320000822" expanded="true" signature="308:314" placeholder="..." />
             <marker date="1459320000822" expanded="true" signature="308:322" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostReviewsBadge.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="15" column="87" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
+          <folding>
+            <marker date="1459319137106" expanded="true" signature="304:320" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875">
+          <caret line="16" column="79" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
+          <folding>
+            <marker date="1459320313722" expanded="true" signature="302:313" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/BiggestProgessInRankingBadge.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21915585">
+          <caret line="14" column="84" selection-start-line="14" selection-start-column="84" selection-end-line="14" selection-end-column="84" />
+          <folding>
+            <marker date="1459320377442" expanded="true" signature="313:328" placeholder="..." />
           </folding>
         </state>
       </provider>
