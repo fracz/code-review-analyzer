@@ -21,9 +21,12 @@ trait GerritDataFetchingTrait
         }
 
 		$ch = curl_init();
+
+		//CURLAUTH_BASIC  -> for review.gerrithub
+
 		curl_setopt_array($ch, [
 			CURLOPT_URL => str_replace(' ', '%20', $project->getAttribute('url').$uri),
-			CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+			CURLOPT_HTTPAUTH => CURLAUTH_DIGEST,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_USERPWD => $project->getAttribute('username').':'.$project->getAttribute('password'),
 			CURLOPT_SSL_VERIFYPEER => false,
@@ -31,7 +34,6 @@ trait GerritDataFetchingTrait
 		]);
                 
 		$result = curl_exec($ch);
-                
 
 		if ($result === false) {
                     return [];
@@ -39,13 +41,14 @@ trait GerritDataFetchingTrait
 
 		$result = $this->decode($result);
 
+		//print_r(curl_getinfo($ch));
 		if ($result === null) {
                     return [];
 		}
 
 		self::$cache[$project->getAttribute('name')][$uri] = $result;
 
-                 //print_r($result);
+                 //print_r($uri);exit;
                 
 		return $result;
 	}
@@ -53,25 +56,26 @@ trait GerritDataFetchingTrait
 	protected function collectDataForReview(Project $project, $from, $to)
 	{
             //temporary
-//            $commit = \App\Comment::all();
-//            print_r(count($commit));
-//
-//            foreach($commit as $val){
-//                $val->delete();
-//            }
-//            $commit = \App\Commit::all();
-//            foreach($commit as $val){
-//                $val->delete();
-//            }
-//            print_r(count($commit));
+            //$commit = \App\Comment::all();
+            //print_r(count($commit));
+
+            //foreach($commit as $val){
+                //$val->delete();
+            //}
+            //$commit = \App\Commit::all();
+            //foreach($commit as $val){
+               // $val->delete();
+            //}
+            //print_r(count($commit));
             //end temporary
 
             $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
             $results = [];
-            
+            //print_r($result);
+			//echo "<br/><br/>aaaaaaaaaa";
 
-            //print_r(count($result));exit;
             foreach ($result as $commit_item) {
+			//print_r($commit_item);
                     $commitId = $this->createOrUpdateCommit($commit_item);
 
                     foreach ($commit_item->revisions as $revision => $data) {
@@ -87,6 +91,7 @@ trait GerritDataFetchingTrait
                         }
                     }
             }
+
 	}
         
         
@@ -141,9 +146,9 @@ trait GerritDataFetchingTrait
             
             if (!$commit) {
                 $commit = new Commit;
-                //echo "COMMIT DOESNT EXIST <br/>";
+               // echo "COMMIT DOESNT EXIST <br/>";
             } else {
-                //echo "COMMIT EXISTS WITH ID: ". $commit->id . "<br/>";
+               // echo "COMMIT EXISTS WITH ID: ". $commit->id . "<br/>";
             }
             
             $commit->commit_id = $commit_item->id;
@@ -189,7 +194,7 @@ trait GerritDataFetchingTrait
                     } 
                 }
             }
-            
+            echo $commit->id;
             return $commit->id;
         }
         
@@ -205,7 +210,7 @@ trait GerritDataFetchingTrait
                         $ver->email, $ver->username, $ver->avatars);
 
                 $verified = \App\Verified::where('commit_id', $commitId)->where('verifier_id', $verifierId)->first();
-                if(!$verified){
+                if(!$verified  && isset($val)){
                     $verified = new \App\Verified;
                     $verified->commit_id = $commitId;
                     $verified->verifier_id = $verifierId;
@@ -219,16 +224,17 @@ trait GerritDataFetchingTrait
         
         protected function createCodeReviewIfNotExists($reviewer, $commitId){
             //print_r($reviewer->date);exit;
+
             $reviewerId = $this->createPersonIfNotExists($reviewer->_account_id, $reviewer->name,
                     $reviewer->email, $reviewer->username, $reviewer->avatars);
-            
+
             $codeReview = \App\CodeReview::where('commit_id', $commitId)->where('reviewer_id', $reviewerId)->first();
-            if(!$codeReview){
+            if(!$codeReview && isset($reviewer->value)){
                 $codeReview = new CodeReview;
                 $codeReview->commit_id = $commitId;
                 $codeReview->reviewer_id = $reviewerId;
                 $codeReview->review_value = $reviewer->value;
-                
+
                 $codeReview->save();
             }
         }

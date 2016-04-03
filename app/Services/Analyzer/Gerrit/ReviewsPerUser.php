@@ -59,18 +59,19 @@ class ReviewsPerUser extends AbstractAnalyzer
                     }
 
                     foreach ($commentList as $comment) {
-                            if (!isset($results[$comment->author->_account_id])) {
-                                $results[$comment->author->_account_id] = [
-                                        'username' => $comment->author->username,
-                                        'name' => $comment->author->name,
-                                        'email' => $comment->author->email,
-                                        'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
-                                                      'height' => $comment->author->avatars->first()->height],
-                                        'commits' => [],
-                                ];
-                            }
-
-                            $results[$comment->author->_account_id]['commits'][$commit->_number] = $commit->subject;
+							//if($comment->updated >= $from){
+								if (!isset($results[$comment->author->_account_id])) {
+									$results[$comment->author->_account_id] = [
+											'username' => $comment->author->username,
+											'name' => $comment->author->name,
+											'email' => $comment->author->email,
+											'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
+														  'height' => $comment->author->avatars->first()->height],
+											'commits' => [],
+									];
+								}
+								$results[$comment->author->_account_id]['commits'][$commit->_number] = $commit->subject;
+							//}
                     }
                 }
             }
@@ -87,7 +88,7 @@ class ReviewsPerUser extends AbstractAnalyzer
                 return $b['count'] - $a['count'];
             });
 
-                
+
             //print_r($results);exit;
             return $results;
 	}

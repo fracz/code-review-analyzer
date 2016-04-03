@@ -40,24 +40,27 @@ class PatchsetsPerUser extends AbstractAnalyzer
             
             $patchsetNumber = 0;
             foreach ($commit->revisions as $revision) {
-                if (!isset($results[$revision->uploader->_account_id])) {         
-                    $results[$revision->uploader->_account_id] = [
-                        'username' => $revision->uploader->username,
-                        'name' => $revision->uploader->name,
-                        'email' => $revision->uploader->email,
-                        'avatar' => (object) ['url' => $revision->uploader->avatars->first()->url, 
-                                              'height' => $revision->uploader->avatars->first()->height],
-                        'patchsets' => [],
-                        'count_without_first_patchset' => 0,
-                    ];
-                }
-                
-                if($patchsetNumber != 0){
-                    $results[$revision->uploader->_account_id]['count_without_first_patchset']++;
-                }
+				
+				if($revision->created >= $from){
+					if (!isset($results[$revision->uploader->_account_id])) { 				
+						$results[$revision->uploader->_account_id] = [
+							'username' => $revision->uploader->username,
+							'name' => $revision->uploader->name,
+							'email' => $revision->uploader->email,
+							'avatar' => (object) ['url' => $revision->uploader->avatars->first()->url, 
+												  'height' => $revision->uploader->avatars->first()->height],
+							'patchsets' => [],
+							'count_without_first_patchset' => 0,
+						];
+					}
+					
+					if($patchsetNumber != 0){
+						$results[$revision->uploader->_account_id]['count_without_first_patchset']++;
+					}
 
-                $results[$revision->uploader->_account_id]['patchsets'][$revision->revision_id] = $revision->revision_id;
-                $patchsetNumber++;
+					$results[$revision->uploader->_account_id]['patchsets'][$revision->revision_id] = $revision->revision_id;
+					$patchsetNumber++;
+				}
             }
         }
 

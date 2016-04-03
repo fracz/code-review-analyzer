@@ -38,18 +38,29 @@ class CommitsPerUser extends AbstractAnalyzer
         $results = [];
 
         foreach ($result as $commit) {
-            if (!isset($results[$commit->owner->_account_id])) {                   
-                $results[$commit->owner->_account_id] = [
-                    'username' => $commit->owner->username,
-                    'name' => $commit->owner->name,
-                    'email' => $commit->owner->email,
-                    'avatar' => (object) ['url' => $commit->owner->avatars->first()->url, 
-                                          'height' => $commit->owner->avatars->first()->height],
-                    'commits' => [],
-                ];
-            }
+			
+			//jesli commit ma create date < $from to trzeba sprawdzic kiedy był jakis jego revision
+			//jesli revision date < from tzn ze komentarz nzalazl sie tu przez jakas zmiane np wysatwienie review
+			//wiec nei powinnismy go punktowac dla tego kto go stworzyl
+			//a jesli revision date > from tzn ze trzeba zapunktowac w patchsetach tego kto stworzyl revision 
+			//(ale nadal nikogo w commitach)
+			
+			//punktujemy w commitach tylko jesli create date > from
+			if($commit->created >= $from)
+			{
+				if (!isset($results[$commit->owner->_account_id])) {                   
+					$results[$commit->owner->_account_id] = [
+						'username' => $commit->owner->username,
+						'name' => $commit->owner->name,
+						'email' => $commit->owner->email,
+						'avatar' => (object) ['url' => $commit->owner->avatars->first()->url, 
+											  'height' => $commit->owner->avatars->first()->height],
+						'commits' => [],
+					];
+				}
 
-            $results[$commit->owner->_account_id]['commits'][$commit->_number] = $commit->subject;
+				$results[$commit->owner->_account_id]['commits'][$commit->_number] = $commit->subject;
+			}
         }
 
         $results = array_filter($results, function($item){

@@ -41,12 +41,14 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 
                 
                 foreach ($commit->revisions as $revision) {
-                    $revisions[$revision->revision_id] = [
-                        'id' => $revision->revision_id,
-                        'owner_id' => $revision->uploader_id,
-                        'owner_email' => $revision->uploader->email,
-                        'create_date' => $revision->created
-                    ];
+					if($revision->created >= $from){
+						$revisions[$revision->revision_id] = [
+							'id' => $revision->revision_id,
+							'owner_id' => $revision->uploader_id,
+							'owner_email' => $revision->uploader->email,
+							'create_date' => $revision->created
+						];
+					}
                 }
                 
                 $allVerificationPassed = true;

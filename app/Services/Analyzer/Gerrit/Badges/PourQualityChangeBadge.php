@@ -13,7 +13,7 @@ class PourQualityChangeBadge extends QualityBadge
 {
     public function __construct()
     {
-        parent::__construct("☂", "<i class=\"fa fa-recycle\" style=\"color:red\"></i>", "One of your changes is pour quality (many fixes and disapproves)");
+        parent::__construct("☂", "<i class=\"fa fa-recycle\" style=\"color:red\"></i>", "One of commits is poor quality (many fixes and disapproves)");
     }
 
     public function checkCommit($commit)

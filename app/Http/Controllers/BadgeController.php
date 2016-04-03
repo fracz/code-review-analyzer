@@ -42,7 +42,7 @@ class BadgeController extends Controller
 
     public function getBadges($projectName, $userEmail)
     {
-        $from = date('Y-m-d', strtotime("-4 week"));;
+        $from = date('Y-m-d', strtotime("-1 week"));;
         $to = date("Y-m-d", time() + 86400);
         return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to);
     }
