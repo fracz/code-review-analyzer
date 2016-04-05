@@ -51,7 +51,9 @@ class ChangesPerReview extends AbstractAnalyzer
                 $comments = $revision->comments;
 
                 foreach ($comments as $comment) {
-                    $results[$commit->owner->_account_id]['messages'] += count($comment);
+					if($commit->owner->email != $comment->author->email){
+						$results[$commit->owner->_account_id]['messages'] += count($comment);
+					}
                 }
             }
         }

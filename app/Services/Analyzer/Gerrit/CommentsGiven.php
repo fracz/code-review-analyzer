@@ -57,26 +57,28 @@ class CommentsGiven extends AbstractAnalyzer
                     } else {
                         $results[$comment->author->_account_id]['count'] += 1;
                     }
-
-                    if (!isset($results[$comment->author->_account_id]['commits'][$commit->_number])) {
-                        $results[$comment->author->_account_id]['commits'][$commit->_number] = [
-                            'subject' => $commit->subject,
-                            'comments' => [],
-                        ];
-                    }
+					
+					if($commit->owner->email != $comment->author->email){
+						if (!isset($results[$comment->author->_account_id]['commits'][$commit->_number])) {
+							$results[$comment->author->_account_id]['commits'][$commit->_number] = [
+								'subject' => $commit->subject,
+								'comments' => [],
+							];
+						}
+						
+						$results[$comment->author->_account_id]['commits'][$commit->_number]['comments'][] = [
+							'to' => [
+								'name' => $commit->owner->name,
+								'username' => $commit->owner->username,
+								'username' => $commit->owner->email,
+							],
+							'revision' => $revision->_number,
+							'date' => \DateTime::createFromFormat('Y-m-d H:i:s+', $comment->updated),
+							'text' => $comment->message
+						];
                     
-                    $results[$comment->author->_account_id]['commits'][$commit->_number]['comments'][] = [
-                        'to' => [
-                            'name' => $commit->owner->name,
-                            'username' => $commit->owner->username,
-                            'username' => $commit->owner->email,
-                        ],
-                        'revision' => $revision->_number,
-                        'date' => \DateTime::createFromFormat('Y-m-d H:i:s+', $comment->updated),
-                        'text' => $comment->message
-                    ];
-                    
-		    $results[$comment->author->_account_id]['rank'] += $this->codeInComment($comment->message);
+						$results[$comment->author->_account_id]['rank'] += $this->codeInComment($comment->message);
+					}
                 }
             }
         }
