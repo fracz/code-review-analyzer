@@ -25,6 +25,6 @@ class RankingBadge
 
         }
 
-        return null;
+        return 0;
     }
 }
