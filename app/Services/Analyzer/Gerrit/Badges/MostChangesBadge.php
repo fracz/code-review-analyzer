@@ -14,7 +14,8 @@ class MostChangesBadge extends AbstractOnePropertyBadge
 
     public function __construct()
     {
-        parent::__construct("☆", "<i class=\"fa fa-random\" style=\"color:teal\"></i>", "Made most of the commits in project this week",
+        parent::__construct("☆", "<i class=\"fa fa-random\" style=\"color:teal\"></i>",
+            "Made most of the changes in project recently",
             "commits_per_user", "count");
     }
 

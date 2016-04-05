@@ -15,7 +15,8 @@ class HardWorkingBadge extends AbstractBadge
 {
     public function __construct()
     {
-        parent::__construct("◈", "<i class=\"fa fa-line-chart\" style=\"color:purple\"></i>", "Has been working every day on the project");
+        parent::__construct("◈", "<i class=\"fa fa-line-chart\" style=\"color:purple\"></i>",
+            "Has been working every day on the project");
     }
 
     public function checkBadge($data, $email)

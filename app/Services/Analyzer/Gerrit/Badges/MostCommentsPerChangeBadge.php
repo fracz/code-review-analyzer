@@ -12,7 +12,8 @@ class MostCommentsPerChangeBadge extends AbstractOnePropertyBadge
 {
     public function __construct()
     {
-        parent::__construct("♬", "<i class=\"fa fa-book\" style=\"color:deeppink\"></i>", "Getting biggest number of comments per change in team",
+        parent::__construct("♬", "<i class=\"fa fa-book\" style=\"color:deeppink\"></i>",
+            "Got biggest number of comments per change in team",
             "changes_per_review", "average");
     }
 
