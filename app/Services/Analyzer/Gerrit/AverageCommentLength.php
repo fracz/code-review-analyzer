@@ -34,27 +34,29 @@ class AverageCommentLength extends AbstractAnalyzer
         foreach ($result as $commit) {
             foreach ($commit->revisions as $revision) {
                 $comments = $revision->comments;
-
+				
                 foreach ($comments as $message) {
-                    if (!isset($results[$message->author->_account_id])) {
+					if($commit->owner->email != $message->author->email){
+						if (!isset($results[$message->author->_account_id])) {
                         
-                        $results[$message->author->_account_id] = [
-                            'username' => $message->author->username,
-                            'name' => $message->author->name,
-                            'email' => $message->author->email,
-                            'avatar' => (object) ['url' => $message->author->avatars->first()->url, 
-                                            'height' => $message->author->avatars->first()->height],
-                            'average' => 0,
-                            'count' => 0,
-                            'value' => 0,
-                            'calculated_value' => 0,
-                            'rank' => 0,
-                        ];
-                    }
+							$results[$message->author->_account_id] = [
+								'username' => $message->author->username,
+								'name' => $message->author->name,
+								'email' => $message->author->email,
+								'avatar' => (object) ['url' => $message->author->avatars->first()->url, 
+												'height' => $message->author->avatars->first()->height],
+								'average' => 0,
+								'count' => 0,
+								'value' => 0,
+								'calculated_value' => 0,
+								'rank' => 0,
+							];
+						}
 
-                    $results[$message->author->_account_id]['count'] += 1;
-                    $results[$message->author->_account_id]['value'] += strlen($message->message);
-                    $results[$message->author->_account_id]['calculated_value'] += $this->getValueFromMessage($message);
+						$results[$message->author->_account_id]['count'] += 1;
+						$results[$message->author->_account_id]['value'] += strlen($message->message);
+						$results[$message->author->_account_id]['calculated_value'] += $this->getValueFromMessage($message);
+					}
                 }
             }
         }
