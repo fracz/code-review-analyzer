@@ -6,14 +6,16 @@ abstract class AbstractBadge
 {
 	public $icon;
 	public $awesomeFont;
+	public $name;
 	public $description;
 	public $times;
 
-	public function __construct($icon, $awesomeFont, $description)
+	public function __construct($name, $description, $icon, $awesomeFont)
 	{
+		$this->name = $name;
+		$this->description = $description;
 		$this->icon = $icon;
 		$this->awesomeFont = $awesomeFont;
-		$this->description = $description;
 		$this->times = 0;
 
 	}

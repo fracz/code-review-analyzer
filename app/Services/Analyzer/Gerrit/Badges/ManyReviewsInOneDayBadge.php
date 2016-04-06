@@ -14,8 +14,11 @@ class ManyReviewsInOneDayBadge extends AbstractBadge
 
     public function __construct()
     {
-        parent::__construct("⊱", "<i class=\"fa fa-life-ring\" style=\"color:blue\"></i>",
-            "Made 3 reviews in one day");
+        parent::__construct(
+            "Fast reviewer",
+            "Make at least 3 reviews in one day",
+            "⊱", "<i class=\"fa fa-life-ring\" style=\"color:blue\"></i>"
+        );
     }
 
     public function checkBadge($data, $email)

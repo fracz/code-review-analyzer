@@ -13,9 +13,12 @@ class MostReviewsBadge extends AbstractOnePropertyBadge
 {
     public function __construct()
     {
-        parent::__construct("☻", "<i class=\"fa fa-ambulance\" style=\"color:darkorange\"></i>",
-            "Made most of the reviews in project recently",
-            "reviews_per_user", "count");
+        parent::__construct(
+            "The best reviewer",
+            "Make most of the reviews",
+            "☻", "<i class=\"fa fa-ambulance\" style=\"color:darkorange\"></i>",
+            "reviews_per_user", "count"
+        );
     }
 
 }

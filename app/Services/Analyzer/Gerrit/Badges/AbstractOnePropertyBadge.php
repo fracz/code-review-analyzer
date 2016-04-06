@@ -14,9 +14,9 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
     private $category;
     private $property;
 
-    public function __construct($icon, $awesomeFont, $description, $category, $property)
+    public function __construct($name, $description, $icon, $awesomeFont, $category, $property)
     {
-        parent::__construct($icon, $awesomeFont, $description);
+        parent::__construct($name, $description, $icon, $awesomeFont);
         $this->category = $category;
         $this->property = $property;
     }

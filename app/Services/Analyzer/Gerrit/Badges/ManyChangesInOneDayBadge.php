@@ -14,8 +14,11 @@ class ManyChangesInOneDayBadge extends AbstractBadge
 
     public function __construct()
     {
-        parent::__construct("⊰", "<i class=\"fa fa-rocket\" style=\"color:green\"></i>",
-            "Made 3 changes in one day");
+        parent::__construct(
+            "Fast worker",
+            "Make at least 3 changes in one day",
+            "⊰", "<i class=\"fa fa-rocket\" style=\"color:green\"></i>"
+        );
     }
 
     public function checkBadge($data, $email)
