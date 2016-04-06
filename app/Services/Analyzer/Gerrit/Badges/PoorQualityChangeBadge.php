@@ -16,7 +16,7 @@ class PoorQualityChangeBadge extends QualityBadge
         parent::__construct(
             "Poor change",
             "Make a poor quality change (many fixes and disapproves)",
-            "☂", "<i class=\"fa fa-recycle\" style=\"color:red\"></i>"
+            "☂", "<i class=\"fa fa-exclamation-circle\" style=\"color:red\"></i>"
         );
     }
 

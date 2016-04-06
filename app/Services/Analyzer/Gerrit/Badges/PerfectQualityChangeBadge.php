@@ -16,7 +16,7 @@ class PerfectQualityChangeBadge extends QualityBadge
         parent::__construct(
             "Flawless change",
             "Make a change that did not require any fixes",
-            "❤", "<i class=\"fa fa-cogs\" style=\"color:blueviolet\"></i>"
+            "❤", "<i class=\"fa fa-check-circle\" style=\"color:forestgreen\"></i>"
         );
     }
 
