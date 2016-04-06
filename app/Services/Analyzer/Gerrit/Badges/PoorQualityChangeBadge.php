@@ -9,12 +9,15 @@
 namespace App\Services\Analyzer\Gerrit\Badges;
 
 
-class PourQualityChangeBadge extends QualityBadge
+class PoorQualityChangeBadge extends QualityBadge
 {
     public function __construct()
     {
-        parent::__construct("☂", "<i class=\"fa fa-recycle\" style=\"color:red\"></i>",
-            "Made a poor quality change (many fixes and disapproves)");
+        parent::__construct(
+            "Poor change",
+            "Make a poor quality change (many fixes and disapproves)",
+            "☂", "<i class=\"fa fa-recycle\" style=\"color:red\"></i>"
+        );
     }
 
     public function checkCommit($commit)
