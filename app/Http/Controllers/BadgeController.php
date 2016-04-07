@@ -69,7 +69,7 @@ class BadgeController extends Controller
                 }
             }
 
-            usort($rewardedBadges, array($this, "compareBadges"));
+            //usort($rewardedBadges, array($this, "compareBadges"));
             $rankingScreen = new \App\Services\Analyzer\Gerrit\Badges\RankingBadge();
 
             $api = [
