@@ -12,75 +12,75 @@ class OverallRanking implements RankerInterface
             'commits_per_user' => [
                 'weight' => 1.0,
                 'field' => 'count',
-				'desc' => 'zmiany',
+				'desc' => 'change|changes',
             ],
             'reviews_per_user' => [
                 'weight' => 2.0,
                 'field' => 'count',
-				'desc' => 'przeglądy',
+				'desc' => 'review|reviews',
             ],
             'patchsets_per_user' => [
                 'weight' => 0.1,
                 'field' => 'count_without_first_patchset',
-				'desc' => 'patchsety',
+				'desc' => 'patchset|patchsets',
             ],
             'commit_without_corrections' => [
                 'weight' => 1.0,
                 'field' => 'commit_without_corrections',
-				'desc' => 'zmiany bez poprawek',
+				'desc' => 'commit without corrections|commits without corrections',
             ],
             'nt_changes' => [
                 'weight' => -0.5,
                 'field' => 'count',
-				'desc' => 'zmiany NT',
+				'desc' => 'NT change|NT changes',
             ],
         ],
         'comments' => [
             'comments_received' => [
                 'weight' => -0.1,
                 'field' => 'count',
-				'desc' => 'otrzymane komentarze',
+				'desc' => 'received comment|received comments',
             ],
             'comments_given' => [
                 'weight' => 0.1,
                 'field' => 'count',
-				'desc' => 'dane komentarze',
+				'desc' => 'given comment|given comments',
             ],
             'comments_given' => [
                 'weight' => 0.00,
                 'field' => 'rank',
-				'desc' => 'dane komentarze',
+				'desc' => 'given comment|given comments',
             ],
         ],
         'statistics' => [
             'average_comment_length' => [
                 'weight' => 0.0,
                 'field' => 'rank',
-				'desc' => 'śrenia długość komentarza',
+				'desc' => 'avarage comment length|avarage comment length',
             ],
             'changes_per_review' => [
                 'weight' => 0.0,
                 'field' => 'average',
-				'desc' => 'zmiany na przegląd',
+				'desc' => 'changes per review|changes per review',
             ],
         ],
         'topics' => [
             'hot_topics' => [
                 'weight' => 0.0,
                 'field' => 'count',
-				'desc' => 'gorące tematy',
+				'desc' => 'hot topics|hot topics',
             ],
             'discussions' => [
                 'weight' => 0.0,
                 'field' => 'count',
-				'desc' => 'dyskusje',
+				'desc' => 'discussions|discussions',
             ],
         ],
         'pairs' => [
             'review_pairs' => [
                 'weight' => 0.0,
                 'field' => 'count',
-				'desc' => 'pary',
+				'desc' => 'pairs|pairs',
             ],
         ],
     ];
@@ -126,7 +126,15 @@ class OverallRanking implements RankerInterface
 							$tmp_weight = ltrim((string)$weight['weight'], '-');
 						}
 						
-						$result[$user['username']]['formula'] .= $tmp_weight . "pkt * " . $user[$weight['field']] . " " .$weight['desc'];
+						$desc = $weight['desc'];
+						$desc_exploded = explode("|", $weight['desc']);
+						if($user[$weight['field']] == 1){
+							$desc = $desc_exploded[0];
+						} else {
+							$desc = $desc_exploded[1];
+						}
+						
+						$result[$user['username']]['formula'] .= $tmp_weight . "pkt * " . $user[$weight['field']] . " " .$desc;
 
 					}
                 }

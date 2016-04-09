@@ -36,32 +36,34 @@ class CommitsWithoutCorrections extends AbstractAnalyzer
             $results = [];
                 
             foreach ($result as $commit) {
-                
-                $allVerificationPassed = true;
-                foreach ($commit->verified as $ver) {
-                    if($ver->verified_value == -1)
-                    {
-                        $allVerificationPassed = false;
-                        break;
-                    }
-                }
-                
-                //print_r($commit);exit;
-                $passedWithoutCorrections = false;
-                if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
-                    $passedWithoutCorrections = true;
-                
-                if(!isset($results[$commit->owner->_account_id])){
-                    $results[$commit->owner->_account_id] = [
-                        'username' => $commit->owner->username,
-                        'commit_without_corrections' => 0,
-                    ];
-                }
-                
-                if($passedWithoutCorrections)
-                    $results[$commit->owner->_account_id]['commit_without_corrections']++;
-                
-                //print_r($results[$commit->_number]);exit; 
+                if($commit->created >= $from)
+				{
+					$allVerificationPassed = true;
+					foreach ($commit->verified as $ver) {
+						if($ver->verified_value == -1)
+						{
+							$allVerificationPassed = false;
+							break;
+						}
+					}
+					
+					//print_r($commit);exit;
+					$passedWithoutCorrections = false;
+					if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
+						$passedWithoutCorrections = true;
+					
+					if(!isset($results[$commit->owner->_account_id])){
+						$results[$commit->owner->_account_id] = [
+							'username' => $commit->owner->username,
+							'commit_without_corrections' => 0,
+						];
+					}
+					
+					if($passedWithoutCorrections)
+						$results[$commit->owner->_account_id]['commit_without_corrections']++;
+					
+					//print_r($results[$commit->_number]);exit; 
+				} 
             }
                 
             //print_r($results);exit;
