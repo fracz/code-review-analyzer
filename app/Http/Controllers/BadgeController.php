@@ -49,6 +49,8 @@ class BadgeController extends Controller
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
+		session_write_close();
+		
         if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
 			
             return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
@@ -88,10 +90,6 @@ class BadgeController extends Controller
             return $api;
         }
     }
-	
-	public function checkIfEmailExists(){
-		
-	}
 
     public function compareBadges($badgeA, $badgeB)
     {

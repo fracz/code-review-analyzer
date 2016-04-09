@@ -53,6 +53,7 @@ class ReviewController extends Controller
     {
         //proper format 2015-01-16
         //echo str_replace('&2F;', '/', $name);exit;
+		session_write_close();
         $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
 
         $this->analyzerService->reBuildAnalyzerForApi();
@@ -64,6 +65,7 @@ class ReviewController extends Controller
     public function analyze($id)
     {
         /** @var Project $project */
+		session_write_close();
         $project = Project::findOrFail($id);
         $analyzers = $this->analyzerService->getList()[$project->getType()];
 
@@ -78,6 +80,7 @@ class ReviewController extends Controller
     public function results($id)
     {
         /** @var Project $project */
+		session_write_close();
         $project = Project::findOrFail($id);
         $analyzers = $this->analyzerService->getList()[$project->getType()];
         $rankers = $this->analyzerService->getRankers()[$project->getType()];
