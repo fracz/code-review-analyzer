@@ -35,7 +35,7 @@ class ReviewController extends Controller
         $project = Project::findOrFail($id);
 
         $from = date('Y-m-d', strtotime($request->get('from')));
-        $to = date('Y-m-d', strtotime($request->get('to')));
+        $to = date('Y-m-d', strtotime('+1 day', strtotime($request->get('to'))));
 
         $results = $this->analyzerService->analyze($project, $from, $to);
 
