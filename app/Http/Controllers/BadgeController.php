@@ -50,12 +50,18 @@ class BadgeController extends Controller
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
         if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
-
+			
             return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
 
         } else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 
+			if($dataFromLastWeek == null){
+				header("HTTP/1.0 404 Not Found");
+				echo "<h1>Error 404 Not Found</h1>";
+				echo "The project that you have requested for could not be found.";
+			}
+			
             $badges = $this->getAllBadges();
 
             $rewardedBadges = [];
@@ -82,6 +88,10 @@ class BadgeController extends Controller
             return $api;
         }
     }
+	
+	public function checkIfEmailExists(){
+		
+	}
 
     public function compareBadges($badgeA, $badgeB)
     {
@@ -92,7 +102,10 @@ class BadgeController extends Controller
     {
         //proper format 2015-01-16
         //echo str_replace('&2F;', '/', $name);exit;
-        $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
+        $project = Project::where('name', str_replace('&2F;', '/', $name))->first();
+
+		if(!$project)
+			return null;
 
         $this->analyzerService->reBuildAnalyzerForApi();
         $results = $this->analyzerService->analyze($project, $from, $to);
