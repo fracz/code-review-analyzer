@@ -82,6 +82,7 @@ class BadgeController extends Controller
 
             $api = [
                 "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),
+				"formula" => $rankingScreen->getFormula($dataFromLastWeek, $userEmail),
                 "badges" => $rewardedBadges
             ];
 
