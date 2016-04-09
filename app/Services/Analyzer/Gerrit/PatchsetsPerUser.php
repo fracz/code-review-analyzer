@@ -84,11 +84,11 @@ class PatchsetsPerUser extends AbstractAnalyzer
    
     public function getResults($results, Project $project)
     {
-        return view('review._list', ['results' => $results, 'analyzer' => $this, 'project' => $project]);
+        return "";
     }
 
     public function getContent($result, Project $project)
     {
-        return view('review.gerrit.changes._patchsets_per_user', ['result' => $result, 'project' => $project]);
+        return "";
     }
 }

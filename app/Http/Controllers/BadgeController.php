@@ -106,7 +106,6 @@ class BadgeController extends Controller
 		if(!$project)
 			return null;
 
-        $this->analyzerService->reBuildAnalyzerForApi();
         $results = $this->analyzerService->analyze($project, $from, $to);
 
         return $results;

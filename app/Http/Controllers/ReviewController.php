@@ -56,7 +56,6 @@ class ReviewController extends Controller
 		session_write_close();
         $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
 
-        $this->analyzerService->reBuildAnalyzerForApi();
         $results = $this->analyzerService->analyze($project, $from, $to);
 
         return $results;
@@ -80,9 +79,13 @@ class ReviewController extends Controller
     public function results($id)
     {
         /** @var Project $project */
-		session_write_close();
         $project = Project::findOrFail($id);
         $analyzers = $this->analyzerService->getList()[$project->getType()];
+
+		unset($analyzers['changes']['reviews_per_commit']);
+		unset($analyzers['changes']['patchsets_per_user']);
+		unset($analyzers['changes']['commit_without_corrections']);
+		
         $rankers = $this->analyzerService->getRankers()[$project->getType()];
         $results = \Session::get('results.' . $project->getAttribute('id'), [
             'from' => date('d-m-Y'),
