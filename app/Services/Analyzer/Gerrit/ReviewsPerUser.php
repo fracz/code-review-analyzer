@@ -59,7 +59,7 @@ class ReviewsPerUser extends AbstractAnalyzer
                     }
 
                     foreach ($commentList as $comment) {
-							//if($comment->updated >= $from){
+							if($comment->updated >= $from){
 								if (!isset($results[$comment->author->_account_id])) {
 									$results[$comment->author->_account_id] = [
 											'username' => $comment->author->username,
@@ -71,7 +71,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 									];
 								}
 								$results[$comment->author->_account_id]['commits'][$commit->_number] = $commit->subject;
-							//}
+							}
                     }
                 }
             }
