@@ -83,7 +83,7 @@ trait GerritDataFetchingTrait
                         
                         $uri = '/a/changes/'.$commit_item->id.'/revisions/'.$revision.'/comments/';
                         $comments = (array)$this->fetch($project, $uri);
-
+						//print_r($uri);exit;
                         foreach ($comments as $filename => $comment_item) {
                             foreach ($comment_item as $message) {
                                 $this->createOrUpdateComment($message, $revisionId, $filename);
