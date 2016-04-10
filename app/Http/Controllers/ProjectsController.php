@@ -2,6 +2,7 @@
 
 use App\Http\Requests\FetchCodeRequest;
 use App\Http\Requests\ProjectRequest;
+use App\Http\Requests\BadgeRequest;
 use App\Project;
 use app\Services\CodeFetcherInterface;
 use Request;
@@ -31,6 +32,13 @@ class ProjectsController extends Controller
 		$project = Project::findOrFail($id);
 
 		return view('projects.show', ['project' => $project]);
+	}
+	
+	public function badges($id){
+		$project = Project::findOrFail($id);
+		$types = Project::getTypes();
+
+		return view('projects.badges', ['project' => $project, 'types' => $types]);
 	}
 
 	public function create()
@@ -67,6 +75,17 @@ class ProjectsController extends Controller
 		flash()->success('Projekt został zaktualizowany.');
 
 		return redirect()->route('projects.show', $id);
+	}
+	
+	public function updateBadge($id, BadgeRequest $request)
+	{
+		/** @var Project $project */
+		$project = Project::findOrFail($id);
+		$project->update($request->all());
+
+		flash()->success('Projekt został zaktualizowany.');
+
+		return redirect()->route('projects', $id);
 	}
 
 	public function delete($id)

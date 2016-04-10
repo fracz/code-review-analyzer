@@ -194,7 +194,7 @@ trait GerritDataFetchingTrait
                     } 
                 }
             }
-            echo $commit->id;
+            //echo $commit->id;
             return $commit->id;
         }
         
@@ -276,7 +276,6 @@ trait GerritDataFetchingTrait
         
         protected function createOrUpdateRevision($revisionData, $revisionId, $commit_id){
             $revision = \App\Revision::where('revision_id', $revisionId)->first();
-            
             if(!$revision){
                 $revision = new Revision;
             }

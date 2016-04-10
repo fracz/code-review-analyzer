@@ -42,7 +42,12 @@ class BadgeController extends Controller
 
     public function getBadges($projectName, $userEmail)
     {
-        $from = date('Y-m-d', strtotime("-1 week"));;
+		$project = Project::where('name', str_replace('&2F;', '/', $projectName))->first();
+
+		if(!$project)
+			return null;
+		
+        $from = date('Y-m-d', strtotime("-" . $project->badges_period . " day"));;
         $to = date("Y-m-d", time() + 86400);
         return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to);
     }
@@ -51,11 +56,11 @@ class BadgeController extends Controller
     {
 		session_write_close();
 		
-        if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
+        //if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
 			
-            return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
+            //return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
 
-        } else {
+        //} else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 
 			if($dataFromLastWeek == null){
@@ -89,7 +94,7 @@ class BadgeController extends Controller
             Cache::put('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to, $api, 10);
 
             return $api;
-        }
+        //}
     }
 
     public function compareBadges($badgeA, $badgeB)
