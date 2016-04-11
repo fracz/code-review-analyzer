@@ -63,10 +63,13 @@ class ReviewsPerUser extends AbstractAnalyzer
 
 						$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
 						
+						if(!isset($results[$reviewer->_account_id]['patchset_already_used'][$commit->_number]))
+							$results[$reviewer->_account_id]['patchset_already_used'][$commit->_number] = [];
+
 						
-						if(!isset($results[$reviewer->_account_id]['patchset_already_used'][$codeReview->_revision_number])){
+						if(!isset($results[$reviewer->_account_id]['patchset_already_used'][$commit->_number][$codeReview->_revision_number])){
 							$results[$reviewer->_account_id]['count']++;
-							$results[$reviewer->_account_id]['patchset_already_used'][$codeReview->_revision_number] = 't';
+							$results[$reviewer->_account_id]['patchset_already_used'][$commit->_number][$codeReview->_revision_number] = 't';
 						} else {
 							$results[$reviewer->_account_id]['minor_count']++;
 						}
