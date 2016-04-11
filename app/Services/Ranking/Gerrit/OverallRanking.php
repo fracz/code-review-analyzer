@@ -51,11 +51,6 @@ class OverallRanking implements RankerInterface
                 'field' => 'count',
 				'desc' => 'given comment|given comments',
             ],
-            'comments_given' => [
-                'weight' => 0.00,
-                'field' => 'rank',
-				'desc' => 'given comment|given comments',
-            ],
         ],
         'statistics' => [
             'average_comment_length' => [
