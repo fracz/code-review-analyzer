@@ -42,8 +42,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 				$codeReviews = $commit->codeReviews;
 				
 				foreach ($codeReviews as $codeReview) {
-					//echo $commit->commit_id;
-//print_r($codeReview);echo"<br/><br/>";
+					
 					$reviewer = $codeReview->reviewer;
 					
 					if($commit->owner->email != $reviewer->email){
@@ -55,25 +54,17 @@ class ReviewsPerUser extends AbstractAnalyzer
 								'avatar' => (object) ['url' => $reviewer->avatars->first()->url, 
 												  'height' => $reviewer->avatars->first()->height],
 								'commits' => [],
-								'patchset_already_used' => [],
 								'count' => 0,
 								'minor_count' => 0,
 							];
 						}
-
-						$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
 						
-						if(!isset($results[$reviewer->_account_id]['patchset_already_used'][$commit->_number]))
-							$results[$reviewer->_account_id]['patchset_already_used'][$commit->_number] = [];
-
-						
-						if(!isset($results[$reviewer->_account_id]['patchset_already_used'][$commit->_number][$codeReview->_revision_number])){
+						if(!isset($results[$reviewer->_account_id]['commits'][$commit->_number])){
+							$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
 							$results[$reviewer->_account_id]['count']++;
-							$results[$reviewer->_account_id]['patchset_already_used'][$commit->_number][$codeReview->_revision_number] = 't';
 						} else {
 							$results[$reviewer->_account_id]['minor_count']++;
 						}
-						
 					}
 				}
 				
