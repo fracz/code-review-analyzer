@@ -59,10 +59,13 @@ class CommitsWithoutCorrections extends AbstractAnalyzer
 						];
 					}
 					
-					if($passedWithoutCorrections)
+					if($passedWithoutCorrections){
 						$results[$commit->owner->_account_id]['commit_without_corrections']++;
+						//print_r($commit); echo "<br/><br/>";
+					}
+						
 					
-					//print_r($results[$commit->_number]);exit; 
+					
 				} 
             }
                 

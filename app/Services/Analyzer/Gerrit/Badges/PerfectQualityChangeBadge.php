@@ -22,6 +22,6 @@ class PerfectQualityChangeBadge extends QualityBadge
 
     public function checkCommit($commit)
     {
-        return $commit["first_verification_passed"] && $commit["status"] == "MERGED";
+        return $commit["passed_without_corrections"] == "true" && ($commit["status"] == "MERGED" || $commit["status"] == "SUBMITTED");
     }
 }

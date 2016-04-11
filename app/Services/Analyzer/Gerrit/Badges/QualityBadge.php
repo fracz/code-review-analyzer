@@ -25,7 +25,9 @@ abstract class QualityBadge extends AbstractBadge
                     $reviewsPerCommit = $data["reviews_per_commit"];
                     $commit = $reviewsPerCommit[$index];
 
+					//print_r($commit);echo "<br/><br/>";
                     if($this->checkCommit($commit)){
+						//print_r($commit);echo "<br/><br/>";
                         $this->times += 1;
                     }
                 }
