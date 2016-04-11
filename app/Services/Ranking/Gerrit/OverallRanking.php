@@ -12,7 +12,7 @@ class OverallRanking implements RankerInterface
             'commits_per_user' => [
                 'weight' => 1.0,
                 'field' => 'count',
-				'desc' => 'change|changes',
+				'desc' => 'new change|new changes',
             ],
             'reviews_per_user' => [
                 'weight' => 2.0,
@@ -32,7 +32,7 @@ class OverallRanking implements RankerInterface
             'commit_without_corrections' => [
                 'weight' => 1.0,
                 'field' => 'commit_without_corrections',
-				'desc' => 'commit without corrections|commits without corrections',
+				'desc' => 'flawless change|flawless changes',
             ],
             'nt_changes' => [
                 'weight' => -0.5,

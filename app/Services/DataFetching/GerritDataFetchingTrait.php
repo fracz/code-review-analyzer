@@ -23,7 +23,8 @@ trait GerritDataFetchingTrait
 		$ch = curl_init();
 
 		//CURLAUTH_BASIC  -> for review.gerrithub
-
+		//print_r(str_replace(' ', '%20', $project->getAttribute('url').$uri));exit;
+		//print_r( $project->getAttribute('username').':'.$project->getAttribute('password'));exit;
 		curl_setopt_array($ch, [
 			CURLOPT_URL => str_replace(' ', '%20', $project->getAttribute('url').$uri),
 			CURLOPT_HTTPAUTH => CURLAUTH_DIGEST,

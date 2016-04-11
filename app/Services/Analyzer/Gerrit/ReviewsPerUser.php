@@ -46,7 +46,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 //print_r($codeReview);echo"<br/><br/>";
 					$reviewer = $codeReview->reviewer;
 					
-					//if($commit->owner->email != $reviewer->email){
+					if($commit->owner->email != $reviewer->email){
 						if (!isset($results[$reviewer->_account_id])) {
 							$results[$reviewer->_account_id] = [
 								'username' => $reviewer->username,
@@ -71,7 +71,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 							$results[$reviewer->_account_id]['minor_count']++;
 						}
 						
-					//}
+					}
 				}
 				
 				
