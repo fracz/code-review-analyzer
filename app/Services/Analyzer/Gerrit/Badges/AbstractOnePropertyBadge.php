@@ -25,8 +25,8 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
     {
         $commitsPerUser = $data[$this->category];
         
-        //if($this->category == "commits_per_user"){
-        //print_r($commitsPerUser);exit;}
+        //if($this->category == "changes_per_review"){
+			//print_r($commitsPerUser);exit;}
         
         $winners = [];
         $maxRanking = 0.0;
@@ -48,7 +48,7 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
         if(count($winners) > 0) //and $winner["email"] === $email
 		{
 			foreach($winners as $winner){
-				if($winner["email"] === $email)
+				if($winner["email"] === $email && $maxRanking > 0)
 					$this->times = 1;
 			}
 		}

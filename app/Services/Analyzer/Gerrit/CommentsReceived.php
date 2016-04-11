@@ -46,6 +46,7 @@ class CommentsReceived extends AbstractAnalyzer
                                             'height' => $commit->owner->avatars->first()->height],
                     'count' => 0,
                     'commits' => [],
+					'most_comments_per_change' => 0,
                 ];
             }
 
@@ -76,6 +77,21 @@ class CommentsReceived extends AbstractAnalyzer
                 }
             }
         }
+		
+		foreach ($results as &$result) {
+			$mostCommentsPerChange = 0;
+			
+			foreach ($result['commits'] as $commit) {
+				if($mostCommentsPerChange < count($commit['comments']))
+					$mostCommentsPerChange = count($commit['comments']);
+			}
+			
+			$result['most_comments_per_change'] = $mostCommentsPerChange;
+			
+			//echo $result['email']. " ".$mostCommentsPerChange."<br/>";
+		}
+		
+		
 
         usort($results, function($a, $b){
             return $b['count'] - $a['count'];
