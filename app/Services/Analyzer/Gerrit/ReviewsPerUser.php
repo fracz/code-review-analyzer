@@ -27,7 +27,7 @@ class ReviewsPerUser extends AbstractAnalyzer
         public function analyze(Project $project, $from, $to)
 	{         
             //echo "echo from ReviewsPerUser";
-            //$this->collectDataForReview($project, $from, $to);
+            $this->collectDataForReview($project, $from, $to);
             
             $result = \App\Commit::where('project', $project->getAttribute('name'))
                                 ->where('updated', '>=', $from)
@@ -58,6 +58,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 								'minor_count' => 0,
 							];
 						}
+						
 						
 						if(!isset($results[$reviewer->_account_id]['commits'][$commit->_number])){
 							$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
