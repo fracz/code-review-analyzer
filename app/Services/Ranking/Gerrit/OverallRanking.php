@@ -19,6 +19,11 @@ class OverallRanking implements RankerInterface
                 'field' => 'count',
 				'desc' => 'review|reviews',
             ],
+			 'reviews_per_user_repeat' => [
+                'weight' => 1.0,
+                'field' => 'minor_count',
+				'desc' => 'repeated review|repeated reviews',
+            ],
             'patchsets_per_user' => [
                 'weight' => 0.1,
                 'field' => 'count_without_first_patchset',
@@ -98,6 +103,10 @@ class OverallRanking implements RankerInterface
 
         foreach ($this->weights as $weights) {
             foreach ($weights as $type => $weight) {
+				
+				if($type == 'reviews_per_user_repeat')
+					$type = 'reviews_per_user';
+				
                 foreach ($results[$type] as $user) {
                     //print_r($type);exit;
                     if (!isset($result[$user['username']])) {

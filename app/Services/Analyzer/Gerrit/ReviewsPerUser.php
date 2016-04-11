@@ -40,10 +40,13 @@ class ReviewsPerUser extends AbstractAnalyzer
 				
 				//code reviews
 				$codeReviews = $commit->codeReviews;
+				
 				foreach ($codeReviews as $codeReview) {
+					//echo $commit->commit_id;
+//print_r($codeReview);echo"<br/><br/>";
 					$reviewer = $codeReview->reviewer;
 					
-					if($commit->owner->email != $reviewer->email){
+					//if($commit->owner->email != $reviewer->email){
 						if (!isset($results[$reviewer->_account_id])) {
 							$results[$reviewer->_account_id] = [
 								'username' => $reviewer->username,
@@ -52,18 +55,28 @@ class ReviewsPerUser extends AbstractAnalyzer
 								'avatar' => (object) ['url' => $reviewer->avatars->first()->url, 
 												  'height' => $reviewer->avatars->first()->height],
 								'commits' => [],
-								//'count' => 0,
+								'patchset_already_used' => [],
+								'count' => 0,
+								'minor_count' => 0,
 							];
 						}
 
 						$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
-						//$results[$reviewer->_account_id]['count']++;
-					}
+						
+						
+						if(!isset($results[$reviewer->_account_id]['patchset_already_used'][$codeReview->_revision_number])){
+							$results[$reviewer->_account_id]['count']++;
+							$results[$reviewer->_account_id]['patchset_already_used'][$codeReview->_revision_number] = 't';
+						} else {
+							$results[$reviewer->_account_id]['minor_count']++;
+						}
+						
+					//}
 				}
 				
 				
 				//verified
-				foreach ($commit->verified as $ver) {
+				/*foreach ($commit->verified as $ver) {
 					$reviewer = $ver->reviewer;
 					
 					if($commit->owner->email != $reviewer->email){
@@ -82,7 +95,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 						$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
 						//$results[$reviewer->_account_id]['count']++;
 					}
-				}
+				}*/
 				
 				
 				//comments
@@ -115,9 +128,9 @@ class ReviewsPerUser extends AbstractAnalyzer
                 return count($item['commits']) > 0;
             });
 
-            foreach ($results as &$result) {
+            /*foreach ($results as &$result) {
                 $result['count'] = count($result['commits']);
-            }
+            }*/
 
             usort($results, function($a, $b){
                 return $b['count'] - $a['count'];
