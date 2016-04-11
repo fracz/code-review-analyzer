@@ -28,21 +28,29 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
         //if($this->category == "commits_per_user"){
         //print_r($commitsPerUser);exit;}
         
-        $winner = null;
+        $winners = [];
         $maxRanking = 0.0;
 
         foreach ($commitsPerUser as $key => $commit) {
             $ranking = $commit[$this->property];
                 
             if ($ranking > $maxRanking) {
-                $winner = $commit;
+				$winners = [];
+				array_push($winners, $commit);
                 $maxRanking = $ranking;
-            }
+            } else if ($ranking == $maxRanking)
+			{
+				array_push($winners, $commit);
+			}
 
         }
 
-        if(is_null($winner) === false and $winner["email"] === $email)
-            $this->times = 1;
-
+        if(count($winners) > 0) //and $winner["email"] === $email
+		{
+			foreach($winners as $winner){
+				if($winner["email"] === $email)
+					$this->times = 1;
+			}
+		}
     }
 }
