@@ -72,11 +72,13 @@ class BadgeController extends Controller
             $sumAllBadges['ranking'] += $projectBadges['ranking'];
             $sumAllBadges['ranking_projects'][$projName] = $projectBadges['ranking'];
 
-            //echo $projName. " " . count($projectBadges['badges']). "<br/>";
+            //echo $projName. " " . count($projectBadges['achievements']). "<br/>";
+			//unset($projectBadges['achievements']['patchset']);
 
-            if (count($projectBadges['achievements']) > 1) {
+
+            if($projectBadges['achievements'] != "") {
                 foreach ($projectBadges['achievements'] as $name => $achivData) {
-
+					
                     //bo $name moze byc w liczbie pojedynczej lub mnogiej
                     if (substr($name, -1) != "s")
                         $name = $name . "s";
@@ -144,7 +146,7 @@ class BadgeController extends Controller
 
         if (Cache::has('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to)) {
 
-            return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
+           return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
 
         } else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
