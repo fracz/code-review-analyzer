@@ -108,7 +108,7 @@ class OverallRanking implements RankerInterface
                         //print_r($user);exit;
                         $result[$user['username']] = [
                             'value' => 0.0,
-							'formula' => "",
+							'achievements' => [],
                             'name' => $user['name'],
                             'email' => $user['email'],
                             'avatar' => $user['avatar'],
@@ -118,18 +118,7 @@ class OverallRanking implements RankerInterface
                     $result[$user['username']]['value'] += $weight['weight'] * $user[$weight['field']];
 					
 					if($user[$weight['field']] != 0 && $weight['weight'] != 0)  {
-						$tmp_weight = $weight['weight'];
-						
-						if($weight['weight'] > 0 && $result[$user['username']]['formula'] != "")
-						{
-							$result[$user['username']]['formula'] .= " + ";					
-						}
-						else if ($weight['weight'] < 0)
-						{
-							$result[$user['username']]['formula'] .= " - ";
-							$tmp_weight = ltrim((string)$weight['weight'], '-');
-						}
-						
+					
 						$desc = $weight['desc'];
 						$desc_exploded = explode("|", $weight['desc']);
 						if($user[$weight['field']] == 1){
@@ -138,8 +127,9 @@ class OverallRanking implements RankerInterface
 							$desc = $desc_exploded[1];
 						}
 						
-						$result[$user['username']]['formula'] .= $tmp_weight . "pkt * " . $user[$weight['field']] . " " .$desc;
-
+						$result[$user['username']]['achievements'][$desc] = [];
+						$result[$user['username']]['achievements'][$desc]['weight'] = $weight['weight'];
+						$result[$user['username']]['achievements'][$desc]['times'] = $user[$weight['field']];
 					}
                 }
             }

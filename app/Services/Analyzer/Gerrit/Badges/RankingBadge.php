@@ -28,15 +28,15 @@ class RankingBadge
         return 0;
     }
 	
-	public function getFormula($data, $email)
+	public function getAchievements($data, $email)
     {
         $commitsPerUser = $data["ranking_overall"];
 
         foreach ($commitsPerUser as $key => $commit) {
-            $formula = $commit["formula"];
+            $achiv = $commit["achievements"];
 
             if($commit["email"] === $email){
-                return $formula;
+                return $achiv;
             }
 
         }

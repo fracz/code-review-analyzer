@@ -51,16 +51,31 @@ class BadgeController extends Controller
         $to = date("Y-m-d", time() + 86400);
         return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to);
     }
+	
+	public function getUserBadges($userEmail)
+	{
+		session_write_close();
+		
+		$projects = Project::all();
+		$allUserBadges = [];
+
+		foreach ($projects as $project){
+			
+			$allUserBadges[$project->getAttribute('name')] = $this->getBadges($project->getAttribute('name'), $userEmail);
+		}
+		
+		return $allUserBadges;
+	}
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
 		session_write_close();
 		
-        if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
+        //if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
 			
-            return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
+            //return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
 
-        } else {
+        //} else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 
 			if($dataFromLastWeek == null){
@@ -87,14 +102,14 @@ class BadgeController extends Controller
 
             $api = [
                 "ranking" => $rankingScreen->getRank($dataFromLastWeek, $userEmail),
-				"formula" => $rankingScreen->getFormula($dataFromLastWeek, $userEmail),
+				"achievements" => $rankingScreen->getAchievements($dataFromLastWeek, $userEmail),
                 "badges" => $rewardedBadges
             ];
 
             Cache::put('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to, $api, 10);
 
             return $api;
-        }
+        //}
     }
 
     public function compareBadges($badgeA, $badgeB)
