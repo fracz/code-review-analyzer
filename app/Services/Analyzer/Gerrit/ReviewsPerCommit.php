@@ -65,6 +65,15 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 $passedWithoutCorrections = false;
                 if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
                     $passedWithoutCorrections = true;
+				
+				
+				$badCodeReviewCount = 0;
+				foreach ($commit->codeReviews as $rev) {
+					//if($commit->)
+					if($rev->review_value == -1){
+						$badCodeReviewCount++;
+					}
+				}
                 
                 //print_r($commit->verified);exit;
                 
@@ -77,6 +86,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     'first_verification_passed' => ($allVerificationPassed) ? 'true' : 'false',
                     'passed_without_corrections' => ($passedWithoutCorrections) ? 'true' : 'false',
                     'bad_reviews_count' => $howManyBadVerificationsForThatCommit,
+					'bad_code_review_count' => $badCodeReviewCount,
                     'revisions' => $revisions,
                 ];
                 
