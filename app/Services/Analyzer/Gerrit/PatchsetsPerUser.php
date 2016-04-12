@@ -38,11 +38,10 @@ class PatchsetsPerUser extends AbstractAnalyzer
 
         foreach ($result as $commit) {
             
-            $patchsetNumber = 0;
             foreach ($commit->revisions as $revision) {
-				$patchsetNumber++;
 			
-				if($revision->created >= $from){
+				if($revision->created >= $from && $revision->uploader->email == "admin@avensome.net"){
+				
 					if (!isset($results[$revision->uploader->_account_id])) { 				
 						$results[$revision->uploader->_account_id] = [
 							'username' => $revision->uploader->username,
@@ -54,8 +53,9 @@ class PatchsetsPerUser extends AbstractAnalyzer
 							'count_without_first_patchset' => 0,
 						];
 					}
+
 					
-					if($patchsetNumber != 1){
+					if($revision->created > $commit->created){
 						$results[$revision->uploader->_account_id]['count_without_first_patchset']++;
 					}
 
