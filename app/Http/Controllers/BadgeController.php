@@ -10,20 +10,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Project;
+use App\Services\Analyzer;
 use App\Services\Analyzer\Gerrit\Badges\AbstractBadge;
-use App\Services\AnalyzerInterface;
 use Cache;
 
 class BadgeController extends Controller
 {
-    private $analyzerService;
-
-    function __construct(AnalyzerInterface $analyzerService)
-    {
-        $this->analyzerService = $analyzerService;
-    }
-
-    public function getAllBadges()
+    public static function getAllBadges()
     {
         $badges = array(
             new \App\Services\Analyzer\Gerrit\Badges\BiggestProgessInRankingBadge(),
@@ -40,23 +33,24 @@ class BadgeController extends Controller
         return $badges;
     }
 
-    public function getBadges($projectName, $userEmail)
+    public static function getBadges($projectName, $userEmail)
     {
         $from = date('Y-m-d', strtotime("-1 week"));;
         $to = date("Y-m-d", time() + 86400);
-        return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to);
+        return BadgeController::getBadgesForPeriod($projectName, $userEmail, $from, $to);
     }
 
-    public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
+    public static function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
         if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
 
             return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
 
         } else {
-            $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 
-            $badges = $this->getAllBadges();
+            $dataFromLastWeek = BadgeController::generateApi($projectName, $from, $to);
+
+            $badges = BadgeController::getAllBadges();
 
             $rewardedBadges = [];
 
@@ -83,19 +77,21 @@ class BadgeController extends Controller
         }
     }
 
-    public function compareBadges($badgeA, $badgeB)
+    public static function compareBadges($badgeA, $badgeB)
     {
         return $badgeA->times < $badgeB->times;
     }
 
-    public function generateApi($name, $from, $to)
+    public static function generateApi($name, $from, $to)
     {
         //proper format 2015-01-16
         //echo str_replace('&2F;', '/', $name);exit;
         $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
 
-        $this->analyzerService->reBuildAnalyzerForApi();
-        $results = $this->analyzerService->analyze($project, $from, $to);
+        $analyzer = new Analyzer();
+
+        $analyzer->reBuildAnalyzerForApi();
+        $results = $analyzer->analyze($project, $from, $to);
 
         return $results;
     }
