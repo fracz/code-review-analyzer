@@ -16,6 +16,7 @@ class BiggestProgessInRankingBadge extends AbstractOnePropertyBadge
             "The most valued developer",
             "Scored the biggest number of points in current sprint",
             "✪", "<i class=\"fa fa-diamond\" style=\"color:slategray\"></i>",
+			"MostValuedDeveloper",
             "ranking_overall", "value"
         );
     }

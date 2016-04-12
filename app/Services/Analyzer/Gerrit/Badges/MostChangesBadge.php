@@ -18,6 +18,7 @@ class MostChangesBadge extends AbstractOnePropertyBadge
             "The best contributor",
             "Make most of the changes",
             "☆", "<i class=\"fa fa-code\" style=\"color:teal\"></i>",
+			"BestContributor",
             "commits_per_user", "count"
         );
     }

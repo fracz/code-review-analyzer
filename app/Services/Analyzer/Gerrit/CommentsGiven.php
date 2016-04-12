@@ -44,22 +44,23 @@ class CommentsGiven extends AbstractAnalyzer
 
                 foreach ($commentList as $comment) {
 					if($comment->updated > $from){
-						if (!isset($results[$comment->author->_account_id])) {
-							$results[$comment->author->_account_id] = [
-								'username' => $comment->author->username,
-								'name' => $comment->author->name,
-								'email' => $comment->author->email,
-								'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
-												'height' => $comment->author->avatars->first()->height],
-								'count' => 1,
-								'commits' => [],
-								'rank' => 0,
-							];
-						} else {
-							$results[$comment->author->_account_id]['count'] += 1;
-						}
-						
 						if($commit->owner->email != $comment->author->email){
+							if (!isset($results[$comment->author->_account_id])) {
+								$results[$comment->author->_account_id] = [
+									'username' => $comment->author->username,
+									'name' => $comment->author->name,
+									'email' => $comment->author->email,
+									'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
+													'height' => $comment->author->avatars->first()->height],
+									'count' => 1,
+									'commits' => [],
+									'rank' => 0,
+								];
+							} else {
+								$results[$comment->author->_account_id]['count'] += 1;
+							}
+						
+						
 							if (!isset($results[$comment->author->_account_id]['commits'][$commit->_number])) {
 								$results[$comment->author->_account_id]['commits'][$commit->_number] = [
 									'subject' => $commit->subject,

@@ -17,7 +17,7 @@ class ManyReviewsInOneDayBadge extends AbstractBadge
         parent::__construct(
             "Fast reviewer",
             "Make at least 3 reviews in one day",
-            "⊱", "<i class=\"fa fa-life-ring\" style=\"color:blue\"></i>"
+            "⊱", "<i class=\"fa fa-life-ring\" style=\"color:blue\"></i>", "FastReviewer"
         );
     }
 

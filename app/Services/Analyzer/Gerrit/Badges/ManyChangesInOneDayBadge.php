@@ -17,7 +17,7 @@ class ManyChangesInOneDayBadge extends AbstractBadge
         parent::__construct(
             "Fast worker",
             "Make at least 3 changes in one day",
-            "⊰", "<i class=\"fa fa-rocket\" style=\"color:green\"></i>"
+            "⊰", "<i class=\"fa fa-rocket\" style=\"color:green\"></i>", "FastWorker"
         );
     }
 

@@ -37,10 +37,10 @@ class PatchsetsPerUser extends AbstractAnalyzer
         $results = [];
 
         foreach ($result as $commit) {
-            
+
             foreach ($commit->revisions as $revision) {
-			
-				if($revision->created >= $from && $revision->uploader->email == "admin@avensome.net"){
+
+				if($revision->created >= $from){
 				
 					if (!isset($results[$revision->uploader->_account_id])) { 				
 						$results[$revision->uploader->_account_id] = [

@@ -103,18 +103,18 @@ class BadgeController extends Controller
             if (count($projectBadges['badges']) > 0) {
                 foreach ($projectBadges['badges'] as $badgeData) {
                     //print_r($badgeData);exit;
-                    if (!isset($sumAllBadges['badges'][$badgeData->name])) {
-                        $sumAllBadges['badges'][$badgeData->name] = [];
-                        $sumAllBadges['badges'][$badgeData->name]['awesomeFont'] = $badgeData->awesomeFont;
-                        $sumAllBadges['badges'][$badgeData->name]['name'] = $badgeData->name;
-                        $sumAllBadges['badges'][$badgeData->name]['description'] = $badgeData->description;
-                        $sumAllBadges['badges'][$badgeData->name]['times'] = $badgeData->times;
-                        $sumAllBadges['badges'][$badgeData->name]['projects'] = [];
-                        $sumAllBadges['badges'][$badgeData->name]['projects'][$projName] = $badgeData->times;
+                    if (!isset($sumAllBadges['badges'][$badgeData->id])) {
+                        $sumAllBadges['badges'][$badgeData->id] = [];
+                        $sumAllBadges['badges'][$badgeData->id]['awesomeFont'] = $badgeData->awesomeFont;
+                        $sumAllBadges['badges'][$badgeData->id]['name'] = $badgeData->name;
+                        $sumAllBadges['badges'][$badgeData->id]['description'] = $badgeData->description;
+                        $sumAllBadges['badges'][$badgeData->id]['times'] = $badgeData->times;
+                        $sumAllBadges['badges'][$badgeData->id]['projects'] = [];
+                        $sumAllBadges['badges'][$badgeData->id]['projects'][$projName] = $badgeData->times;
 
                     } else {
-                        $sumAllBadges['badges'][$badgeData->name]['times'] += $badgeData->times;
-                        $sumAllBadges['badges'][$badgeData->name]['projects'][$projName] = $badgeData->times;
+                        $sumAllBadges['badges'][$badgeData->id]['times'] += $badgeData->times;
+                        $sumAllBadges['badges'][$badgeData->id]['projects'][$projName] = $badgeData->times;
                     }
 
 
