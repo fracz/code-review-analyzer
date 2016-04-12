@@ -27,4 +27,20 @@ class RankingBadge
 
         return 0;
     }
+	
+	public function getAchievements($data, $email)
+    {
+        $commitsPerUser = $data["ranking_overall"];
+
+        foreach ($commitsPerUser as $key => $commit) {
+            $achiv = $commit["achievements"];
+
+            if($commit["email"] === $email){
+                return $achiv;
+            }
+
+        }
+
+        return "";
+    }
 }

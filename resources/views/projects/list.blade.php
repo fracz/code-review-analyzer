@@ -8,6 +8,7 @@
         <li class="list-group-item clearfix">
             <h4>
                 {{ $project->label }}
+				<a class="btn btn-default pull-right" href="{{ route('projects.badges', ['id' => $project->id]) }}">Odznaki</a>
                 <a class="btn btn-primary pull-right" href="{{ route('projects.show', ['id' => $project->id]) }}">Szczegóły</a>
                 <a class="btn btn-default pull-right" href="{{ route('review.analyze', ['id' => $project->id]) }}">Analiza</a>
             </h4>

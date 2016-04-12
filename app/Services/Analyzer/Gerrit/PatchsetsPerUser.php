@@ -40,7 +40,8 @@ class PatchsetsPerUser extends AbstractAnalyzer
             
             $patchsetNumber = 0;
             foreach ($commit->revisions as $revision) {
-				
+				$patchsetNumber++;
+			
 				if($revision->created >= $from){
 					if (!isset($results[$revision->uploader->_account_id])) { 				
 						$results[$revision->uploader->_account_id] = [
@@ -54,12 +55,11 @@ class PatchsetsPerUser extends AbstractAnalyzer
 						];
 					}
 					
-					if($patchsetNumber != 0){
+					if($patchsetNumber != 1){
 						$results[$revision->uploader->_account_id]['count_without_first_patchset']++;
 					}
 
 					$results[$revision->uploader->_account_id]['patchsets'][$revision->revision_id] = $revision->revision_id;
-					$patchsetNumber++;
 				}
             }
         }
@@ -84,11 +84,11 @@ class PatchsetsPerUser extends AbstractAnalyzer
    
     public function getResults($results, Project $project)
     {
-        return view('review._list', ['results' => $results, 'analyzer' => $this, 'project' => $project]);
+        return "";
     }
 
     public function getContent($result, Project $project)
     {
-        return view('review.gerrit.changes._patchsets_per_user', ['result' => $result, 'project' => $project]);
+        return "";
     }
 }

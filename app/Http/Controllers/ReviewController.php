@@ -35,7 +35,7 @@ class ReviewController extends Controller
         $project = Project::findOrFail($id);
 
         $from = date('Y-m-d', strtotime($request->get('from')));
-        $to = date('Y-m-d', strtotime($request->get('to')));
+        $to = date('Y-m-d', strtotime('+1 day', strtotime($request->get('to'))));
 
         $results = $this->analyzerService->analyze($project, $from, $to);
 
@@ -53,9 +53,9 @@ class ReviewController extends Controller
     {
         //proper format 2015-01-16
         //echo str_replace('&2F;', '/', $name);exit;
+		session_write_close();
         $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
 
-        $this->analyzerService->reBuildAnalyzerForApi();
         $results = $this->analyzerService->analyze($project, $from, $to);
 
         return $results;
@@ -64,6 +64,7 @@ class ReviewController extends Controller
     public function analyze($id)
     {
         /** @var Project $project */
+		session_write_close();
         $project = Project::findOrFail($id);
         $analyzers = $this->analyzerService->getList()[$project->getType()];
 
@@ -80,6 +81,11 @@ class ReviewController extends Controller
         /** @var Project $project */
         $project = Project::findOrFail($id);
         $analyzers = $this->analyzerService->getList()[$project->getType()];
+
+		unset($analyzers['changes']['reviews_per_commit']);
+		unset($analyzers['changes']['patchsets_per_user']);
+		unset($analyzers['changes']['commit_without_corrections']);
+		
         $rankers = $this->analyzerService->getRankers()[$project->getType()];
         $results = \Session::get('results.' . $project->getAttribute('id'), [
             'from' => date('d-m-Y'),

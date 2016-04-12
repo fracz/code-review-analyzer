@@ -4,7 +4,7 @@ class Project extends Model {
 
 	protected $table = 'projects';
 
-	protected $fillable = ['label', 'name', 'type', 'url', 'repository', 'username', 'password'];
+	protected $fillable = ['label', 'name', 'type', 'url', 'repository', 'username', 'password', 'badges_period'];
 
 	protected $hidden = ['password'];
 

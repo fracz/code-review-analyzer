@@ -27,7 +27,7 @@ class ReviewsPerUser extends AbstractAnalyzer
         public function analyze(Project $project, $from, $to)
 	{         
             //echo "echo from ReviewsPerUser";
-            //$this->collectDataForReview($project, $from, $to);
+            $this->collectDataForReview($project, $from, $to);
             
             $result = \App\Commit::where('project', $project->getAttribute('name'))
                                 ->where('updated', '>=', $from)
@@ -35,54 +35,97 @@ class ReviewsPerUser extends AbstractAnalyzer
             
             $results = [];
 
+			//otrzymuje punkt za ustawienie flagi na ktoryms z patchsetow
             foreach ($result as $commit) {
-                foreach ($commit->revisions as $revision) {
+				
+				//code reviews
+				$codeReviews = $commit->codeReviews;
+				
+				foreach ($codeReviews as $codeReview) {
+					
+					$reviewer = $codeReview->reviewer;
+					
+					if($commit->owner->email != $reviewer->email){
+						if (!isset($results[$reviewer->_account_id])) {
+							$results[$reviewer->_account_id] = [
+								'username' => $reviewer->username,
+								'name' => $reviewer->name,
+								'email' => $reviewer->email,
+								'avatar' => (object) ['url' => $reviewer->avatars->first()->url, 
+												  'height' => $reviewer->avatars->first()->height],
+								'commits' => [],
+								'count' => 0,
+								'minor_count' => 0,
+							];
+						}
+						
+						
+						if(!isset($results[$reviewer->_account_id]['commits'][$commit->_number])){
+							$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
+							$results[$reviewer->_account_id]['count']++;
+						} else {
+							$results[$reviewer->_account_id]['minor_count']++;
+						}
+					}
+				}
+				
+				
+				//verified
+				/*foreach ($commit->verified as $ver) {
+					$reviewer = $ver->reviewer;
+					
+					if($commit->owner->email != $reviewer->email){
+						if (!isset($results[$reviewer->_account_id])) {
+							$results[$reviewer->_account_id] = [
+								'username' => $reviewer->username,
+								'name' => $reviewer->name,
+								'email' => $reviewer->email,
+								'avatar' => (object) ['url' => $reviewer->avatars->first()->url, 
+												  'height' => $reviewer->avatars->first()->height],
+								'commits' => [],
+								//'count' => 0,
+							];
+						}
+
+						$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
+						//$results[$reviewer->_account_id]['count']++;
+					}
+				}*/
+				
+				
+				//comments
+                /*foreach ($commit->revisions as $revision) {
                     $commentList = $revision->comments;
 
-                    if (empty($commentList)) {
-                        $codeReviews = $commit->codeReviews;
-                        foreach ($codeReviews as $codeReview) {
-                            $reviewer = $codeReview->reviewer;
-                            if (!isset($results[$reviewer->_account_id])) {
-                                $results[$reviewer->_account_id] = [
-                                    'username' => $reviewer->username,
-                                    'name' => $reviewer->name,
-                                    'email' => $reviewer->email,
-                                    'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
-                                                      'height' => $comment->author->avatars->first()->height],
-                                    'commits' => [],
-                                ];
-                            }
-
-                            $results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
-                        }
-                    }
-
                     foreach ($commentList as $comment) {
-							//if($comment->updated >= $from){
-								if (!isset($results[$comment->author->_account_id])) {
-									$results[$comment->author->_account_id] = [
-											'username' => $comment->author->username,
-											'name' => $comment->author->name,
-											'email' => $comment->author->email,
-											'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
-														  'height' => $comment->author->avatars->first()->height],
-											'commits' => [],
-									];
+							if($comment->updated >= $from){
+								if($commit->owner->email != $comment->author->email){
+									if (!isset($results[$comment->author->_account_id])) {
+										$results[$comment->author->_account_id] = [
+												'username' => $comment->author->username,
+												'name' => $comment->author->name,
+												'email' => $comment->author->email,
+												'avatar' => (object) ['url' => $comment->author->avatars->first()->url, 
+															  'height' => $comment->author->avatars->first()->height],
+												'commits' => [],
+												'count' => 0,
+										];
+									}
+									$results[$comment->author->_account_id]['commits'][$commit->_number] = $commit->subject;
+									$results[$comment->author->_account_id]['count']++;
 								}
-								$results[$comment->author->_account_id]['commits'][$commit->_number] = $commit->subject;
-							//}
+							}
                     }
-                }
+                }*/
             }
 
             $results = array_filter($results, function($item){
                 return count($item['commits']) > 0;
             });
 
-            foreach ($results as &$result) {
+            /*foreach ($results as &$result) {
                 $result['count'] = count($result['commits']);
-            }
+            }*/
 
             usort($results, function($a, $b){
                 return $b['count'] - $a['count'];

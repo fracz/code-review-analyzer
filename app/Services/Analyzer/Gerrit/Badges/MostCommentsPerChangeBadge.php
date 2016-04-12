@@ -16,7 +16,7 @@ class MostCommentsPerChangeBadge extends AbstractOnePropertyBadge
             "Controversial",
             "Receive the biggest number of comment per change",
             "♬", "<i class=\"fa fa-book\" style=\"color:deeppink\"></i>",
-            "changes_per_review", "average"
+            "comments_received", "most_comments_per_change"
         );
     }
 

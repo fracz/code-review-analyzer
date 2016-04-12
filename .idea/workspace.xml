@@ -2,9 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96180e4c-15a3-47a6-b521-50aa262eaee8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Requests/BadgeRequest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_04_10_191314_update_projects_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2016_04_10_224904_update_review_and_verify.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/projects/_form_badges.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/projects/badges.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/CodeReview.php" afterPath="$PROJECT_DIR$/app/CodeReview.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BadgeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BadgeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ReviewController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReviewController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Project.php" afterPath="$PROJECT_DIR$/app/Project.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/AverageCommentLength.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/AverageCommentLength.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/AbstractOnePropertyBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/AbstractOnePropertyBadge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostCommentsPerChangeBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostCommentsPerChangeBadge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/PerfectQualityChangeBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/PerfectQualityChangeBadge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/QualityBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/QualityBadge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/RankingBadge.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/RankingBadge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/CommentsGiven.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/CommentsGiven.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/CommentsReceived.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/CommentsReceived.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/CommitsWithoutCorrections.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/CommitsWithoutCorrections.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/PatchsetsPerUser.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/PatchsetsPerUser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/ReviewPairs.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/ReviewPairs.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/ReviewsPerCommit.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/ReviewsPerCommit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/ReviewsPerUser.php" afterPath="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/ReviewsPerUser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/DataFetching/GerritDataFetchingTrait.php" afterPath="$PROJECT_DIR$/app/Services/DataFetching/GerritDataFetchingTrait.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Services/Ranking/Gerrit/OverallRanking.php" afterPath="$PROJECT_DIR$/app/Services/Ranking/Gerrit/OverallRanking.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Verified.php" afterPath="$PROJECT_DIR$/app/Verified.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/projects/list.blade.php" afterPath="$PROJECT_DIR$/resources/views/projects/list.blade.php" />
     </list>
     <ignored path="analyzer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +55,8 @@
       <file leaf-file-name="BadgeController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BadgeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41666666">
-              <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.36555892">
+              <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
               <folding>
                 <element signature="e#119#141#0#PHP" expanded="true" />
               </folding>
@@ -76,9 +102,9 @@
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/PerfectQualityChangeBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/Badges/MostChangesBadge.php" />
         <option value="$PROJECT_DIR$/app/Services/Ranking/Gerrit/OverallRanking.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BadgeController.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer/Gerrit/ProjectBadges.php" />
         <option value="$PROJECT_DIR$/app/Services/Analyzer.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BadgeController.php" />
       </list>
     </option>
   </component>
@@ -671,8 +697,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="75" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
           <folding>
-            <marker date="1459939239188" expanded="true" signature="408:414" placeholder="..." />
-            <marker date="1459939239188" expanded="true" signature="408:425" placeholder="..." />
+            <marker date="1460467698733" expanded="true" signature="408:414" placeholder="..." />
+            <marker date="1460467698733" expanded="true" signature="408:425" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -835,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BadgeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41666666">
-          <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.36555892">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
           <folding>
             <element signature="e#119#141#0#PHP" expanded="true" />
           </folding>

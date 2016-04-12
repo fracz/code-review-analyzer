@@ -48,31 +48,34 @@ class ReviewPairs extends AbstractAnalyzer
                 $comments = $revision->comments;
 
                 foreach ($comments as $message) {
-                    // Skip themselves
-                    if ($message->author->_account_id == $commit->owner->_account_id) {
-                        continue;
-                    }
+					
+					if($message->updated > $from){
+						// Skip themselves
+						if ($message->author->_account_id == $commit->owner->_account_id) {
+							continue;
+						}
 
-                    if (!isset($results[$commit->owner->_account_id]['pairs'][$message->author->_account_id])) {
-                        $results[$commit->owner->_account_id]['pairs'][$message->author->_account_id] = [
-                            'count' => 0,
-                            'username' => $message->author->username,
-                            'name' => $message->author->name,
-                            'email' => $message->author->email,
-                            'commits' => [],
-                        ];
-                    }
+						if (!isset($results[$commit->owner->_account_id]['pairs'][$message->author->_account_id])) {
+							$results[$commit->owner->_account_id]['pairs'][$message->author->_account_id] = [
+								'count' => 0,
+								'username' => $message->author->username,
+								'name' => $message->author->name,
+								'email' => $message->author->email,
+								'commits' => [],
+							];
+						}
 
-                    $results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['count'] += 1;
+						$results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['count'] += 1;
 
-                    if (!isset($results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['commits'][$commit->_number])) {
-                        $results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['commits'][$commit->_number] = [
-                            'subject' => $commit->subject,
-                            'revisions' => [],
-                        ];
-                    }
+						if (!isset($results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['commits'][$commit->_number])) {
+							$results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['commits'][$commit->_number] = [
+								'subject' => $commit->subject,
+								'revisions' => [],
+							];
+						}
 
-                    $results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['commits'][$commit->_number]['revisions'][] = $revision->_number;
+						$results[$commit->owner->_account_id]['pairs'][$message->author->_account_id]['commits'][$commit->_number]['revisions'][] = $revision->_number;
+					}
                 }
             }
         }

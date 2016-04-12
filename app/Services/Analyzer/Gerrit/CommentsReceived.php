@@ -46,6 +46,7 @@ class CommentsReceived extends AbstractAnalyzer
                                             'height' => $commit->owner->avatars->first()->height],
                     'count' => 0,
                     'commits' => [],
+					'most_comments_per_change' => 0,
                 ];
             }
 
@@ -58,22 +59,39 @@ class CommentsReceived extends AbstractAnalyzer
                 $comments = $revision->comments;
 
                 foreach ($comments as $message) { 
-					if($commit->owner->email != $message->author->email){
-						$results[$commit->owner->_account_id]['count'] += 1;
-						$results[$commit->owner->_account_id]['commits'][$commit->_number]['comments'][$message->comment_id] = [
-							'from' => [
-								'name' => $message->author->name,
-								'username' => $message->author->username,
-								'email' => $message->author->email,
-							],
-							'revision' => $revision->_number,
-							'date' => \DateTime::createFromFormat('Y-m-d H:i:s+', $message->updated),
-							'text' => $message->message,
-						];
+					if($message->updated > $from){
+						if($commit->owner->email != $message->author->email){
+							$results[$commit->owner->_account_id]['count'] += 1;
+							$results[$commit->owner->_account_id]['commits'][$commit->_number]['comments'][$message->comment_id] = [
+								'from' => [
+									'name' => $message->author->name,
+									'username' => $message->author->username,
+									'email' => $message->author->email,
+								],
+								'revision' => $revision->_number,
+								'date' => \DateTime::createFromFormat('Y-m-d H:i:s+', $message->updated),
+								'text' => $message->message,
+							];
+						}
 					}
                 }
             }
         }
+		
+		foreach ($results as &$result) {
+			$mostCommentsPerChange = 0;
+			
+			foreach ($result['commits'] as $commit) {
+				if($mostCommentsPerChange < count($commit['comments']))
+					$mostCommentsPerChange = count($commit['comments']);
+			}
+			
+			$result['most_comments_per_change'] = $mostCommentsPerChange;
+			
+			//echo $result['email']. " ".$mostCommentsPerChange."<br/>";
+		}
+		
+		
 
         usort($results, function($a, $b){
             return $b['count'] - $a['count'];
