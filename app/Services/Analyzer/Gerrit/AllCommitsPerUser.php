@@ -29,6 +29,7 @@ class AllCommitsPerUser extends AbstractAnalyzer
     public function analyze(Project $project, $from, $to)
     {
 		//lista pomocnicza - badge moga z niej korzystac
+		//nie uwzglednia daty wystawienia commitu
 		
         $result = \App\Commit::where('project', $project->getAttribute('name'))
                                 ->where('updated', '>=', $from)
