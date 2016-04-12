@@ -58,24 +58,98 @@ class BadgeController extends Controller
 		
 		$projects = Project::all();
 		$allUserBadges = [];
+		$sumAllBadges = [];
+		$sumAllBadges['ranking'] = 0;
+		$sumAllBadges['achievements'] = [];
+		$sumAllBadges['badges'] = [];
 
 		foreach ($projects as $project){
 			
 			$allUserBadges[$project->getAttribute('name')] = $this->getBadges($project->getAttribute('name'), $userEmail);
 		}
 		
-		return $allUserBadges;
+		foreach($allUserBadges as $projName => $projectBadges){
+			$sumAllBadges['ranking'] += $projectBadges['ranking'];
+			
+			//echo $projName. " " . count($projectBadges['badges']). "<br/>";
+			
+			if(count($projectBadges['achievements']) > 1)
+			{
+				foreach($projectBadges['achievements'] as $name => $achivData){
+				
+					//bo $name moze byc w liczbie pojedynczej lub mnogiej
+					if(substr($name, -1) != "s")
+						$name = $name."s";
+					
+					if(!isset($sumAllBadges['achievements'][$name]))
+						$sumAllBadges['achievements'][$name] = [];
+					
+					$sumAllBadges['achievements'][$name]['weight'] = $achivData['weight'];
+					
+					
+					if(!isset($sumAllBadges['achievements'][$name]['times'])) {
+						$sumAllBadges['achievements'][$name]['times'] = $achivData['times'];
+					}
+					else {
+						$sumAllBadges['achievements'][$name]['times'] += $achivData['times'];
+					}
+						
+					if(!isset($sumAllBadges['achievements'][$name]['projects']))
+						$sumAllBadges['achievements'][$name]['projects'] = [];
+					
+					array_push($sumAllBadges['achievements'][$name]['projects'], $projName);
+				}
+			}
+			
+			if(count($projectBadges['badges']) > 0)
+			{
+				foreach($projectBadges['badges'] as $badgeData){
+					//print_r($badgeData);exit;
+					if(!isset($sumAllBadges['badges'][$badgeData->name])){
+						$sumAllBadges['badges'][$badgeData->name] = [];
+						$sumAllBadges['badges'][$badgeData->name]['awesomeFont'] = $badgeData->awesomeFont;
+						$sumAllBadges['badges'][$badgeData->name]['name'] = $badgeData->name;
+						$sumAllBadges['badges'][$badgeData->name]['description'] = $badgeData->description;
+						$sumAllBadges['badges'][$badgeData->name]['times'] = $badgeData->times;
+						$sumAllBadges['badges'][$badgeData->name]['projects'] = [];
+						array_push($sumAllBadges['badges'][$badgeData->name]['projects'], $projName);
+						
+					} else {
+						$sumAllBadges['badges'][$badgeData->name]['times'] += $badgeData->times;
+						array_push($sumAllBadges['badges'][$badgeData->name]['projects'], $projName);
+					}
+						
+					
+					
+					
+				}
+			}
+			
+			//print_r($sumAllBadges);echo "<br/><Br/><Br/>";
+		}
+		
+		//powrot do liczbyp pojedynczej zmian. Uwaga -> zmienia kolejnosc w tablicy wiec 
+		//poki to nie jest wymaganiem =zakomentowane 
+		
+		/*foreach($sumAllBadges['achievements'] as $name => $val){
+			if($val['times'] <= 1){
+				$sumAllBadges['achievements'][substr($name, 0, -1)] = $sumAllBadges['achievements'][$name];
+				unset($sumAllBadges['achievements'][$name]);
+			}
+		}*/
+		
+		return $sumAllBadges;
 	}
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
     {
 		session_write_close();
 		
-        //if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
+        if (Cache::has('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to)) {
 			
-            //return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
+            return Cache::get('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to);
 
-        //} else {
+        } else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 
 			if($dataFromLastWeek == null){
@@ -109,7 +183,7 @@ class BadgeController extends Controller
             Cache::put('cachedBadges-'.$projectName.'-'.$userEmail.'-'.$from.'-'.$to, $api, 10);
 
             return $api;
-        //}
+        }
     }
 
     public function compareBadges($badgeA, $badgeB)

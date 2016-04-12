@@ -7,6 +7,7 @@ use App\Services\Ranking\RankerInterface;
 
 class OverallRanking implements RankerInterface
 {
+	//kazda liczba mnoga powinna wygladac tak samo tyko miec na koncu s (dla badge controller ->getUserBadges)
     private $weights = [
         'changes' => [
             'commits_per_user' => [
