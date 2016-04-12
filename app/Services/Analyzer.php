@@ -17,6 +17,7 @@ class Analyzer implements AnalyzerInterface
 			'gerrit' => [
 				'changes' => [
 					'commits_per_user' => new Analyzer\Gerrit\CommitsPerUser(),
+					'all_commits_per_user' => new Analyzer\Gerrit\AllCommitsPerUser(),
 					'reviews_per_user' => new Analyzer\Gerrit\ReviewsPerUser(),
 					'reviews_per_commit' => new Analyzer\Gerrit\ReviewsPerCommit(),
 					'patchsets_per_user' => new Analyzer\Gerrit\PatchsetsPerUser(),

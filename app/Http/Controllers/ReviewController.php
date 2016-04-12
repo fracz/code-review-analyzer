@@ -85,6 +85,8 @@ class ReviewController extends Controller
 		unset($analyzers['changes']['reviews_per_commit']);
 		unset($analyzers['changes']['patchsets_per_user']);
 		unset($analyzers['changes']['commit_without_corrections']);
+		unset($analyzers['changes']['all_commits_per_user']);
+		
 		
         $rankers = $this->analyzerService->getRankers()[$project->getType()];
         $results = \Session::get('results.' . $project->getAttribute('id'), [

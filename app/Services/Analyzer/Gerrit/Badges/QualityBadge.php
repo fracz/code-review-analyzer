@@ -15,8 +15,8 @@ abstract class QualityBadge extends AbstractBadge
 
     public function checkBadge($data, $email)
     {
-        $commitsPerUser = $data["commits_per_user"];
-
+        $commitsPerUser = $data["all_commits_per_user"];
+		//print_r($commitsPerUser);exit;
         foreach ($commitsPerUser as $key => $user) {
             $commits = $user["commits"];
 
