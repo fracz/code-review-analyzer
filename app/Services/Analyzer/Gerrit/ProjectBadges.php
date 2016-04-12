@@ -42,7 +42,7 @@ class ProjectBadges extends AbstractAnalyzer
 
             if (in_array($commit->owner->_account_id, $commits) == false) {
                 $projectName = str_replace('/', '&2F;', $project->getAttribute('name'));
-                $badges = BadgeController::getBadges($projectName, $commit->owner->email);
+                $badges = '';//BadgeController::getBadges($projectName, $commit->owner->email);
 
                 $results[] = [
                     'username' => $commit->owner->username,

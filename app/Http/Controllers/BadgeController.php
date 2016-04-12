@@ -65,7 +65,6 @@ class BadgeController extends Controller
         $sumAllBadges['badges'] = [];
 
         foreach ($projects as $project) {
-
             $allUserBadges[$project->getAttribute('name')] = $this->getBadges($project->getAttribute('name'), $userEmail);
         }
 
@@ -182,6 +181,31 @@ class BadgeController extends Controller
 
             return $api;
         }
+    }
+
+    public function getProjectBadges($projectName, $from, $to)
+    {
+        $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
+
+        if ($dataFromLastWeek == null) {
+            header("HTTP/1.0 404 Not Found");
+            echo "<h1>Error 404 Not Found</h1>";
+            echo "The project that you have requested for could not be found.";
+        }
+
+        $rankingOverall = $dataFromLastWeek["ranking_overall"];
+        $results = [];
+
+        foreach ($rankingOverall as $index => $data) {
+            $results[] = [
+                'name' => $data["name"],
+                'email' => $data["email"],
+                'avatar' => $data["avatar"],
+                'achievements' => $this->getBadges($projectName, $data["email"])
+            ];
+
+        }
+        return $results;
     }
 
     public function compareBadges($badgeA, $badgeB)
