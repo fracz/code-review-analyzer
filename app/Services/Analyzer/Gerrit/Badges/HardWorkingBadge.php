@@ -24,7 +24,7 @@ class HardWorkingBadge extends AbstractBadge
 
     public function checkBadge($data, $email)
     {
-        $changesPerReview = $data["commits_per_user"];
+        $changesPerReview = $data["all_commits_per_user"];
         $map = [];
         $changeMadeIndexDayAgo = [false, false, false, false, false, false, false];
 
@@ -36,24 +36,70 @@ class HardWorkingBadge extends AbstractBadge
                 foreach ($commits as $index => $value) {
                     $reviewsPerCommit = $data["reviews_per_commit"];
                     $commit = $reviewsPerCommit[$index];
-                    $dateString = $commit["create_date"];
+					
+					foreach($commit['revisions'] as $revision){
+						$dateString = $revision["create_date"];
+						
+						 if (strlen($dateString) >= 10)
+							$dateString = substr($dateString, 0, 10);
 
-                    if (strlen($dateString) >= 10)
-                        $dateString = substr($dateString, 0, 10);
+						if (array_key_exists($dateString, $map)) {
+							$map[$dateString] = $map[$dateString] + 1;
+						} else
+							$map[$dateString] = 1;
+						
+					}
+					
+					foreach($commit['code_reviews'] as $review){
+						$dateString = $review["review_date"];
+						
+						 if (strlen($dateString) >= 10)
+							$dateString = substr($dateString, 0, 10);
 
-                    if (array_key_exists($dateString, $map)) {
-                        $today = date("y-m-d");
-                        $dateDiff = date_diff(new DateTime($today), new DateTime($dateString));
-                        $daysAgo = intval($dateDiff->format('%d'));
-
-                        if ($daysAgo < 7)
-                            $changeMadeIndexDayAgo[$daysAgo] = true;
-
-                        $map[$dateString] = $map[$dateString] + 1;
-                    } else
-                        $map[$dateString] = 1;
+						if (array_key_exists($dateString, $map)) {
+							$map[$dateString] = $map[$dateString] + 1;
+						} else
+							$map[$dateString] = 1;
+					}
                 }
+				
+				
+				foreach($map as $date => $times){
+					$today = date("y-m-d");
+					$dateDiff = date_diff(new DateTime($today), new DateTime($date));
+					$daysAgo = intval($dateDiff->format('%d'));
 
+					if ($daysAgo < 7)
+						$changeMadeIndexDayAgo[$daysAgo] = true;
+				}
+				
+				//skip saturdays & sundays
+				$today = date("y-m-d");
+				$dayofweek = date('N', strtotime($today));
+				
+				//sobota
+				if($dayofweek == 6){
+					$changeMadeIndexDayAgo[0] = 1;
+				} else if ($dayofweek == 7) {  //niedziela
+					$changeMadeIndexDayAgo[1] = 1;
+				} else if ($dayofweek == 5) {
+					$changeMadeIndexDayAgo[5] = 1; //5 dni wstecz byla niedziela wiec zazanaczam ja na = 1
+					$changeMadeIndexDayAgo[6] = 1;
+				} else if ($dayofweek == 4) {
+					$changeMadeIndexDayAgo[4] = 1;
+					$changeMadeIndexDayAgo[5] = 1;
+				} else if ($dayofweek == 3) {
+					$changeMadeIndexDayAgo[3] = 1;
+					$changeMadeIndexDayAgo[4] = 1;
+				} else if ($dayofweek == 2) {
+					$changeMadeIndexDayAgo[2] = 1;
+					$changeMadeIndexDayAgo[3] = 1;
+				} else if ($dayofweek == 1) {
+					$changeMadeIndexDayAgo[1] = 1;
+					$changeMadeIndexDayAgo[2] = 1;
+				}
+				
+				//print_r($changeMadeIndexDayAgo);exit;
                 $this->times = $this->checkArray($changeMadeIndexDayAgo);
             }
 

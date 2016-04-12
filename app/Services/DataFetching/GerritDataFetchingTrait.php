@@ -247,7 +247,7 @@ trait GerritDataFetchingTrait
 					{
 						$value = $msg->message[$codeRevPos+11].$msg->message[$codeRevPos+12];
 					}
-					
+					//print_r($msg);exit;
 					$reviewer['value'] = $value;
 					$reviewer['_account_id'] = $msg->author->_account_id;
 					$reviewer['name'] = $msg->author->name;
@@ -255,6 +255,7 @@ trait GerritDataFetchingTrait
 					$reviewer['username'] = $msg->author->username;
 					$reviewer['avatars'] = $msg->author->avatars;
 					$reviewer['_revision_number'] = $msg->_revision_number;
+					$reviewer['date'] = $msg->date;
 					//echo $data['id'] . " " . $msg->message. " .... ".$reviewer['_revision_number']." <br/>";
 					
 					$this->createCodeReviewIfNotExists($reviewer, $commitId);
@@ -321,14 +322,16 @@ trait GerritDataFetchingTrait
             $reviewerId = $this->createPersonIfNotExists($reviewer['_account_id'], $reviewer['name'],
                     $reviewer['email'], $reviewer['username'], $reviewer['avatars']);
 
-            $codeReview = \App\CodeReview::where('commit_id', $commitId)->where('reviewer_id', $reviewerId)->where('_revision_number', $reviewer['_revision_number'])->where('review_value', $reviewer['value'])->first();
+            $codeReview = \App\CodeReview::where('commit_id', $commitId)->where('reviewer_id', $reviewerId)->where('_revision_number', $reviewer['_revision_number'])->where('review_value', $reviewer['value'])->where('review_date', $reviewer['date'])->first();
 			//print_r($codeReview);echo "<br/><Br/>";
+			
             if(!$codeReview && isset($reviewer['value'])){
                 $codeReview = new CodeReview;
                 $codeReview->commit_id = $commitId;
                 $codeReview->reviewer_id = $reviewerId;
                 $codeReview->review_value = $reviewer['value'];
 				$codeReview->_revision_number = $reviewer['_revision_number'];
+				$codeReview->review_date = $reviewer['date'];
 				
                 $codeReview->save();
             }
