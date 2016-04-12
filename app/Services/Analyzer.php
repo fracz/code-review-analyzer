@@ -41,9 +41,9 @@ class Analyzer implements AnalyzerInterface
 					'review_pairs' => new Analyzer\Gerrit\ReviewPairs(),
 					'review_pairs_graph' => new Analyzer\Gerrit\ReviewPairsGraph(),
 				],
-				'badges' => [
-					'project_badges' => new Analyzer\Gerrit\ProjectBadges(),
-				],
+//				'badges' => [
+//					'project_badges' => new Analyzer\Gerrit\ProjectBadges(),
+//				],
 			],
 			'stash' => [
 				'changes' => [
@@ -113,9 +113,9 @@ class Analyzer implements AnalyzerInterface
 					'review_pairs' => new Analyzer\Gerrit\ReviewPairs(),
 					'review_pairs_graph' => new Analyzer\Gerrit\ReviewPairsGraph(),
 				],
-				'badges' => [
-					'project_badges' => new Analyzer\Gerrit\ProjectBadges(),
-				],
+//				'badges' => [
+//					'project_badges' => new Analyzer\Gerrit\ProjectBadges(),
+//				],
 			],
 			'stash' => [
 				'changes' => [
