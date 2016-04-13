@@ -145,11 +145,11 @@ class BadgeController extends Controller
 
         session_write_close();
 
-        //if (Cache::has('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to)) {
+        if (Cache::has('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to)) {
 
-           //return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
+           return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
 
-        //} else {
+        } else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
 
             if ($dataFromLastWeek == null) {
@@ -183,7 +183,7 @@ class BadgeController extends Controller
             Cache::put('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to, $api, 10);
 
             return $api;
-        //}
+        }
     }
 
     public function getProjectBadges($projectName, $from, $to)
