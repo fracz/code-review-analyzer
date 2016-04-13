@@ -34,7 +34,8 @@ class BadgeController extends Controller
             new \App\Services\Analyzer\Gerrit\Badges\MostCommentsPerChangeBadge(),
             new \App\Services\Analyzer\Gerrit\Badges\MostReviewsBadge(),
             new \App\Services\Analyzer\Gerrit\Badges\PerfectQualityChangeBadge(),
-            new \App\Services\Analyzer\Gerrit\Badges\PoorQualityChangeBadge()
+            new \App\Services\Analyzer\Gerrit\Badges\PoorQualityChangeBadge(),
+			new \App\Services\Analyzer\Gerrit\Badges\ThrowawayCodeBadge()
         );
 
         return $badges;

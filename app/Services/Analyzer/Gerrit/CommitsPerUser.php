@@ -56,10 +56,15 @@ class CommitsPerUser extends AbstractAnalyzer
 						'avatar' => (object) ['url' => $commit->owner->avatars->first()->url, 
 											  'height' => $commit->owner->avatars->first()->height],
 						'commits' => [],
+						'abaddoned_count' => 0,
 					];
 				}
 
 				$results[$commit->owner->_account_id]['commits'][$commit->_number] = $commit->subject;
+				
+				if($commit->status == "ABANDONED"){
+					$results[$commit->owner->_account_id]['abaddoned_count']++;
+				}
 			}
         }
 

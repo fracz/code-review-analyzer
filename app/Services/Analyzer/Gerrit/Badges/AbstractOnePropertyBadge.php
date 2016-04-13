@@ -42,10 +42,9 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
 			{
 				array_push($winners, $commit);
 			}
-
         }
 
-        if(count($winners) > 0) //and $winner["email"] === $email
+        if(count($winners) > 0)
 		{
 			foreach($winners as $winner){
 				if($winner["email"] === $email && $maxRanking > 0)
