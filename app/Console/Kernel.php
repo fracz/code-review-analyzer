@@ -40,20 +40,15 @@ class Kernel extends ConsoleKernel {
 				print_r("data stored...");
 				
 				$persons = Person::all();
-				foreach ($projects as $project){
-					foreach($persons as $person){
-						echo "<br/><br/> getting data for " . $person->email;
-						echo " for project " . $project->getAttribute('name');
-						
-						$ch = curl_init(); 
-						curl_setopt($ch, CURLOPT_URL, "http://apps.iisg.agh.edu.pl:10005/review/api/badges/user/".$person->email);
-						
-						curl_exec($ch);
-						curl_close($ch);  
-					}
+				foreach($persons as $person){
+					echo "<br/><br/> getting data for " . $person->email;
+					
+					$ch = curl_init(); 
+					curl_setopt($ch, CURLOPT_URL, "http://apps.iisg.agh.edu.pl:10005/review/api/badges/user/nocache/".$person->email);
+					
+					curl_exec($ch);
+					curl_close($ch);  
 				}
-				
-				
 
             })->everyFiveMinutes();
     }

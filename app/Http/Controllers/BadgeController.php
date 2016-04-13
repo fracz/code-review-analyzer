@@ -68,8 +68,17 @@ class BadgeController extends Controller
         $to = date("Y-m-d", time() + 86400);
         return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to, false);
     }
+	
+	public function getUserBadgesWithoutCache($userEmail){
+		return $this->getUserBadgesCheck($userEmail, false);
+	}
+	
+	public function getUserBadges($userEmail)
+    {
+		return $this->getUserBadgesCheck($userEmail, true);
+	}
 
-    public function getUserBadges($userEmail)
+    public function getUserBadgesCheck($userEmail, $cache)
     {
         session_write_close();
 
@@ -82,7 +91,12 @@ class BadgeController extends Controller
         $sumAllBadges['badges'] = [];
 
         foreach ($projects as $project) {
-            $allUserBadges[$project->getAttribute('name')] = $this->getBadges($project->getAttribute('name'), $userEmail);
+			if($cache){
+				 $allUserBadges[$project->getAttribute('name')] = $this->getBadges($project->getAttribute('name'), $userEmail);
+			} else {
+				$allUserBadges[$project->getAttribute('name')] = $this->getBadgesWithoutCache($project->getAttribute('name'), $userEmail);
+			}
+           
         }
 
         foreach ($allUserBadges as $projName => $projectBadges) {
