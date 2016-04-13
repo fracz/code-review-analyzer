@@ -57,14 +57,32 @@ class CommitsPerUser extends AbstractAnalyzer
 											  'height' => $commit->owner->avatars->first()->height],
 						'commits' => [],
 						'abaddoned_count' => 0,
+						'circumspect_count' => 0,
 					];
 				}
+				//print_r($commit);echo "<br/><br/>";
 
 				$results[$commit->owner->_account_id]['commits'][$commit->_number] = $commit->subject;
 				
 				if($commit->status == "ABANDONED"){
 					$results[$commit->owner->_account_id]['abaddoned_count']++;
 				}
+				
+				//check circumspect -> any patchset with verified + 1 , no patchset with verified -1
+				$anyWithPositiveVerified = false;
+				$anyWithNegativeVerified = false;
+				foreach ($commit->verified as $ver) {
+					if($ver->verified_value == 1){
+						$anyWithPositiveVerified = true;
+					} else if($ver->verified_value == -1){
+						$anyWithNegativeVerified = true;
+					}
+				}
+				
+				if($anyWithPositiveVerified && !$anyWithNegativeVerified){
+					$results[$commit->owner->_account_id]['circumspect_count']++;
+				}
+					
 			}
         }
 

@@ -35,7 +35,8 @@ class PatchsetsPerUser extends AbstractAnalyzer
                                 ->where('updated', '<=', $to)->get();
 
         $results = [];
-
+		
+	
         foreach ($result as $commit) {
 
             foreach ($commit->revisions as $revision) {
@@ -54,6 +55,8 @@ class PatchsetsPerUser extends AbstractAnalyzer
 						];
 					}
 
+					
+					
 					
 					if($revision->created > $commit->created){
 						$results[$revision->uploader->_account_id]['count_without_first_patchset']++;
