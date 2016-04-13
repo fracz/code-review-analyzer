@@ -3,6 +3,7 @@
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Project;
+use App\Person;
 use App\Services\DataFetching\GerritDataFetchingTrait;
 
 class Kernel extends ConsoleKernel {
@@ -35,6 +36,24 @@ class Kernel extends ConsoleKernel {
                 foreach ($projects as $project){
                     $this->collectDataForReview($project, null, date('Y-m-d',strtotime(date("Y-m-d") . "+1 days")));
                 }
+				
+				print_r("data stored...");
+				
+				$persons = Person::all();
+				foreach ($projects as $project){
+					foreach($persons as $person){
+						echo "<br/><br/> getting data for " . $person->email;
+						echo " for project " . $project->getAttribute('name');
+						
+						$ch = curl_init(); 
+						curl_setopt($ch, CURLOPT_URL, "http://apps.iisg.agh.edu.pl:10005/review/api/badges/user/".$person->email);
+						
+						curl_exec($ch);
+						curl_close($ch);  
+					}
+				}
+				
+				
 
             })->everyFiveMinutes();
     }

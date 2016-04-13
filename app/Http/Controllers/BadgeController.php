@@ -54,7 +54,19 @@ class BadgeController extends Controller
 
         $from = date('Y-m-d', strtotime("-" . $project->badges_period . " day"));;
         $to = date("Y-m-d", time() + 86400);
-        return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to);
+        return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to, true);
+    }
+	
+	public function getBadgesWithoutCache($projectName, $userEmail)
+    {
+        $project = Project::where('name', str_replace('&2F;', '/', $projectName))->first();
+
+        if (!$project)
+            return null;
+
+        $from = date('Y-m-d', strtotime("-" . $project->badges_period . " day"));;
+        $to = date("Y-m-d", time() + 86400);
+        return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to, false);
     }
 
     public function getUserBadges($userEmail)
@@ -144,12 +156,11 @@ class BadgeController extends Controller
         return $sumAllBadges;
     }
 
-    public function getBadgesForPeriod($projectName, $userEmail, $from, $to)
+    public function getBadgesForPeriod($projectName, $userEmail, $from, $to, $useCache)
     {
-
         session_write_close();
 
-        if (Cache::has('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to)) {
+        if (Cache::has('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to) && $useCache != false) {
 
            return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
 
@@ -184,7 +195,7 @@ class BadgeController extends Controller
                 "badges" => $rewardedBadges
             ];
 
-            Cache::put('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to, $api, 10);
+            Cache::put('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to, $api, 60);
 
             return $api;
         }
