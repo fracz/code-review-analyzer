@@ -38,6 +38,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
             foreach ($result as $commit) {
                 
                 $revisions = [];
+				$all_revisions = [];
 				$codeREviews = [];
                 
                 
@@ -50,6 +51,13 @@ class ReviewsPerCommit extends AbstractAnalyzer
 							'create_date' => $revision->created
 						];
 					}
+					
+					$all_revisions[$revision->revision_id] = [
+							'id' => $revision->revision_id,
+							'owner_id' => $revision->uploader_id,
+							'owner_email' => $revision->uploader->email,
+							'create_date' => $revision->created
+						];
                 }
 				
 				foreach ($commit->codeReviews as $codeRev) {
@@ -100,6 +108,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
                     'bad_reviews_count' => $howManyBadVerificationsForThatCommit,
 					'bad_code_review_count' => $badCodeReviewCount,
                     'revisions' => $revisions,
+					'all_revisions' => $all_revisions,
 					'code_reviews' => $codeREviews,
                 ];
                 

@@ -36,7 +36,9 @@ class BadgeController extends Controller
             new \App\Services\Analyzer\Gerrit\Badges\PerfectQualityChangeBadge(),
             new \App\Services\Analyzer\Gerrit\Badges\PoorQualityChangeBadge(),
 			new \App\Services\Analyzer\Gerrit\Badges\ThrowawayCodeBadge(),
-			new \App\Services\Analyzer\Gerrit\Badges\CircumspectBadge()
+			new \App\Services\Analyzer\Gerrit\Badges\CircumspectBadge(),
+			new \App\Services\Analyzer\Gerrit\Badges\SculptorBadge(),
+			new \App\Services\Analyzer\Gerrit\Badges\NightOwlBadge()
         );
 
         return $badges;

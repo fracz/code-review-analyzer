@@ -81,7 +81,7 @@ class CommitsPerUser extends AbstractAnalyzer
 				
 				if($anyWithPositiveVerified && !$anyWithNegativeVerified){
 					$results[$commit->owner->_account_id]['circumspect_count']++;
-				}
+				}		
 					
 			}
         }
