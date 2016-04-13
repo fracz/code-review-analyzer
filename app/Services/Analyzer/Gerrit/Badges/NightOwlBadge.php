@@ -11,7 +11,7 @@ class NightOwlBadge extends AbstractBadge
         parent::__construct(
             "Night Owl",
             "Made a change/patchset between 1am-5am",
-            "?", "<i class=\"fa fa-code\" style=\"color:teal\"></i>",
+            "?", "<i class=\"fa fa-moon-o\" style=\"color:blue\"></i>",
 			"NightOwl"
         );
 	}
