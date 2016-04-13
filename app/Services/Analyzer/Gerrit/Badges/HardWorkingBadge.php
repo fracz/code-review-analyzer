@@ -17,7 +17,7 @@ class HardWorkingBadge extends AbstractBadge
     {
         parent::__construct(
             "Regular worker",
-            "Make at least one change everyday",
+            "Make at least one contribution everyday",
             "◈", "<i class=\"fa fa-bar-chart\" style=\"color:purple\"></i>", "RegularWorker"
         );
     }
@@ -99,8 +99,14 @@ class HardWorkingBadge extends AbstractBadge
 					$changeMadeIndexDayAgo[2] = 1;
 				}
 				
+				//always current day is skipped
+				$changeMadeIndexDayAgo[0] = 1;
+				
 				//print_r($changeMadeIndexDayAgo);exit;
-                $this->times = $this->checkArray($changeMadeIndexDayAgo);
+				
+				
+				if($this->checkArray($changeMadeIndexDayAgo))
+					$this->times = 1;
             }
 
         }
