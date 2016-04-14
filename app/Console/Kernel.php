@@ -5,6 +5,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Project;
 use App\Person;
 use App\Services\DataFetching\GerritDataFetchingTrait;
+use Cache;
 
 class Kernel extends ConsoleKernel {
 
@@ -31,6 +32,10 @@ class Kernel extends ConsoleKernel {
                              ->hourly();
 
             $schedule->call(function () {
+				Cache::put('emails-to-update', [], 8);
+				Cache::put('emails-to-update-from-badges', [], 8);
+				
+				
                 $projects = Project::all();
 
                 foreach ($projects as $project){
@@ -38,13 +43,30 @@ class Kernel extends ConsoleKernel {
                 }
 				
 				print_r("data stored...");
+				echo "<br/><br/>Emails to update after collecting data: ";
+				print_r(Cache::get('emails-to-update'));
 				
-				$persons = Person::all();
-				foreach($persons as $person){
-					echo "<br/><br/> getting data for " . $person->email;
+				$emails = Cache::get('emails-to-update');
+				foreach($emails as $email){
+					echo "<br/><br/> getting data for " . $email . "<br/>";
 					
 					$ch = curl_init(); 
-					curl_setopt($ch, CURLOPT_URL, "http://apps.iisg.agh.edu.pl:10005/review/api/badges/user/nocache/".$person->email);
+					curl_setopt($ch, CURLOPT_URL, "http://apps.iisg.agh.edu.pl:10005/review/api/badges/user/nocache/".$email);
+					
+					curl_exec($ch);
+					curl_close($ch);  
+				}
+				
+				
+				echo "<br/><br/>Emails to update from badge changes: ";
+				print_r(Cache::get('emails-to-update-from-badges'));
+				
+				$emails = Cache::get('emails-to-update-from-badges');
+				foreach($emails as $email){
+					echo "<br/><br/> getting data for " . $email . "<br/>";
+					
+					$ch = curl_init(); 
+					curl_setopt($ch, CURLOPT_URL, "http://apps.iisg.agh.edu.pl:10005/review/api/badges/user/nocache/".$email);
 					
 					curl_exec($ch);
 					curl_close($ch);  

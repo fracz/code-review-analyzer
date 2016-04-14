@@ -219,8 +219,8 @@ class BadgeController extends Controller
                 "badges" => $rewardedBadges
             ];
 
-            Cache::put('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to, $api, 60);
 
+		print_r(Cache::get('emails-to-update-from-badges'));exit;
             return $api;
         }
     }

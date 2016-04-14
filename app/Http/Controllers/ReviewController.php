@@ -75,6 +75,10 @@ class ReviewController extends Controller
             'to' => date('d-m-Y'),
         ]);
     }
+	
+	public function runCron(){
+		
+	}
 
     public function results($id)
     {

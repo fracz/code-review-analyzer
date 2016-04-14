@@ -9,6 +9,7 @@ use App\Avatar;
 use App\Comment;
 use App\Revision;
 use App\CodeReview;
+use Cache;
 
 trait GerritDataFetchingTrait
 {
@@ -93,6 +94,9 @@ trait GerritDataFetchingTrait
             }*/
 
             //end temporary
+			
+			//Cache::put('emails-to-update', [], 8);
+			//Cache::put('emails-to-update-from-badges', [], 8);
 
             $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
             $results = [];
@@ -121,6 +125,8 @@ trait GerritDataFetchingTrait
                         }
                     }
             }
+			echo "Emails to update from GerritDataFetchingTrait: ";
+			print_r(Cache::get('emails-to-update'));
 
 	}
         
@@ -176,6 +182,8 @@ trait GerritDataFetchingTrait
                 $person->email =  $email;
                 $person->username =  $username;
                 $person->save();
+				
+				$this->addEmailToCache($email);
 
                 foreach ($avatars as $avatar_item) {
                     $avatar = new Avatar;
@@ -188,15 +196,32 @@ trait GerritDataFetchingTrait
             
             return $person->id;
         }
+		
+		protected function addEmailToCache($email){
+			$arr = Cache::get('emails-to-update');
+			
+			$inArray = false;
+			foreach($arr as $item){
+				if($item == $email)
+					$inArray = true;
+			}
+			
+			if(!$inArray)
+				array_push($arr, $email);
+			
+			Cache::put('emails-to-update', $arr, 8);
+		}
         
         protected function createOrUpdateCommit($commit_item){
             $commit = \App\Commit::where('commit_id', $commit_item->id)->first();
             
             if (!$commit) {
                 $commit = new Commit;
-               // echo "COMMIT DOESNT EXIST <br/>";
+				
+				$this->addEmailToCache($commit_item->owner->email);
+                echo "COMMIT DOESNT EXIST <br/>".$commit_item->subject;
             } else {
-               // echo "COMMIT EXISTS WITH ID: ". $commit->id . "<br/>";
+                //echo "COMMIT EXISTS WITH ID: ". $commit->id . "<br/>";
             }
             
             $commit->commit_id = $commit_item->id;
@@ -331,6 +356,8 @@ trait GerritDataFetchingTrait
 					$verified->_revision_number = $rev;
 					
                     $verified->save();
+					
+					$this->addEmailToCache($ver['email']);
                 }
             }
         }
@@ -353,6 +380,8 @@ trait GerritDataFetchingTrait
 				$codeReview->review_date = $reviewer['date'];
 				
                 $codeReview->save();
+				
+				$this->addEmailToCache($reviewer['email']);
             }
         }
         
@@ -361,6 +390,7 @@ trait GerritDataFetchingTrait
             
             if(!$comment){
                 $comment = new Comment;
+				$this->addEmailToCache($message->author->email);
             }
             
             $comment->comment_id = $message->id; 
@@ -395,6 +425,7 @@ trait GerritDataFetchingTrait
             $revision = \App\Revision::where('revision_id', $revisionId)->first();
             if(!$revision){
                 $revision = new Revision;
+				$this->addEmailToCache($revisionData->uploader->email);
             }
             
             $revision->revision_id = $revisionId; 
