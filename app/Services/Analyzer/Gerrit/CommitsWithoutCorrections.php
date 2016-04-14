@@ -51,7 +51,6 @@ class CommitsWithoutCorrections extends AbstractAnalyzer
 					$passedWithoutCorrections = false;
 					if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed){
 						$passedWithoutCorrections = true;
-						echo "#";
 					}
 						
 					

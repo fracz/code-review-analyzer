@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Project;
 use App\Services\Analyzer\AnalyzerInterface as CodeAnalyzer;
 use App\Services\Ranking\RankerInterface;
+use Cache;
 
 class Analyzer implements AnalyzerInterface
 {
@@ -173,22 +174,31 @@ class Analyzer implements AnalyzerInterface
 	 * @param $to
 	 * @return array
 	 */
-	public function analyze($project, $from, $to)
+	public function analyze($project, $from, $to, $cache = true)
 	{
-		$results = [];
+		//echo 'cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to;exit;
+		if (Cache::has('cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to) && $cache != false) {
+			
+			return Cache::get('cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to);
+		} else {
+			
+			$results = [];
 
-		foreach ($this->analyzers[$project->getType()] as $analyzers) {
-			/** @var CodeAnalyzer[] $analyzers */
-			foreach ($analyzers as $type => $analyzer) {
-				$results[$type] = $analyzer->analyze($project, $from, $to);
- 			}
+			foreach ($this->analyzers[$project->getType()] as $analyzers) {
+				/** @var CodeAnalyzer[] $analyzers */
+				foreach ($analyzers as $type => $analyzer) {
+					$results[$type] = $analyzer->analyze($project, $from, $to);
+				}
+			}
+
+			foreach ($this->ranking[$project->getType()] as $type => $ranker) {
+				/** @var RankerInterface $ranker */
+				$results['ranking_'.$type] = $ranker->createRanking($project, $results);
+			}
+			
+			Cache::put('cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to, $results, 15);
+			
+			return $results;
 		}
-
-		foreach ($this->ranking[$project->getType()] as $type => $ranker) {
-			/** @var RankerInterface $ranker */
-			$results['ranking_'.$type] = $ranker->createRanking($project, $results);
-		}
-
-		return $results;
 	}
 }

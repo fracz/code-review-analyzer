@@ -170,6 +170,15 @@ class BadgeController extends Controller
 
         return $sumAllBadges;
     }
+	
+	public function getDaysForProject($projectName){
+		 $project = Project::where('name', str_replace('&2F;', '/', $projectName))->first();
+
+        if (!$project)
+            return null;
+		
+		return $project->badges_period;
+	}
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to, $useCache)
     {
@@ -180,7 +189,7 @@ class BadgeController extends Controller
            return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
 
         } else {
-            $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
+            $dataFromLastWeek = $this->generateApi($projectName, $from, $to, false);
 
             if ($dataFromLastWeek == null) {
                 header("HTTP/1.0 404 Not Found");
@@ -218,7 +227,7 @@ class BadgeController extends Controller
 
     public function getProjectBadges($projectName, $from, $to)
     {
-        $dataFromLastWeek = $this->generateApi($projectName, $from, $to);
+        $dataFromLastWeek = $this->generateApi($projectName, $from, $to, true);
 
         if ($dataFromLastWeek == null) {
             header("HTTP/1.0 404 Not Found");
@@ -246,7 +255,7 @@ class BadgeController extends Controller
         return $badgeA->times < $badgeB->times;
     }
 
-    public function generateApi($name, $from, $to)
+    public function generateApi($name, $from, $to, $useCache)
     {
         //proper format 2015-01-16
         //echo str_replace('&2F;', '/', $name);exit;
@@ -255,7 +264,7 @@ class BadgeController extends Controller
         if (!$project)
             return null;
 
-        $results = $this->analyzerService->analyze($project, $from, $to);
+        $results = $this->analyzerService->analyze($project, $from, $to, $useCache);
 
         return $results;
     }
