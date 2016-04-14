@@ -3,6 +3,7 @@
 namespace App\Services\Analyzer\Gerrit;
 
 use App\Project;
+use App\Revision;
 use App\Services\Analyzer\StringTitle;
 
 class ReviewPairs extends AbstractAnalyzer
@@ -23,7 +24,9 @@ class ReviewPairs extends AbstractAnalyzer
     {
         //echo "echo from ReviewPairs";exit;
         //$this->collectDataForReview($project, $from, $to);
-            
+
+		//exit;
+			
         $result = \App\Commit::where('project', $project->getAttribute('name'))
                             ->where('updated', '>=', $from)
                             ->where('updated', '<=', $to)->get();

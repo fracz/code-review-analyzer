@@ -57,8 +57,8 @@ class PatchsetsPerUser extends AbstractAnalyzer
 
 					
 					
-					
-					if($revision->created > $commit->created){
+					//nie liczymy pierwszego patchsetu ani tych ktore byly rebasowane
+					if($revision->created > $commit->created && $revision->rebased == 0){
 						$results[$revision->uploader->_account_id]['count_without_first_patchset']++;
 					}
 

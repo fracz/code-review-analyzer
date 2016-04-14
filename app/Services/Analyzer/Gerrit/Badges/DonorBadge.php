@@ -28,7 +28,7 @@ class DonorBadge extends AbstractBadge
 				 
 				 foreach($detailedData['revisions'] as $rev){
 					 
-					 if($rev['owner_email'] == $email && $rev['owner_email'] != $commit['email'] && !in_array($comKey, $commitAlreadyUsed)){
+					 if($rev['owner_email'] == $email && $rev['owner_email'] != $commit['email'] && !in_array($comKey, $commitAlreadyUsed) && $rev['rebased'] == 0){ //nie zostaly zrebasowane
 						 array_push($commitAlreadyUsed, $comKey);
 						 $this->times++;
 					 }

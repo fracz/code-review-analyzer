@@ -108,7 +108,8 @@ trait GerritDataFetchingTrait
 					$this->createCodeReviewsAndVerifiedForCommit($detail_data, $commitId);
 
                     foreach ($commit_item->revisions as $revision => $data) {
-                        $revisionId = $this->createOrUpdateRevision($data, $revision, $commitId);
+						$marked = $this->markRebasedCodeNumbers($detail_data);
+                        $revisionId = $this->createOrUpdateRevision($data, $revision, $commitId, $marked);
                         
                         $uri = '/a/changes/'.$commit_item->id.'/revisions/'.$revision.'/comments/';
                         $comments = (array)$this->fetch($project, $uri);
@@ -123,6 +124,7 @@ trait GerritDataFetchingTrait
 
 	}
         
+		
         
         protected function buildUriElement(Project $project, $from, $to){
             $dateUriElement = "";
@@ -146,6 +148,23 @@ trait GerritDataFetchingTrait
             return $uri;
         }
         
+		
+		protected function markRebasedCodeNumbers($data){
+			
+			$messages = $data['messages'];
+			$marked = [];
+			
+			foreach($messages as $msg){
+
+				$rebased = strpos($msg->message, 'rebased');
+				if ($rebased !== false) {
+					array_push($marked, $msg->_revision_number);
+				}
+			}
+			
+			return $marked;
+		}
+		
         protected function createPersonIfNotExists($acc_id, $name, $email, $username, $avatars){
             $person = \App\Person::where('_account_id', $acc_id)->first();
             
@@ -231,7 +250,7 @@ trait GerritDataFetchingTrait
 		
 		protected function createCodeReviewsAndVerifiedForCommit($data, $commitId){
 			$messages = $data['messages'];
-
+			
 			foreach($messages as $msg){
 					//print_r($msg->message);echo "<br/>";
 				$codeRevPos = strpos($msg->message, 'Code-Review');
@@ -372,7 +391,7 @@ trait GerritDataFetchingTrait
             $comment->save();         
         }
         
-        protected function createOrUpdateRevision($revisionData, $revisionId, $commit_id){
+        protected function createOrUpdateRevision($revisionData, $revisionId, $commit_id, $marked){
             $revision = \App\Revision::where('revision_id', $revisionId)->first();
             if(!$revision){
                 $revision = new Revision;
@@ -387,7 +406,12 @@ trait GerritDataFetchingTrait
 
             $revision->uploader_id = $this->createPersonIfNotExists($revisionData->uploader->_account_id, $revisionData->uploader->name,
                 $revisionData->uploader->email, $revisionData->uploader->username, $revisionData->uploader->avatars);
-
+			
+			if(in_array($revision->_number, $marked))
+				$revision->rebased = 1;
+			else
+				$revision->rebased = 0;
+				
             $revision->save();   
             
             return $revision->id;

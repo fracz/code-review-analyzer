@@ -49,6 +49,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
 						'owner_id' => $revision->uploader_id,
 						'owner_email' => $revision->uploader->email,
 						'create_date' => $revision->created,
+						'rebased' => $revision->rebased,
 						'from_current_perion' => false
 					];
 						
@@ -57,7 +58,8 @@ class ReviewsPerCommit extends AbstractAnalyzer
 							'id' => $revision->revision_id,
 							'owner_id' => $revision->uploader_id,
 							'owner_email' => $revision->uploader->email,
-							'create_date' => $revision->created
+							'create_date' => $revision->created,
+							'rebased' => $revision->rebased
 						];
 						
 						$all_revisions[$revision->revision_id]['from_current_perion'] = true;

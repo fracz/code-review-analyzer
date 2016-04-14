@@ -4,7 +4,7 @@ class Revision extends Model {
 
     protected $table = 'revisions';
 
-    protected $fillable = ['revision_id', '_number', 'created', 'ref'];
+    protected $fillable = ['revision_id', '_number', 'created', 'ref', 'rebased'];
     
     public function uploader()
     {
