@@ -59,7 +59,7 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
 			$prevMax = Cache::get('badge-value-' .$this->id);
 			
 			if($maxRanking > $prevMax){
-				echo "new ranking for badge: ".$this->id;
+				//echo "new ranking for badge: ".$this->id;
 				if(!Cache::has('emails-to-update-from-badges')){
 					Cache::put('emails-to-update-from-badges', [], 8);
 				}

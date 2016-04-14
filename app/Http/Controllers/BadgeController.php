@@ -219,8 +219,6 @@ class BadgeController extends Controller
                 "badges" => $rewardedBadges
             ];
 
-
-		print_r(Cache::get('emails-to-update-from-badges'));exit;
             return $api;
         }
     }
