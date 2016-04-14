@@ -11,7 +11,7 @@ class DonorBadge extends AbstractBadge
         parent::__construct(
             "Donor",
             "Made a patchset in change of someone else",
-            "?", "<i class=\"fa fa-code\" style=\"color:teal\"></i>",
+            "?", "<i class=\"fa fa-gift\" style=\"color:deeppink \"></i>",
 			"Donor"
         );
 	}
@@ -19,6 +19,7 @@ class DonorBadge extends AbstractBadge
 	public function checkBadge($data, $email)
 	{
 		$commitsPerUser = $data["all_commits_per_user"];
+		$commitAlreadyUsed = [];
 		
 		foreach ($commitsPerUser as $key => $commit) {
 			 
@@ -27,7 +28,8 @@ class DonorBadge extends AbstractBadge
 				 
 				 foreach($detailedData['revisions'] as $rev){
 					 
-					 if($rev['owner_email'] == $email && $rev['owner_email'] != $commit['email']){
+					 if($rev['owner_email'] == $email && $rev['owner_email'] != $commit['email'] && !in_array($comKey, $commitAlreadyUsed)){
+						 array_push($commitAlreadyUsed, $comKey);
 						 $this->times++;
 					 }
 				 }
