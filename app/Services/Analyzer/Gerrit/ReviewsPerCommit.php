@@ -87,8 +87,10 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 }
 
                 $passedWithoutCorrections = false;
-                if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
-                    $passedWithoutCorrections = true;
+                if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed && $commit->created >= $from){
+					$passedWithoutCorrections = true;
+				}
+                    
 				
 				
 				$badCodeReviewCount = 0;

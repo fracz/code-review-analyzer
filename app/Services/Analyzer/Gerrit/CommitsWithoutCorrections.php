@@ -49,8 +49,11 @@ class CommitsWithoutCorrections extends AbstractAnalyzer
 					
 					//print_r($commit);exit;
 					$passedWithoutCorrections = false;
-					if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed)
+					if(($commit->status == "SUBMITTED" || $commit->status == "MERGED") && $allVerificationPassed){
 						$passedWithoutCorrections = true;
+						echo "#";
+					}
+						
 					
 					if(!isset($results[$commit->owner->_account_id])){
 						$results[$commit->owner->_account_id] = [
@@ -59,10 +62,19 @@ class CommitsWithoutCorrections extends AbstractAnalyzer
 						];
 					}
 					
-					if($passedWithoutCorrections){
+					$selfReviewApproval = false;
+					foreach ($commit->codeReviews as $rev) {
+						if($rev->reviewer->email == $commit->owner->email && $rev->review_value == 1){
+							$selfReviewApproval = true;
+						}
+					}
+					
+					if($passedWithoutCorrections && !$selfReviewApproval){
 						$results[$commit->owner->_account_id]['commit_without_corrections']++;
 						//print_r($commit); echo "<br/><br/>";
 					}
+					
+					
 						
 					
 					

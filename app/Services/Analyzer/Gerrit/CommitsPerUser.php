@@ -48,6 +48,7 @@ class CommitsPerUser extends AbstractAnalyzer
 			//punktujemy w commitach tylko jesli create date > from
 			if($commit->created >= $from)
 			{
+				
 				if (!isset($results[$commit->owner->_account_id])) {                   
 					$results[$commit->owner->_account_id] = [
 						'username' => $commit->owner->username,
@@ -60,15 +61,13 @@ class CommitsPerUser extends AbstractAnalyzer
 						'circumspect_count' => 0,
 					];
 				}
-				//print_r($commit);echo "<br/><br/>";
 
 				$results[$commit->owner->_account_id]['commits'][$commit->_number] = $commit->subject;
 				
 				if($commit->status == "ABANDONED"){
 					$results[$commit->owner->_account_id]['abaddoned_count']++;
 				}
-				
-				//check circumspect -> any patchset with verified + 1 , no patchset with verified -1
+
 				$anyWithPositiveVerified = false;
 				$anyWithNegativeVerified = false;
 				foreach ($commit->verified as $ver) {
@@ -93,7 +92,8 @@ class CommitsPerUser extends AbstractAnalyzer
 
 
         foreach ($results as &$result) {
-            $result['count'] = count($result['commits']);
+			//do rankingu nie bierzemy abandoned commitow
+            $result['count'] = count($result['commits']) - $result['abaddoned_count'];
         }
 
         usort($results, function($a, $b){
