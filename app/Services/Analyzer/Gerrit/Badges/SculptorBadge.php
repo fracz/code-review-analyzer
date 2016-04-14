@@ -10,8 +10,8 @@ class SculptorBadge extends AbstractBadge
     {
         parent::__construct(
             "Sculptor",
-            "Made a change with more than 5 patchsets",
-            "?", "<i class=\"fa fa-code\" style=\"color:teal\"></i>",
+            "Made a change with more than 10 patchsets",
+            "?", "<i class=\"fa fa-cubes\" style=\"color:gray\"></i>",
 			"Sculptor"
         );
 	}
@@ -24,8 +24,18 @@ class SculptorBadge extends AbstractBadge
 			 
 			 foreach($commit['commits'] as $comKey => $com){
 				 $detailedData = $data['reviews_per_commit'][$comKey];
-				 if(count($detailedData['all_revisions']) > 5 && $commit['email'] == $email){
-					 $this->times++;
+				 if(count($detailedData['all_revisions']) > 10 && $commit['email'] == $email){
+					 
+					 $anyFronCurrentPeriod = false;
+					 foreach($detailedData['all_revisions'] as $rev){
+						 if($rev['from_current_perion'] == true){
+							 $anyFronCurrentPeriod = true;
+							 break;
+						 }
+					 }
+					 
+					 if($anyFronCurrentPeriod)
+						$this->times++;
 				 }
 			 }
 		}

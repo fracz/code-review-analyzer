@@ -43,6 +43,15 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 
                 
                 foreach ($commit->revisions as $revision) {
+					
+					$all_revisions[$revision->revision_id] = [
+						'id' => $revision->revision_id,
+						'owner_id' => $revision->uploader_id,
+						'owner_email' => $revision->uploader->email,
+						'create_date' => $revision->created,
+						'from_current_perion' => false
+					];
+						
 					if($revision->created >= $from){
 						$revisions[$revision->revision_id] = [
 							'id' => $revision->revision_id,
@@ -50,14 +59,9 @@ class ReviewsPerCommit extends AbstractAnalyzer
 							'owner_email' => $revision->uploader->email,
 							'create_date' => $revision->created
 						];
+						
+						$all_revisions[$revision->revision_id]['from_current_perion'] = true;
 					}
-					
-					$all_revisions[$revision->revision_id] = [
-							'id' => $revision->revision_id,
-							'owner_id' => $revision->uploader_id,
-							'owner_email' => $revision->uploader->email,
-							'create_date' => $revision->created
-						];
                 }
 				
 				foreach ($commit->codeReviews as $codeRev) {

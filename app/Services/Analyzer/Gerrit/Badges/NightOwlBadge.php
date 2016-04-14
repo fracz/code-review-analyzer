@@ -37,7 +37,6 @@ class NightOwlBadge extends AbstractBadge
 						 $hour = $hours_exploded[0];
 						 
 						 if(($hour == "01" || $hour == "02" || $hour == "03" || $hour == "04") && $rev['owner_email'] == $email){
-							 print_r($rev);exit;
 							 array_push($days_already_signed, $date_exploded[0]);
 							 $this->times++;
 						 } 
