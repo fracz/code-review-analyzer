@@ -20,7 +20,7 @@ class PoorQualityChangeBadge extends QualityBadge
         );
     }
 
-    public function checkCommit($commit)
+    public function checkCommit($commit, $email)
     {
         //$noOfFixes = count($commit["revisions"]);
         //return $noOfFixes >= 4 and $commit["bad_reviews_count"] > 0;

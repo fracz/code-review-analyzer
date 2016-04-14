@@ -20,8 +20,16 @@ class PerfectQualityChangeBadge extends QualityBadge
         );
     }
 
-    public function checkCommit($commit)
+    public function checkCommit($commit, $email)
     {
-        return $commit["passed_without_corrections"] == "true" && ($commit["status"] == "MERGED" || $commit["status"] == "SUBMITTED");
+		//if there was self-review + 1 then we don't get this badge
+		foreach($commit['code_reviews'] as $rev){
+
+			 if($rev['owner_email'] == $email && $commit['owner_email'] == $email && $rev['value'] == 1){
+				return false;
+			 }
+		 }
+				 
+        return $commit["passed_without_corrections"] == "true" && ($commit["status"] == "MERGED" || $commit["status"] == "SUBMITTED"); 
     }
 }

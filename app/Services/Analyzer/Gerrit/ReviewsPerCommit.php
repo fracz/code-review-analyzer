@@ -104,6 +104,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 $results[$commit->_number] = [
                     'id' => $commit->commit_id,
                     'owner_id' => $commit->owner_id,
+					'owner_email' => $commit->owner->email,
                     'create_date' => $commit->created,
                     'update_date' => $commit->updated,
                     'status' => $commit->status,
