@@ -11,7 +11,7 @@ class ThrowawayCodeBadge extends AbstractBadge
         parent::__construct(
             "Throwaway Code",
             "Made a change that is abandoned",
-            "?", "<i class=\"fa fa-code\" style=\"color:teal\"></i>",
+            "?", "<i class=\"fa fa-trash-o\" style=\"color:deepred\"></i>",
 			"ThrowawayCode"
         );
 	}
