@@ -11,7 +11,7 @@ class SelfReviewerBadge extends AbstractBadge
         parent::__construct(
             "Self Reviewer",
             "Approved own change",
-            "?", "<i class=\"fa fa-code\" style=\"color:teal\"></i>",
+            "?", "<i class=\"fa fa-street-view\" style=\"color:red\"></i>",
 			"SelfReviewer"
         );
 	}
@@ -26,8 +26,8 @@ class SelfReviewerBadge extends AbstractBadge
 				 $detailedData = $data['reviews_per_commit'][$comKey];
 				 
 				 foreach($detailedData['code_reviews'] as $rev){
-					 
-					 if($rev['owner_email'] == $email && $commit['email'] == $email){
+
+					 if($rev['owner_email'] == $email && $commit['email'] == $email && $rev['value'] == 1){
 						 $this->times++;
 					 }
 				 }
