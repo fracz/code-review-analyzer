@@ -62,13 +62,17 @@ class ReviewController extends Controller
     }
 
     public function generateApiForLastPeriod($name){
+        session_write_close();
         $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
         if (!$project)
             return null;
 
-        $to = date('d-m-Y');
-        $noOfDays = $project->badges_period;
-        $from = date('d-m-Y', strtotime(' -'.$noOfDays.' day'));
+        $to = date('Y-m-d');
+        $noOfDays = 100;//$project->badges_period;
+        $from = date('Y-m-d', strtotime(' -'.$noOfDays.' day'));
+        print_r($from);
+        print_r($to);
+        print_r($name);
         return $this->generateApi($name, $from, $to);
     }
 
