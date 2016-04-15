@@ -68,11 +68,8 @@ class ReviewController extends Controller
             return null;
 
         $to = date('Y-m-d');
-        $noOfDays = 100;//$project->badges_period;
+        $noOfDays = $project->badges_period;
         $from = date('Y-m-d', strtotime(' -'.$noOfDays.' day'));
-        print_r($from);
-        print_r($to);
-        print_r($name);
         return $this->generateApi($name, $from, $to);
     }
 
