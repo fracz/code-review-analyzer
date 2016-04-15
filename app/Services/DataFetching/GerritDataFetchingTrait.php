@@ -209,7 +209,7 @@ trait GerritDataFetchingTrait
 			if(!$inArray)
 				array_push($arr, $email);
 			
-			Cache::put('emails-to-update', $arr, 8);
+			Cache::forever('emails-to-update', $arr);
 		}
         
         protected function createOrUpdateCommit($commit_item){

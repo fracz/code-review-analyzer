@@ -196,7 +196,7 @@ class Analyzer implements AnalyzerInterface
 				$results['ranking_'.$type] = $ranker->createRanking($project, $results);
 			}
 			
-			Cache::put('cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to, $results, 15);
+			Cache::forever('cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to, $results);
 			
 			return $results;
 		}

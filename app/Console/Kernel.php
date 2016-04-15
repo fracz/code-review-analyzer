@@ -32,8 +32,8 @@ class Kernel extends ConsoleKernel {
                              ->hourly();
 
             $schedule->call(function () {
-				Cache::put('emails-to-update', [], 8);
-				Cache::put('emails-to-update-from-badges', [], 8);
+				Cache::put('emails-to-update', [], 120);
+				Cache::put('emails-to-update-from-badges', [], 120);
 				
 				
                 $projects = Project::all();

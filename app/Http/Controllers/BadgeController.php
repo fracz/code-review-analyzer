@@ -218,6 +218,8 @@ class BadgeController extends Controller
                 "achievements" => $rankingScreen->getAchievements($dataFromLastWeek, $userEmail),
                 "badges" => $rewardedBadges
             ];
+			
+			Cache::forever('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to, $api);
 
             return $api;
         }

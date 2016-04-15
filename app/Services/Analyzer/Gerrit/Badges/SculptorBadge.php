@@ -24,8 +24,11 @@ class SculptorBadge extends AbstractBadge
 			 
 			 foreach($commit['commits'] as $comKey => $com){
 				 $detailedData = $data['reviews_per_commit'][$comKey];
+				 
+				 //print_r($detailedData);echo "<br/><br/>";
+				 
 				 if(count($detailedData['all_revisions']) > 10 && $commit['email'] == $email){
-					 
+ 
 					 $anyFronCurrentPeriod = false;
 					 foreach($detailedData['all_revisions'] as $rev){
 						 if($rev['from_current_perion'] == true){

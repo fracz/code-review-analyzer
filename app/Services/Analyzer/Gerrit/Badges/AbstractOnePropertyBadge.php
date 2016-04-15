@@ -61,7 +61,7 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
 			if($maxRanking > $prevMax){
 				//echo "new ranking for badge: ".$this->id;
 				if(!Cache::has('emails-to-update-from-badges')){
-					Cache::put('emails-to-update-from-badges', [], 8);
+					Cache::forever('emails-to-update-from-badges', []);
 				}
 				
 				$array = [];
@@ -81,11 +81,11 @@ abstract class AbstractOnePropertyBadge extends AbstractBadge
 						array_push($array, $user["email"]);
 				}
 				
-				Cache::put('emails-to-update-from-badges', $array, 8);
+				Cache::forever('emails-to-update-from-badges', $array);
 			}
 		}
 		
-		Cache::put('badge-' .$this->id, $winners, 8);
-		Cache::put('badge-value-' .$this->id, $maxRanking, 8);
+		Cache::forever('badge-' .$this->id, $winners);
+		Cache::forever('badge-value-' .$this->id, $maxRanking);
     }
 }
