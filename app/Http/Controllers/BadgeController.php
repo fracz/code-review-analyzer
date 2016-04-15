@@ -224,6 +224,18 @@ class BadgeController extends Controller
         }
     }
 
+    public function getProjectBadgesForLastPeriod($name){
+        session_write_close();
+        $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
+        if (!$project)
+            return null;
+
+        $to = date('Y-m-d');
+        $noOfDays = $project->badges_period;
+        $from = date('Y-m-d', strtotime(' -'.$noOfDays.' day'));
+        return $this->getProjectBadges($name, $from, $to);
+    }
+
     public function getProjectBadges($projectName, $from, $to)
     {
         $dataFromLastWeek = $this->generateApi($projectName, $from, $to, true);

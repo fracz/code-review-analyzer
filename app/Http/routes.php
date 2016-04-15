@@ -22,9 +22,10 @@ Route::get('/review/api/badges/user/{userEmail}', ['middleware' => 'cors', 'as' 
 Route::get('/review/api/badges/user/nocache/{userEmail}', ['middleware' => 'cors', 'as' => 'review.userbadgesnocache', 'uses' => 'BadgeController@getUserBadgesWithoutCache']);
 Route::get('/review/api/badges/{projectName}/{userEmail}', ['middleware' => 'cors', 'as' => 'review.badges', 'uses' => 'BadgeController@getBadges']);
 Route::get('/review/api/badges/project/{projectName}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.projectBadges', 'uses' => 'BadgeController@getProjectBadges']);
+Route::get('/review/api/badges/project/last/{projectName}', ['middleware' => 'cors', 'as' => 'review.getProjectBadgesForLastPeriod', 'uses' => 'BadgeController@getProjectBadgesForLastPeriod']);
 Route::get('/review/api/badges/', ['middleware' => 'cors', 'as' => 'review.allbadges', 'uses' => 'BadgeController@getAllBadges']);
 Route::get('/review/api/{name}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.generateapi', 'uses' => 'ReviewController@generateApi']);
-Route::get('/review/api/{name}', ['middleware' => 'cors', 'as' => 'review.generatelastapi', 'uses' => 'ReviewController@generateApiForLastPeriod']);
+Route::get('/review/api/last/{name}', ['middleware' => 'cors', 'as' => 'review.generateApiForLastPeriod', 'uses' => 'ReviewController@generateApiForLastPeriod']);
 
 
 Route::get('/review/{id}', ['as' => 'review.analyze', 'uses' => 'ReviewController@analyze'])->where('id', '[0-9]+');
