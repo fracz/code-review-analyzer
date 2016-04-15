@@ -24,6 +24,8 @@ Route::get('/review/api/badges/{projectName}/{userEmail}', ['middleware' => 'cor
 Route::get('/review/api/badges/project/{projectName}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.projectBadges', 'uses' => 'BadgeController@getProjectBadges']);
 Route::get('/review/api/badges/', ['middleware' => 'cors', 'as' => 'review.allbadges', 'uses' => 'BadgeController@getAllBadges']);
 Route::get('/review/api/{name}/{from}/{to}', ['middleware' => 'cors', 'as' => 'review.generateapi', 'uses' => 'ReviewController@generateApi']);
+Route::get('/review/api/{name}', ['middleware' => 'cors', 'as' => 'review.generatelastapi', 'uses' => 'ReviewController@generateApiForLastPeriod']);
+
 
 Route::get('/review/{id}', ['as' => 'review.analyze', 'uses' => 'ReviewController@analyze'])->where('id', '[0-9]+');
 

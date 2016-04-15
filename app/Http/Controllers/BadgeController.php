@@ -173,11 +173,10 @@ class BadgeController extends Controller
 	
 	public function getDaysForProject($projectName){
 		 $project = Project::where('name', str_replace('&2F;', '/', $projectName))->first();
-
         if (!$project)
             return null;
-		
-		return $project->badges_period;
+
+        return $project->badges_period;
 	}
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to, $useCache)

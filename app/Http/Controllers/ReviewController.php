@@ -61,6 +61,17 @@ class ReviewController extends Controller
         return $results;
     }
 
+    public function generateApiForLastPeriod($name){
+        $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
+        if (!$project)
+            return null;
+
+        $to = date('d-m-Y');
+        $noOfDays = $project->badges_period;
+        $from = date('d-m-Y', strtotime(' -'.$noOfDays.' day'));
+        return $this->generateApi($name, $from, $to);
+    }
+
     public function analyze($id)
     {
         /** @var Project $project */
