@@ -10,7 +10,7 @@ class SelfReviewerBadge extends AbstractBadge
     {
         parent::__construct(
             "Self Reviewer",
-            "Approved own change",
+            "Approve own change",
             "?", "<i class=\"fa fa-street-view\" style=\"color:red\"></i>",
 			"SelfReviewer"
         );

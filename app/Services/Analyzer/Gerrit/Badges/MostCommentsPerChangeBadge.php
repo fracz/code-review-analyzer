@@ -14,7 +14,7 @@ class MostCommentsPerChangeBadge extends AbstractOnePropertyBadge
     {
         parent::__construct(
             "Controversial",
-            "Receive the biggest number of comment per change",
+            "Receive the biggest number of comments per change",
             "♬", "<i class=\"fa fa-book\" style=\"color:deeppink\"></i>",
 			"Controversial",
             "comments_received", "most_comments_per_change"

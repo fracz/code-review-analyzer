@@ -13,8 +13,8 @@ class BiggestProgessInRankingBadge extends AbstractOnePropertyBadge
     public function __construct()
     {
         parent::__construct(
-            "The most valued developer",
-            "Scored the biggest number of points in current sprint",
+            "Priceless developer",
+            "The highest score in the project",
             "✪", "<i class=\"fa fa-diamond\" style=\"color:slategray\"></i>",
 			"MostValuedDeveloper",
             "ranking_overall", "value"

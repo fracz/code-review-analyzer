@@ -16,7 +16,7 @@ class MostChangesBadge extends AbstractOnePropertyBadge
     {
         parent::__construct(
             "The best contributor",
-            "Make most of the changes",
+            "Most of the changes",
             "☆", "<i class=\"fa fa-code\" style=\"color:teal\"></i>",
 			"BestContributor",
             "commits_per_user", "count"
