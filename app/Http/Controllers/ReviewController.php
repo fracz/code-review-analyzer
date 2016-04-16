@@ -27,6 +27,18 @@ class ReviewController extends Controller
             'to' => date('d-m-Y'),
         ]);
     }
+	
+	public function getAllProjects()
+	{
+		$projects = Project::all();
+		$results = [];
+		
+		foreach($projects as $project){
+			array_push($results, $project['name']);
+		}	
+		
+		return $results;
+	}
 
     public function generate(Requests\AnalyzeRequest $request, $id = null)
     {

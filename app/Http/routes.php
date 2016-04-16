@@ -17,6 +17,7 @@ Route::post('/review/{id?}', ['as' => 'review.generate', 'uses' => 'ReviewContro
 
 Route::get('/review/api/cron/', ['middleware' => 'cors', 'as' => 'review.cron', 'uses' => 'ReviewController@runCron']);
 
+Route::get('/review/api/allprojects/', ['middleware' => 'cors', 'as' => 'review.allprojects', 'uses' => 'ReviewController@getAllProjects']);
 Route::get('/review/api/badges/days/{projectName}', ['middleware' => 'cors', 'as' => 'review.userbadgesdays', 'uses' => 'BadgeController@getDaysForProject']);
 Route::get('/review/api/badges/user/{userEmail}', ['middleware' => 'cors', 'as' => 'review.userbadges', 'uses' => 'BadgeController@getUserBadges']);
 Route::get('/review/api/badges/user/nocache/{userEmail}', ['middleware' => 'cors', 'as' => 'review.userbadgesnocache', 'uses' => 'BadgeController@getUserBadgesWithoutCache']);
