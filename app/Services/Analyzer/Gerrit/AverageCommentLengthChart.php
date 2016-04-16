@@ -53,16 +53,20 @@ class AverageCommentLengthChart extends AbstractAnalyzer
                 $comments = $revision->comments;
 
                 foreach ($comments as $message) {
-                    if (!in_array($message->author->name, $labels)) {
-                        $labels[$message->author->_account_id] = $message->author->name;
-                        $values[$message->author->_account_id] = [
-                            'count' => 0,
-                            'value' => 0,
-                        ];
-                    }
+					if($message->updated > $from){
+						if($commit->owner->email != $message->author->email){
+							if (!in_array($message->author->name, $labels)) {
+								$labels[$message->author->_account_id] = $message->author->name;
+								$values[$message->author->_account_id] = [
+									'count' => 0,
+									'value' => 0,
+								];
+							}
 
-                    $values[$message->author->_account_id]['count'] += 1;
-                    $values[$message->author->_account_id]['value'] += strlen($message->message);
+							$values[$message->author->_account_id]['count'] += 1;
+							$values[$message->author->_account_id]['value'] += strlen($message->message);
+						}
+					}
                 }
             }
         }
