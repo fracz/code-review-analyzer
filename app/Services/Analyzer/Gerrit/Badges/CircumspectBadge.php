@@ -10,7 +10,7 @@ class CircumspectBadge extends AbstractBadge
     {
         parent::__construct(
             "Circumspect",
-            "Made a change without CI fails",
+            "Change without CI fails",
             "?", "<i class=\"fa fa-cogs\" style=\"color:black\"></i>",
 			"Circumspect"
         );

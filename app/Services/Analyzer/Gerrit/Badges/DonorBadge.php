@@ -10,7 +10,7 @@ class DonorBadge extends AbstractBadge
     {
         parent::__construct(
             "Donor",
-            "Made a patchset in change of someone else",
+            "Patchset in change of someone else",
             "?", "<i class=\"fa fa-gift\" style=\"color:deeppink \"></i>",
 			"Donor"
         );

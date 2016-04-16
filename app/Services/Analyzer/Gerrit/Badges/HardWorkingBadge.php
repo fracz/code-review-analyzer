@@ -17,7 +17,7 @@ class HardWorkingBadge extends AbstractBadge
     {
         parent::__construct(
             "Regular worker",
-            "Make at least one contribution everyday",
+            "At least one contribution everyday",
             "◈", "<i class=\"fa fa-bar-chart\" style=\"color:purple\"></i>", "RegularWorker"
         );
     }

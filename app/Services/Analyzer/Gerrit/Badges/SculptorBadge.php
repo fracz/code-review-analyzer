@@ -10,7 +10,7 @@ class SculptorBadge extends AbstractBadge
     {
         parent::__construct(
             "Sculptor",
-            "Made a change with more than 10 patchsets",
+            "Change with more than 10 patchsets",
             "?", "<i class=\"fa fa-cubes\" style=\"color:gray\"></i>",
 			"Sculptor"
         );
