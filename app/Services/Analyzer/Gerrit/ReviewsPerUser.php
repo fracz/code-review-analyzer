@@ -54,6 +54,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 								'avatar' => (object) ['url' => $reviewer->avatars->first()->url, 
 												  'height' => $reviewer->avatars->first()->height],
 								'commits' => [],
+								'patchsets' => [],
 								'count' => 0,
 								'minor_count' => 0,
 							];
@@ -64,6 +65,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 							$results[$reviewer->_account_id]['commits'][$commit->_number] = $commit->subject;
 							$results[$reviewer->_account_id]['count']++;
 						} else {
+							$results[$reviewer->_account_id]['patchsets'][$commit->_number] = $commit->subject;
 							$results[$reviewer->_account_id]['minor_count']++;
 						}
 					}
