@@ -230,7 +230,7 @@ class BadgeController extends Controller
         if (!$project)
             return null;
 
-        $to = date('Y-m-d');
+        $to = date('Y-m-d', strtotime(' +1 day'));
         $noOfDays = $project->badges_period;
         $from = date('Y-m-d', strtotime(' -'.$noOfDays.' day'));
         return $this->getProjectBadges($name, $from, $to);
