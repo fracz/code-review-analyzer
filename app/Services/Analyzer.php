@@ -178,10 +178,11 @@ class Analyzer implements AnalyzerInterface
 	{
 		//echo 'cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to;exit;
 		if (Cache::has('cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to) && $cache != false) {
-			
+			//echo "READING: ".'cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to;
 			return Cache::get('cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to);
 		} else {
-			
+			//echo "REFRESHING ".'cachedApiProject-' . $project->getAttribute('name') . '-' . $from . '-' . $to;
+			//echo "<br/><Br/>";
 			$results = [];
 
 			foreach ($this->analyzers[$project->getType()] as $analyzers) {
