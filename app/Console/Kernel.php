@@ -73,6 +73,34 @@ class Kernel extends ConsoleKernel {
 				}
 
             })->everyFiveMinutes();
+			
+			$schedule->call(function () {
+				
+				$today = date("H:i:s");
+				$today_exploded = explode(":", $today);
+				echo "No need to refresh all cache, hour = ".$today_exploded[0];
+				
+				if($today_exploded[0] == "03"){
+					echo "EXECUTING REFFRESH ALL CACHE";
+				
+					$projects = Project::all();
+
+					foreach ($projects as $project){
+						$this->collectDataForReview($project, null, date('Y-m-d',strtotime(date("Y-m-d") . "+1 days")));
+					}
+
+					$persons = Person::all();
+					foreach($persons as $person){
+						$ch = curl_init(); 
+						curl_setopt($ch, CURLOPT_URL, "http://apps.iisg.agh.edu.pl:10005/review/api/badges/user/nocache/".$person->email);
+						
+						curl_exec($ch);
+						curl_close($ch);  
+					}
+
+				}
+								
+            })->hourly();
     }
 
     protected function decode($result) {
