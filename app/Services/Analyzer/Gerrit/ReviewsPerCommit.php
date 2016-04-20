@@ -80,7 +80,7 @@ class ReviewsPerCommit extends AbstractAnalyzer
                 $allVerificationPassed = true;
                 $howManyBadVerificationsForThatCommit = 0;
                 foreach ($commit->verified as $ver) {
-                    
+					
                     if($ver->verified_value == -1)
                     {
                         $allVerificationPassed = false;

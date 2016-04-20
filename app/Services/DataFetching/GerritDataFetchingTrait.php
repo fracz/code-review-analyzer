@@ -109,6 +109,7 @@ trait GerritDataFetchingTrait
 					
 					$uri = '/a/changes/'.$commit_item->id.'/detail/';
 					$detail_data = (array)$this->fetch($project, $uri);
+					
 					$this->createCodeReviewsAndVerifiedForCommit($detail_data, $commitId);
 
                     foreach ($commit_item->revisions as $revision => $data) {
@@ -277,6 +278,7 @@ trait GerritDataFetchingTrait
 			$messages = $data['messages'];
 			
 			foreach($messages as $msg){
+
 					//print_r($msg->message);echo "<br/>";
 				$codeRevPos = strpos($msg->message, 'Code-Review');
 				if ($codeRevPos !== false) {
@@ -306,6 +308,10 @@ trait GerritDataFetchingTrait
 				}
 				
 				$verifPos = strpos($msg->message, 'Verified');
+				
+				
+				
+				
 				if ($verifPos !== false) {
 					/*print_r($msg->message);echo "<br/>";echo $verifPos;
 					echo "<Br/>";
@@ -330,7 +336,7 @@ trait GerritDataFetchingTrait
 					
 					$this->createVerifiedIfNotExists($ver, $commitId);
 				}
-			}		
+			}			
 		}
         
         
@@ -346,7 +352,8 @@ trait GerritDataFetchingTrait
                 $verifierId = $this->createPersonIfNotExists($ver['_account_id'], $ver['name'],
                         $ver['email'], $ver['username'], $ver['avatars']);
 
-                $verified = \App\Verified::where('commit_id', $commitId)->where('verifier_id', $verifierId)->first();
+                $verified = \App\Verified::where('commit_id', $commitId)->where('verifier_id', $verifierId)->where('verified_date', $date)->first();
+				
                 if(!$verified  && isset($val)){
                     $verified = new \App\Verified;
                     $verified->commit_id = $commitId;
@@ -356,7 +363,7 @@ trait GerritDataFetchingTrait
 					$verified->_revision_number = $rev;
 					
                     $verified->save();
-					
+					//echo "CREATING VER";
 					$this->addEmailToCache($ver['email']);
                 }
             }

@@ -38,7 +38,6 @@ class PerfectQualityChangeBadge extends QualityBadge
 		 
 		 if($onlySelfReview)
 			 return false;
-		 
 				 
         return $commit["passed_without_corrections"] == "true" && ($commit["status"] == "MERGED" || $commit["status"] == "SUBMITTED"); 
     }
