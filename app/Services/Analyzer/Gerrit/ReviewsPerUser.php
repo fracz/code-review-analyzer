@@ -57,6 +57,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 								'commits_count' => [],
 								'count' => 0,
 								'minor_count' => 0,
+								'all_count' => 0,
 							];
 						}
 						
@@ -69,6 +70,8 @@ class ReviewsPerUser extends AbstractAnalyzer
 							$results[$reviewer->_account_id]['minor_count']++;
 							$results[$reviewer->_account_id]['commits_count'][$commit->_number]['count']++;
 						}
+						
+						$results[$reviewer->_account_id]['all_count']++;
 					}
 				}
 				

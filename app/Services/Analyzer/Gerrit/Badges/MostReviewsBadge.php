@@ -18,7 +18,7 @@ class MostReviewsBadge extends AbstractOnePropertyBadge
             "Most of the reviews",
             "☻", "<i class=\"fa fa-ambulance\" style=\"color:darkorange\"></i>",
 			"BestReviewer",
-            "reviews_per_user", "count"
+            "reviews_per_user", "all_count"
         );
     }
 

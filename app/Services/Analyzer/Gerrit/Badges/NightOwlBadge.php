@@ -30,6 +30,10 @@ class NightOwlBadge extends AbstractBadge
 					 $date = $rev['create_date'];
 					 $date_exploded = explode(" ", $date);
 					 
+					 /*if($detailedData['id'] == "dissby~master~Iea1a75c81bca23963b06a935ab5edbe01a985dba"){
+						 print_r($rev);echo "<br/><Br/>";
+					 }*/
+					 
 					 if(!in_array($date_exploded[0], $days_already_signed))
 					 {
 						 $hours = $date_exploded[1];
