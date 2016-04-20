@@ -40,25 +40,11 @@ class NightOwlBadge extends AbstractBadge
 						 $hours_exploded = explode(":", $hours);
 						 $hour = $hours_exploded[0];
 						 
-						 if(($hour == "00" || $hour == "01" || $hour == "02" || $hour == "03") && $rev['owner_email'] == $email){
+						 if(($hour == "01" || $hour == "02" || $hour == "03" || $hour == "04") && $rev['owner_email'] == $email){
 							 array_push($days_already_signed, $date_exploded[0]);
 							 $this->times++;
-						 }
-					 }
-					 
-					 //UTC 0 - we have to take care of previous day 
-					$next_day_date = date('Y-m-d', strtotime($date_exploded[0] . ' +1 day')); 
-					if(!in_array($next_day_date, $days_already_signed))
-					{
-						 $hours = $date_exploded[1];
-						 $hours_exploded = explode(":", $hours);
-						 $hour = $hours_exploded[0];
-						 
-						 if($hour == "23" && $rev['owner_email'] == $email){
-							 array_push($days_already_signed, $next_day_date);
-							 $this->times++;
 						 } 
-					}
+					 }
 				 }
 				 
 				 foreach($detailedData['code_reviews'] as $review){
@@ -71,25 +57,11 @@ class NightOwlBadge extends AbstractBadge
 							 $hours_exploded = explode(":", $hours);
 							 $hour = $hours_exploded[0];
 							 
-							 if(($hour == "00" || $hour == "01" || $hour == "02" || $hour == "03") && $review['owner_email'] == $email){
+							 if(($hour == "01" || $hour == "02" || $hour == "03" || $hour == "04") && $review['owner_email'] == $email){
 								 array_push($days_already_signed, $date_exploded[0]);
 								 $this->times++;
 							 } 
 						 }
-						 
-						//UTC 0 - we have to take care of previous day 
-						$next_day_date = date('Y-m-d', strtotime($date_exploded[0] . ' +1 day')); 
-						if(!in_array($next_day_date, $days_already_signed))
-						{
-							 $hours = $date_exploded[1];
-							 $hours_exploded = explode(":", $hours);
-							 $hour = $hours_exploded[0];
-							 
-							 if($hour == "23" && $review['owner_email'] == $email){
-								 array_push($days_already_signed, $next_day_date);
-								 $this->times++;
-							 } 
-						}
 					}
 			 }
 		}

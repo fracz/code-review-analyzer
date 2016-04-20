@@ -10,6 +10,8 @@ use App\Comment;
 use App\Revision;
 use App\CodeReview;
 use Cache;
+use DateTime;
+use DateTimeZone;
 
 trait GerritDataFetchingTrait
 {
@@ -95,8 +97,8 @@ trait GerritDataFetchingTrait
 
             //end temporary
 			
-			//Cache::put('emails-to-update', [], 8);
-			//Cache::put('emails-to-update-from-badges', [], 8);
+			Cache::put('emails-to-update', [], 8);
+			Cache::put('emails-to-update-from-badges', [], 8);
 
             $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
             $results = [];
@@ -212,6 +214,16 @@ trait GerritDataFetchingTrait
 			
 			Cache::forever('emails-to-update', $arr);
 		}
+		
+		protected function changeDateToWarsawTimeZone($date){
+			//print_r($commit_item->created);echo "<br/>";
+			$dateexploded = explode(".", $date);
+			
+			$date = new DateTime($dateexploded[0].' +00');
+			$date->setTimezone(new DateTimeZone('Europe/Warsaw')); // +02
+
+			return $date->format('Y-m-d H:i:s'); // 2012-07-15 05:00:00 
+		}
         
         protected function createOrUpdateCommit($commit_item){
             $commit = \App\Commit::where('commit_id', $commit_item->id)->first();
@@ -224,15 +236,15 @@ trait GerritDataFetchingTrait
             } else {
                 //echo "COMMIT EXISTS WITH ID: ". $commit->id . "<br/>";
             }
-            
+
             $commit->commit_id = $commit_item->id;
             $commit->project = $commit_item->project;
             $commit->branch = $commit_item->branch;
             $commit->change_id = $commit_item->change_id;
             $commit->subject = $commit_item->subject;
             $commit->status = $commit_item->status;
-            $commit->created = $commit_item->created;
-            $commit->updated = $commit_item->updated;
+            $commit->created = $this->changeDateToWarsawTimeZone($commit_item->created);
+            $commit->updated = $this->changeDateToWarsawTimeZone($commit_item->updated);
             $commit->submittable = $commit_item->submittable;
             $commit->insertions = $commit_item->insertions;
             $commit->deletions = $commit_item->deletions;
@@ -301,7 +313,7 @@ trait GerritDataFetchingTrait
 					$reviewer['username'] = $msg->author->username;
 					$reviewer['avatars'] = $msg->author->avatars;
 					$reviewer['_revision_number'] = $msg->_revision_number;
-					$reviewer['date'] = $msg->date;
+					$reviewer['date'] = $this->changeDateToWarsawTimeZone($msg->date);
 					//echo $data['id'] . " " . $msg->message. " .... ".$reviewer['_revision_number']." <br/>";
 					
 					$this->createCodeReviewIfNotExists($reviewer, $commitId);
@@ -332,7 +344,7 @@ trait GerritDataFetchingTrait
 					$ver['username'] = $msg->author->username;
 					$ver['avatars'] = $msg->author->avatars;
 					$ver['_revision_number'] = $msg->_revision_number;
-					$ver['date'] = $msg->date;
+					$ver['date'] = $this->changeDateToWarsawTimeZone($msg->date);
 					
 					$this->createVerifiedIfNotExists($ver, $commitId);
 				}
@@ -417,7 +429,7 @@ trait GerritDataFetchingTrait
             }
             
             $comment->filename = $filename;
-            $comment->updated =  $message->updated;
+            $comment->updated =  $this->changeDateToWarsawTimeZone($message->updated);
             $comment->message = $message->message;
             $comment->revision_id = $revisionId;
 
@@ -438,7 +450,7 @@ trait GerritDataFetchingTrait
             $revision->revision_id = $revisionId; 
             $revision->commit_id = $commit_id;
 
-            $revision->created =  $revisionData->created;
+            $revision->created =  $this->changeDateToWarsawTimeZone($revisionData->created);
             $revision->_number = $revisionData->_number;
             $revision->ref = $revisionData->ref;
 
