@@ -77,8 +77,8 @@ class CommitsPerUser extends AbstractAnalyzer
 						$anyWithNegativeVerified = true;
 					}
 				}
-				
-				if($anyWithPositiveVerified && !$anyWithNegativeVerified){
+
+				if($anyWithPositiveVerified && !$anyWithNegativeVerified && $commit->status == "MERGED"){
 					$results[$commit->owner->_account_id]['circumspect_count']++;
 				}		
 					
