@@ -97,8 +97,8 @@ trait GerritDataFetchingTrait
 
             //end temporary
 			
-			Cache::put('emails-to-update', [], 8);
-			Cache::put('emails-to-update-from-badges', [], 8);
+			//Cache::put('emails-to-update', [], 8);
+			//Cache::put('emails-to-update-from-badges', [], 8);
 
             $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
             $results = [];
