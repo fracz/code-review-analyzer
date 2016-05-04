@@ -15,6 +15,11 @@ class OverallRanking implements RankerInterface
                 'field' => 'count',
 				'desc' => 'new change|new changes',
             ],
+			'nt_changes' => [
+                'weight' => 0.5,
+                'field' => 'count',
+				'desc' => 'new NT change|new NT changes',
+            ],
             'reviews_per_user' => [
                 'weight' => 2.0,
                 'field' => 'count',
@@ -34,11 +39,6 @@ class OverallRanking implements RankerInterface
                 'weight' => 1.0,
                 'field' => 'commit_without_corrections',
 				'desc' => 'flawless change|flawless changes',
-            ],
-            'nt_changes' => [
-                'weight' => -0.5,
-                'field' => 'count',
-				'desc' => 'NT change|NT changes',
             ],
         ],
         'comments' => [

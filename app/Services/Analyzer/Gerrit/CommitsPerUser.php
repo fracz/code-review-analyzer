@@ -59,6 +59,7 @@ class CommitsPerUser extends AbstractAnalyzer
 						'commits' => [],
 						'abaddoned_count' => 0,
 						'circumspect_count' => 0,
+						'no_task_count' => 0
 					];
 				}
 
@@ -66,6 +67,10 @@ class CommitsPerUser extends AbstractAnalyzer
 				
 				if($commit->status == "ABANDONED"){
 					$results[$commit->owner->_account_id]['abaddoned_count']++;
+				}
+				
+				if (strpos($commit->subject, '[NT]') !== false) {
+					$results[$commit->owner->_account_id]['no_task_count']++;
 				}
 
 				$anyWithPositiveVerified = false;
@@ -92,8 +97,8 @@ class CommitsPerUser extends AbstractAnalyzer
 
 
         foreach ($results as &$result) {
-			//do rankingu nie bierzemy abandoned commitow
-            $result['count'] = count($result['commits']) - $result['abaddoned_count'];
+			//do rankingu nie bierzemy abandoned commitow ani no task changes
+            $result['count'] = count($result['commits']) - $result['abaddoned_count'] - $result['no_task_count'];
         }
 
         usort($results, function($a, $b){
