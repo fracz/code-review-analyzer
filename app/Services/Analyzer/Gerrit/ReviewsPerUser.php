@@ -45,7 +45,7 @@ class ReviewsPerUser extends AbstractAnalyzer
 					
 					$reviewer = $codeReview->reviewer;
 					
-					if($commit->owner->email != $reviewer->email){
+					if($commit->owner->email != $reviewer->email && $codeReview->review_date >= $from){
 						if (!isset($results[$reviewer->_account_id])) {
 							$results[$reviewer->_account_id] = [
 								'username' => $reviewer->username,
