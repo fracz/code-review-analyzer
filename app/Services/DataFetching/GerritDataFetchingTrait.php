@@ -99,30 +99,31 @@ trait GerritDataFetchingTrait
 			
 			//Cache::put('emails-to-update', [], 8);
 			//Cache::put('emails-to-update-from-badges', [], 8);
-
+			echo "1 ";
             $result = $this->fetch($project, $this->buildUriElement($project, $from, $to));
             $results = [];
             //print_r($result);
 			//echo "<br/><br/>aaaaaaaaaa";
-
+echo "2 ";
             foreach ($result as $commit_item) {
 			//print_r($commit_item);
+			echo "3 ";
                     $commitId = $this->createOrUpdateCommit($commit_item);
-					
+					echo "4 ";
 					$uri = '/a/changes/'.$commit_item->id.'/detail/';
 					$detail_data = (array)$this->fetch($project, $uri);
-					
+					echo "5 ";
 					$this->createCodeReviewsAndVerifiedForCommit($detail_data, $commitId);
-
-                    foreach ($commit_item->revisions as $revision => $data) {
+echo "6 ";
+                    foreach ($commit_item->revisions as $revision => $data) {echo "7 ";
 						$marked = $this->markRebasedCodeNumbers($detail_data);
                         $revisionId = $this->createOrUpdateRevision($data, $revision, $commitId, $marked);
-                        
+                        echo "8 ";
                         $uri = '/a/changes/'.$commit_item->id.'/revisions/'.$revision.'/comments/';
-                        $comments = (array)$this->fetch($project, $uri);
+                        $comments = (array)$this->fetch($project, $uri);echo "9 ";
 						//print_r($uri);exit;
                         foreach ($comments as $filename => $comment_item) {
-                            foreach ($comment_item as $message) {
+                            foreach ($comment_item as $message) {echo "10 ";
                                 $this->createOrUpdateComment($message, $revisionId, $filename);
                             }
                         }
@@ -288,9 +289,9 @@ trait GerritDataFetchingTrait
 		
 		protected function createCodeReviewsAndVerifiedForCommit($data, $commitId){
 			$messages = $data['messages'];
-			
+			echo "5a ";
 			foreach($messages as $msg){
-
+echo "5b ";
 					//print_r($msg->message);echo "<br/>";
 				$codeRevPos = strpos($msg->message, 'Code-Review');
 				if ($codeRevPos !== false) {
@@ -315,12 +316,13 @@ trait GerritDataFetchingTrait
 					$reviewer['_revision_number'] = $msg->_revision_number;
 					$reviewer['date'] = $this->changeDateToWarsawTimeZone($msg->date);
 					//echo $data['id'] . " " . $msg->message. " .... ".$reviewer['_revision_number']." <br/>";
-					
+					echo "5c ";
 					$this->createCodeReviewIfNotExists($reviewer, $commitId);
+					echo "5d ";
 				}
-				
+				echo "5e";
 				$verifPos = strpos($msg->message, 'Verified');
-				
+				echo "5f ";
 				
 				
 				
@@ -329,24 +331,28 @@ trait GerritDataFetchingTrait
 					echo "<Br/>";
 					echo $msg->message[$verifPos+8];
 					exit;*/
-					
+					echo "5g ";
 					$value = 0;
 			
 					if(isset($msg->message[$verifPos+8]) && ($msg->message[$verifPos+8] == "-" || $msg->message[$verifPos+8] == "+"))
 					{
 						$value = $msg->message[$verifPos+8].$msg->message[$verifPos+9];
 					}
-					
-					$ver['value'] = $value;
-					$ver['_account_id'] = $msg->author->_account_id;
-					$ver['name'] = $msg->author->name;
-					$ver['email'] = $msg->author->email;
-					$ver['username'] = $msg->author->username;
-					$ver['avatars'] = $msg->author->avatars;
-					$ver['_revision_number'] = $msg->_revision_number;
-					$ver['date'] = $this->changeDateToWarsawTimeZone($msg->date);
-					
-					$this->createVerifiedIfNotExists($ver, $commitId);
+					echo "5h ";
+					if(isset($msg->author->email)){
+						$ver['value'] = $value;
+						$ver['_account_id'] = $msg->author->_account_id;
+						$ver['name'] = $msg->author->name;
+						$ver['email'] = $msg->author->email;
+						$ver['username'] = $msg->author->username;
+						$ver['avatars'] = $msg->author->avatars;
+						$ver['_revision_number'] = $msg->_revision_number;
+						$ver['date'] = $this->changeDateToWarsawTimeZone($msg->date);
+						echo "5i ";
+						$this->createVerifiedIfNotExists($ver, $commitId);
+						echo "5j ";
+					}
+					echo "5k ";
 				}
 			}			
 		}
