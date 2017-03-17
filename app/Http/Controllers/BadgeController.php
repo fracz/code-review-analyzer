@@ -80,7 +80,8 @@ class BadgeController extends Controller
         $persons = Person::all();
         $result = [];
         foreach ($persons as $person) {
-            $result[$person->email] = array_merge($this->getUserBadges($person->email), [
+            $result[] = array_merge($this->getUserBadges($person->email), [
+                'email' => $person->email,
                 'name' => $person->name,
                 'username' => $person->username,
             ]);
