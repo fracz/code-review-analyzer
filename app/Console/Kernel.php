@@ -29,9 +29,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-            ->hourly();
-
         $schedule->call(function () {
             Cache::put('emails-to-update', [], 120);
             Cache::put('emails-to-update-from-badges', [], 120);

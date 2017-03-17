@@ -19,6 +19,7 @@ Route::get('/review/api/cron/', ['middleware' => 'cors', 'as' => 'review.cron', 
 
 Route::get('/review/api/allprojects/', ['middleware' => 'cors', 'as' => 'review.allprojects', 'uses' => 'ReviewController@getAllProjects']);
 Route::get('/review/api/badges/days/{projectName}', ['middleware' => 'cors', 'as' => 'review.userbadgesdays', 'uses' => 'BadgeController@getDaysForProject']);
+Route::get('/review/api/badges/user', ['middleware' => 'cors', 'as' => 'review.alluserbadges', 'uses' => 'BadgeController@getAllUserBadges']);
 Route::get('/review/api/badges/user/{userEmail}', ['middleware' => 'cors', 'as' => 'review.userbadges', 'uses' => 'BadgeController@getUserBadges']);
 Route::get('/review/api/badges/user/nocache/{userEmail}', ['middleware' => 'cors', 'as' => 'review.userbadgesnocache', 'uses' => 'BadgeController@getUserBadgesWithoutCache']);
 Route::get('/review/api/badges/{projectName}/{userEmail}', ['middleware' => 'cors', 'as' => 'review.badges', 'uses' => 'BadgeController@getBadges']);
@@ -41,4 +42,3 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-	

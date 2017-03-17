@@ -8,7 +8,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Person;
 use App\Project;
 use App\Services\Analyzer\Gerrit\Badges\AbstractBadge;
 use App\Services\AnalyzerInterface;
@@ -35,12 +35,12 @@ class BadgeController extends Controller
             new \App\Services\Analyzer\Gerrit\Badges\MostReviewsBadge(),
             new \App\Services\Analyzer\Gerrit\Badges\PerfectQualityChangeBadge(),
             new \App\Services\Analyzer\Gerrit\Badges\PoorQualityChangeBadge(),
-			new \App\Services\Analyzer\Gerrit\Badges\ThrowawayCodeBadge(),
-			new \App\Services\Analyzer\Gerrit\Badges\CircumspectBadge(),
-			new \App\Services\Analyzer\Gerrit\Badges\SculptorBadge(),
-			new \App\Services\Analyzer\Gerrit\Badges\NightOwlBadge(),
-			new \App\Services\Analyzer\Gerrit\Badges\DonorBadge(),
-			new \App\Services\Analyzer\Gerrit\Badges\SelfReviewerBadge()
+            new \App\Services\Analyzer\Gerrit\Badges\ThrowawayCodeBadge(),
+            new \App\Services\Analyzer\Gerrit\Badges\CircumspectBadge(),
+            new \App\Services\Analyzer\Gerrit\Badges\SculptorBadge(),
+            new \App\Services\Analyzer\Gerrit\Badges\NightOwlBadge(),
+            new \App\Services\Analyzer\Gerrit\Badges\DonorBadge(),
+            new \App\Services\Analyzer\Gerrit\Badges\SelfReviewerBadge()
         );
 
         return $badges;
@@ -57,8 +57,8 @@ class BadgeController extends Controller
         $to = date("Y-m-d", time() + 86400);
         return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to, true);
     }
-	
-	public function getBadgesWithoutCache($projectName, $userEmail)
+
+    public function getBadgesWithoutCache($projectName, $userEmail)
     {
         $project = Project::where('name', str_replace('&2F;', '/', $projectName))->first();
 
@@ -69,15 +69,26 @@ class BadgeController extends Controller
         $to = date("Y-m-d", time() + 86400);
         return $this->getBadgesForPeriod($projectName, $userEmail, $from, $to, false);
     }
-	
-	public function getUserBadgesWithoutCache($userEmail){
-		return $this->getUserBadgesCheck($userEmail, false);
-	}
-	
-	public function getUserBadges($userEmail)
+
+    public function getUserBadgesWithoutCache($userEmail)
     {
-		return $this->getUserBadgesCheck($userEmail, true);
-	}
+        return $this->getUserBadgesCheck($userEmail, false);
+    }
+
+    public function getAllUserBadges()
+    {
+        $persons = Person::all();
+        $result = [];
+        foreach ($persons as $person) {
+            $result[$person->email] = $this->getUserBadges($person->email);
+        }
+        return $result;
+    }
+
+    public function getUserBadges($userEmail)
+    {
+        return $this->getUserBadgesCheck($userEmail, true);
+    }
 
     public function getUserBadgesCheck($userEmail, $cache)
     {
@@ -92,12 +103,12 @@ class BadgeController extends Controller
         $sumAllBadges['badges'] = [];
 
         foreach ($projects as $project) {
-			if($cache){
-				 $allUserBadges[$project->getAttribute('name')] = $this->getBadges($project->getAttribute('name'), $userEmail);
-			} else {
-				$allUserBadges[$project->getAttribute('name')] = $this->getBadgesWithoutCache($project->getAttribute('name'), $userEmail);
-			}
-           
+            if ($cache) {
+                $allUserBadges[$project->getAttribute('name')] = $this->getBadges($project->getAttribute('name'), $userEmail);
+            } else {
+                $allUserBadges[$project->getAttribute('name')] = $this->getBadgesWithoutCache($project->getAttribute('name'), $userEmail);
+            }
+
         }
 
         foreach ($allUserBadges as $projName => $projectBadges) {
@@ -105,12 +116,12 @@ class BadgeController extends Controller
             $sumAllBadges['ranking_projects'][$projName] = $projectBadges['ranking'];
 
             //echo $projName. " " . count($projectBadges['achievements']). "<br/>";
-			//unset($projectBadges['achievements']['patchset']);
+            //unset($projectBadges['achievements']['patchset']);
 
 
-            if($projectBadges['achievements'] != "") {
+            if ($projectBadges['achievements'] != "") {
                 foreach ($projectBadges['achievements'] as $name => $achivData) {
-					
+
                     //bo $name moze byc w liczbie pojedynczej lub mnogiej
                     if (substr($name, -1) != "s")
                         $name = $name . "s";
@@ -170,14 +181,15 @@ class BadgeController extends Controller
 
         return $sumAllBadges;
     }
-	
-	public function getDaysForProject($projectName){
-		 $project = Project::where('name', str_replace('&2F;', '/', $projectName))->first();
+
+    public function getDaysForProject($projectName)
+    {
+        $project = Project::where('name', str_replace('&2F;', '/', $projectName))->first();
         if (!$project)
             return null;
 
         return $project->badges_period;
-	}
+    }
 
     public function getBadgesForPeriod($projectName, $userEmail, $from, $to, $useCache)
     {
@@ -185,7 +197,7 @@ class BadgeController extends Controller
 
         if (Cache::has('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to) && $useCache != false) {
 
-           return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
+            return Cache::get('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to);
 
         } else {
             $dataFromLastWeek = $this->generateApi($projectName, $from, $to, false);
@@ -217,14 +229,15 @@ class BadgeController extends Controller
                 "achievements" => $rankingScreen->getAchievements($dataFromLastWeek, $userEmail),
                 "badges" => $rewardedBadges
             ];
-			
-			Cache::forever('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to, $api);
+
+            Cache::forever('cachedBadges-' . $projectName . '-' . $userEmail . '-' . $from . '-' . $to, $api);
 
             return $api;
         }
     }
 
-    public function getProjectBadgesForLastPeriod($name){
+    public function getProjectBadgesForLastPeriod($name)
+    {
         session_write_close();
         $project = Project::where('name', str_replace('&2F;', '/', $name))->firstOrFail();
         if (!$project)
@@ -232,7 +245,7 @@ class BadgeController extends Controller
 
         $to = date('Y-m-d', strtotime(' +1 day'));
         $noOfDays = $project->badges_period;
-        $from = date('Y-m-d', strtotime(' -'.$noOfDays.' day'));
+        $from = date('Y-m-d', strtotime(' -' . $noOfDays . ' day'));
         return $this->getProjectBadges($name, $from, $to);
     }
 
