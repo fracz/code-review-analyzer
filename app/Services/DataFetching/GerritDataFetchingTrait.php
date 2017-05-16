@@ -42,6 +42,8 @@ trait GerritDataFetchingTrait
 
 		$result = curl_exec($ch);
 
+        echo "RESULT: " . $result;
+
 		if ($result === false) {
                     return [];
 		}
