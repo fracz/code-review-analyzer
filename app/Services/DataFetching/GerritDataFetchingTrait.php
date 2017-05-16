@@ -29,7 +29,7 @@ trait GerritDataFetchingTrait
 		//print_r(str_replace(' ', '%20', $project->getAttribute('url').$uri));exit;
 		//print_r( $project->getAttribute('username').':'.$project->getAttribute('password'));exit;
 
-        echo "Fetching URL: ", str_replace(' ', '%20', $project->getAttribute('url').$uri;
+        echo "Fetching URL: ", str_replace(' ', '%20', $project->getAttribute('url').$uri);
 
 		curl_setopt_array($ch, [
 			CURLOPT_URL => str_replace(' ', '%20', $project->getAttribute('url').$uri),
