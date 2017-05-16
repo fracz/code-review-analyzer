@@ -154,7 +154,7 @@ echo "6 ";
             }
 
             $uri = '/a/changes/?q=project:'.$project->getAttribute('name');
-            $uri .= ' -is:draft ((status:merged)OR(status:open)OR(status:ABANDONED))';
+            $uri .= ' -is:draft';
             $uri .= $dateUriElement;
             $uri .= '&o=ALL_REVISIONS&o=DETAILED_ACCOUNTS&o=DETAILED_LABELS';
 
