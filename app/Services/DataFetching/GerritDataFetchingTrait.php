@@ -251,7 +251,7 @@ echo "6 ";
             $commit->status = $commit_item->status;
             $commit->created = $this->changeDateToWarsawTimeZone($commit_item->created);
             $commit->updated = $this->changeDateToWarsawTimeZone($commit_item->updated);
-            $commit->submittable = $commit_item->submittable;
+//            $commit->submittable = $commit_item->submittable;
             $commit->insertions = $commit_item->insertions;
             $commit->deletions = $commit_item->deletions;
             $commit->_number = $commit_item->_number;
