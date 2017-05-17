@@ -33,7 +33,7 @@ trait GerritDataFetchingTrait
 
 		curl_setopt_array($ch, [
 			CURLOPT_URL => str_replace(' ', '%20', $project->getAttribute('url').$uri),
-			CURLOPT_HTTPAUTH => CURLAUTH_DIGEST,
+			CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_USERPWD => $project->getAttribute('username').':'.$project->getAttribute('password'),
 			CURLOPT_SSL_VERIFYPEER => false,
