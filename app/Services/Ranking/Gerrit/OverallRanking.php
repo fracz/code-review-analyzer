@@ -21,12 +21,12 @@ class OverallRanking implements RankerInterface
 				'desc' => 'new NT change|new NT changes',
             ],
             'reviews_per_user' => [
-                'weight' => 2.0,
+                'weight' => 1.0,
                 'field' => 'count',
 				'desc' => 'review|reviews',
             ],
 			 'reviews_per_user_repeat' => [
-                'weight' => 1.0,
+                'weight' => 0.5,
                 'field' => 'minor_count',
 				'desc' => 'repeated review|repeated reviews',
             ],
